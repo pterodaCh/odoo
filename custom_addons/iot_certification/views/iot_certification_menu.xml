@@ -1,0 +1,47 @@
+<odoo>
+    <!-- Action -->
+    <record id="action_iot_certification_order" model="ir.actions.act_window">
+        <field name="name">Замовлення на сертифікацію</field>
+        <field name="res_model">iot_certification_order</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Action for Products -->
+    <record id="action_products_tree" model="ir.actions.act_window">
+        <field name="name">Products</field>
+        <field name="res_model">product.product</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- Action for Users -->
+    <record id="action_users_tree" model="ir.actions.act_window">
+        <field name="name">Users</field>
+        <field name="res_model">res.users</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- Action for Partners -->
+    <record id="action_partners_tree" model="ir.actions.act_window">
+        <field name="name">Partners</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <!-- Top-level Menu -->
+    <menuitem id="iot_certification_menu_root" name="IoT Сертифікація" sequence="10"/>
+
+    <!-- Sub-menu -->
+    <menuitem id="iot_certification_list" name="Сертифікаційна форма" parent="iot_certification_menu_root" action="action_iot_certification_order"/>
+    <!-- Sub-menu -->
+    <menuitem id="iot_certification_sw_hw" name="SW / HW версії" parent="iot_certification_menu_root" action="action_sw_hw_tree"/>
+    <!-- Sub-menu -->
+    <menuitem id="iot_certification_dstu" name="ДСТУ" parent="iot_certification_menu_root" action="action_dstu_tree"/>
+    <!-- Sub-menu -->
+    <!--<menuitem id="iot_certification_laboratory" name="Випробувальні лабораторії" parent="iot_certification_menu_root" action="action_testing_laboratory_tree"/> -->
+    <!-- Sub-menu for Products -->
+    <menuitem id="products_list" name="Пристрої" parent="iot_certification_menu_root" action="action_products_tree"/>
+    <!-- Sub-menu for Users -->
+    <menuitem id="users_list" name="Співробітники" parent="iot_certification_menu_root" action="action_users_tree"/>
+    <!-- Sub-menu for Partners -->
+    <menuitem id="partners_list" name="Партнери" parent="iot_certification_menu_root" action="action_partners_tree"/>
+</odoo>

@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <record id="view_report_for_tree" model="ir.ui.view">
+            <field name="name">iot_certification_assessment.tree</field>
+            <field name="model">iot_certification_assessment</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+    </data>
+</odoo>

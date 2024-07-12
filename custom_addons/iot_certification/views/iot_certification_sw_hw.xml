@@ -1,0 +1,65 @@
+<odoo>
+    <data>
+        <!-- Tree View -->
+        <record id="view_sw_hw_tree" model="ir.ui.view">
+            <field name="name">iot_certification_sw_hw.tree</field>
+            <field name="model">iot_certification_sw_hw</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="part_of_the_equipment_verdict"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_sw_hw_form" model="ir.ui.view">
+            <field name="name">iot_certification_sw_hw.form</field>
+            <field name="model">iot_certification_sw_hw</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="part_of_the_equipment_verdict"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_sw_hw_search" model="ir.ui.view">
+            <field name="name">iot_certification_sw_hw.search</field>
+            <field name="model">iot_certification_sw_hw</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name" string="HW/SW Version"/>
+                    <filter string="Type" context="{'group_by':'part_of_the_equipment_verdict'}" name="type_filter"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action for Tree View -->
+        <record id="action_sw_hw_tree" model="ir.actions.act_window">
+            <field name="name">Software / Hardware</field>
+            <field name="res_model">iot_certification_sw_hw</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_sw_hw_tree"/>
+        </record>
+
+        <!-- Action for Form View -->
+        <record id="action_sw_hw_form" model="ir.actions.act_window">
+            <field name="name">Software / Hardware</field>
+            <field name="res_model">iot_certification_sw_hw</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_sw_hw_form"/>
+        </record>
+
+        <!-- Action for Search View -->
+        <record id="action_sw_hw_search" model="ir.actions.act_window">
+            <field name="name">Software / Hardware</field>
+            <field name="res_model">iot_certification_sw_hw</field>
+            <field name="view_mode">search</field>
+            <field name="view_id" ref="view_sw_hw_search"/>
+        </record>
+    </data>
+</odoo>

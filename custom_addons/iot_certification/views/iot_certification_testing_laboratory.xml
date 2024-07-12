@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <record id="view_testing_laboratory_tree" model="ir.ui.view">
+            <field name="name">iot_certification_testing_laboratory.tree</field>
+            <field name="model">iot_certification_testing_laboratory</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_testing_laboratory_form" model="ir.ui.view">
+            <field name="name">iot_certification_testing_laboratory.form</field>
+            <field name="model">iot_certification_testing_laboratory</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action for Tree View -->
+        <record id="action_testing_laboratory_tree" model="ir.actions.act_window">
+            <field name="name">ДСТУ</field>
+            <field name="res_model">iot_certification_testing_laboratory</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_testing_laboratory_tree"/>
+        </record>
+    </data>
+</odoo>

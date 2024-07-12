@@ -1,0 +1,85 @@
+<odoo>
+    <record id="iot_certification_additional_order_form" model="ir.ui.view">
+        <field name="name">iot_certification_additional_order.form</field>
+        <field name="model">iot_certification_additional_order</field>
+        <field name="arch" type="xml">
+            <form string="Додаток до сертифікаційної форми">
+                <sheet>
+                    <group name="All" col="1">
+                        <group name="certification_header_11">
+                                <field name="name" style="font-size: 28px;"/>
+                        </group>
+                        <br></br><br></br>
+                        <group name="safety" string="п.6 ТР Р (Безпека)" col="3">
+                            <group name="safety_verdict" style="width:30%%" colspan="1">
+                                <field name="safety_details_1" string="Стандарт" widget="many2many_tags"/>
+                            </group>
+                            <group name="safety_evidence" style="width:40%%" colspan="1">
+                                <field name="safety_details_2" string="Стандарт" widget="many2many_tags"/>
+                                <field name="safety_protocol_no"/>
+                                <field name="safety_protocol_date"/>
+                                <field name="safety_laboratory_id"/>
+                                <field name="safety_attachment_ids" widget='many2many_binary'/>
+                            </group>
+                            <group name="safety_verdict" style="width:30%%" colspan="1">
+                                <field name="safety_verdict" widget="radio"/>
+                                <field name="safety_result" widget="html"/>
+                            </group>
+                        </group>
+                        <br></br><br></br>
+                        <group name="health" string="п.6 ТР Р (Здоров'я) " col="3">
+                            <group name="health_verdict" style="width:30%%" colspan="1">
+                                <field name="health_details_1" string="Стандарт" widget="many2many_tags"/>
+                            </group>
+                            <group name="health_evidence" style="width:40%%" colspan="1">
+                                <field name="health_details_2" string="Стандарт" widget="many2many_tags"/>
+                                <field name="health_protocol_no"/>
+                                <field name="health_protocol_date"/>
+                                <field name="health_laboratory_id"/>
+                                <field name="health_attachment_ids" widget='many2many_binary'/>
+                            </group>
+                            <group name="health_verdict" style="width:30%%" colspan="1">
+                                <field name="health_verdict" widget="radio"/>
+                                <field name="health_result" widget="html"/>
+                            </group>
+                        </group>
+                        <br></br><br></br>
+                        <group name="emc" string="п.6 ТР Р (EMC)" col="3">
+                            <group name="emc_verdict" style="width:30%%" colspan="1">
+                                <field name="emc_details_1" string="Стандарт" widget="many2many_tags"/>
+                            </group>
+                            <group name="emc_evidence" style="width:40%%" colspan="1">
+                                <field name="emc_details_2" string="Стандарт" widget="many2many_tags"/>
+                                <field name="emc_protocol_no"/>
+                                <field name="emc_protocol_date"/>
+                                <field name="emc_laboratory_id"/>
+                                <field name="emc_attachment_ids" widget='many2many_binary'/>
+                            </group>
+                            <group name="emc_verdict" style="width:30%%" colspan="1">
+                                <field name="emc_verdict" widget="radio"/>
+                                <field name="emc_result" widget="html"/>
+                            </group>
+                        </group>
+                        <br></br><br></br>
+                        <group name="spectrum" string="п. 7 ТР Р (викор.     РЧР)" col="3">
+                            <group name="spectrum_verdict" style="width:30%%" colspan="1">
+                                <field name="spectrum_details_1" string="Стандарт" widget="many2many_tags"/>
+                            </group>
+                            <group name="spectrum_evidence" style="width:40%%" colspan="1">
+                                <field name="spectrum_details_2" string="Стандарт" widget="many2many_tags"/>
+                                <field name="spectrum_protocol_no"/>
+                                <field name="spectrum_protocol_date"/>
+                                <field name="spectrum_laboratory_id"/>
+                                <field name="spectrum_attachment_ids" widget='many2many_binary'/>
+                            </group>
+                            <group name="spectrum_verdict" style="width:30%%" colspan="1">
+                                <field name="spectrum_verdict" widget="radio"/>
+                                <field name="spectrum_result" widget="html"/>
+                            </group>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
