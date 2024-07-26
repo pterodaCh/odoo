@@ -10,7 +10,7 @@ class TestingLaboratory(models.Model):
     
     order_no = fields.Many2one(
         comodel_name='iot_certification_order',
-        inverse_name='safety_laboratory_id',
+    # inverse_name='safety_laboratory_id',
         string='Номер')
     
     
