@@ -471,7 +471,7 @@ class IoTCertificationOrder(models.Model):
     
     safety_laboratory_id = fields.Many2one(
         comodel_name='iot_certification_testing_laboratory',
-        relation='safety_laboratory_id',
+    # relation='safety_laboratory_id',
         string='Випробувальна лабораторія:')
     
     safety_attachment_ids = fields.Many2many(
@@ -507,7 +507,7 @@ class IoTCertificationOrder(models.Model):
     
     health_laboratory_id = fields.Many2one(
         comodel_name='iot_certification_testing_laboratory',
-        relation='health_laboratory_id',
+    # relation='health_laboratory_id',
         string='Випробувальна лабораторія:')
     
     health_attachment_ids = fields.Many2many(
@@ -543,7 +543,7 @@ class IoTCertificationOrder(models.Model):
     
     emc_laboratory_id = fields.Many2one(
         comodel_name='iot_certification_testing_laboratory',
-        relation='emc_laboratory_id',
+    # relation='emc_laboratory_id',
         string='Випробувальна лабораторія:')
     
     emc_attachment_ids = fields.Many2many(
@@ -579,7 +579,7 @@ class IoTCertificationOrder(models.Model):
     
     spectrum_laboratory_id = fields.Many2one(
         comodel_name='iot_certification_testing_laboratory',
-        relation='spectrum_laboratory_id',
+    # relation='spectrum_laboratory_id',
         string='Випробувальна лабораторія:')
     
     spectrum_attachment_ids = fields.Many2many(
@@ -844,7 +844,7 @@ class IoTCertificationOrder(models.Model):
             index2 = 21 - index
             show_condition_field = getattr(self, f'show_condition_{index2}')
             if show_condition_field:
-                setattr(self, f'condition_{index2}_verdict', 'no')
+                setattr(self, f'condition_{index2}_verd', 'no')
                 setattr(self, f'condition_{index2}_notes', '')
                 setattr(self, f'condition_{index2}_attachment_ids', False)
                 setattr(self, f'show_condition_{index2}', False)

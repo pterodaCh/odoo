@@ -41,7 +41,7 @@ class IoTCertificationAdditionalOrder(models.Model):
     
     safety_laboratory_id = fields.Many2one(
         comodel_name='iot_certification_testing_laboratory',
-        relation='safety_laboratory_id',
+    # relation='safety_laboratory_id',
         string='Випробувальна лабораторія:')
     
     safety_attachment_ids = fields.Many2many(
@@ -87,7 +87,7 @@ class IoTCertificationAdditionalOrder(models.Model):
     
     health_laboratory_id = fields.Many2one(
         comodel_name='iot_certification_testing_laboratory',
-        relation='health_laboratory_id',
+    # relation='health_laboratory_id',
         string='Випробувальна лабораторія:')
     
     health_attachment_ids = fields.Many2many(
@@ -133,7 +133,7 @@ class IoTCertificationAdditionalOrder(models.Model):
     
     emc_laboratory_id = fields.Many2one(
         comodel_name='iot_certification_testing_laboratory',
-        relation='emc_laboratory_id',
+    # relation='emc_laboratory_id',
         string='Випробувальна лабораторія:')
     
     emc_attachment_ids = fields.Many2many(
@@ -179,7 +179,7 @@ class IoTCertificationAdditionalOrder(models.Model):
     
     spectrum_laboratory_id = fields.Many2one(
         comodel_name='iot_certification_testing_laboratory',
-        relation='spectrum_laboratory_id',
+    # relation='spectrum_laboratory_id',
         string='Випробувальна лабораторія:')
     
     spectrum_attachment_ids = fields.Many2many(
