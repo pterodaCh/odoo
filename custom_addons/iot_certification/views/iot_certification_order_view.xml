@@ -120,7 +120,8 @@
                                             <field name="product_specification_1_6" attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
                                             <field name="product_specification_1_7" attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
                                             <field name="product_specification_1_8" attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
-                                        </group> 
+                                            <field name="product_specification_1_9" attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
+                                        </group>
                                     </group> 
                                     
                                     <group name="certification_header_details_tgn_product_specification_evidence_2" colspan="2">
@@ -144,6 +145,8 @@
                                             <field name="product_specification_3_2" attrs="{'invisible': [('product_specification_3', '=', False)]}"/>
                                             <field name="product_specification_3_3" attrs="{'invisible': [('product_specification_3', '=', False)]}"/>
                                             <field name="product_specification_3_4" attrs="{'invisible': [('product_specification_3', '=', False)]}"/>
+                                            <field name="product_specification_3_5" attrs="{'invisible': [('product_specification_3', '=', False)]}"/>
+                                            <field name="product_specification_3_6" attrs="{'invisible': [('product_specification_3', '=', False)]}"/>
                                         </group>
                                     </group> 
                                     
@@ -152,6 +155,8 @@
                                             <field name="product_specification_4"/>
                                         </group>
                                         <group name="certification_header_details_tgn_product_specification_evidence_42" colspan="1">
+                                            <field name="product_specification_4_1" attrs="{'invisible': [('product_specification_4', '=', False)]}"/>
+                                            <field name="product_specification_4_2" attrs="{'invisible': [('product_specification_4', '=', False)]}"/>
                                         </group>
                                     </group> 
                                     
@@ -164,17 +169,10 @@
                                             <field name="product_specification_5_2" attrs="{'invisible': [('product_specification_5', '=', False)]}"/>
                                             <field name="product_specification_5_3" attrs="{'invisible': [('product_specification_5', '=', False)]}"/>
                                             <field name="product_specification_5_4" attrs="{'invisible': [('product_specification_5', '=', False)]}"/>
-                                            <field name="product_specification_5_5" attrs="{'invisible': [('product_specification_5_4', '=', False)]}"/>
+                                            <field name="product_specification_5_5" attrs="{'invisible': [('product_specification_5', '=', False)]}"/>
+                                            <field name="product_specification_5_6" attrs="{'invisible': [('product_specification_5_5', '=', False)]}"/>
                                         </group>
-                                    </group> 
-                                    
-                                    <group name="certification_header_details_tgn_product_specification_evidence_6" colspan="2">
-                                        <group name="certification_header_details_tgn_product_specification_evidence_61" colspan="1">
-                                            <field name="product_specification_6"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_product_specification_evidence_62" colspan="1">
-                                        </group>
-                                    </group> 
+                                    </group>
                                     
                                     <group name="certification_header_details_tgn_product_specification_evidence_7" colspan="2">
                                         <group name="certification_header_details_tgn_product_specification_evidence_71" colspan="1">
@@ -201,7 +199,7 @@
                                     </group> 
                                     <group name="certification_header_details_tgn_product_specification_evidence_10" colspan="1" style="width:100%%">
                                         <field name="product_specification_10"/>
-                                        <field name="product_specification_10_1" attrs="{'invisible': [('product_specification_10', '=', False)]}"/>
+<!--                                        <field name="product_specification_10_1" attrs="{'invisible': [('product_specification_10', '=', False)]}"/>-->
                                     </group> 
                                 </group>
                                 <group name="certification_header_details_tgn_product_specification_attachments" style="width:40%%" colspan="1">
