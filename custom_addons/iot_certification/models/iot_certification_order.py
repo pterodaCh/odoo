@@ -140,6 +140,9 @@ class IoTCertificationOrder(models.Model):
     
     product_specification_1_8 = fields.Boolean(
         string="ZigBee")
+
+    product_specification_1_9 = fields.Boolean(
+        string="2400 МГц")
     
     product_specification_2 = fields.Boolean(
         string="Цифровий стільниковий радіозв'язок")
@@ -170,9 +173,21 @@ class IoTCertificationOrder(models.Model):
     
     product_specification_3_4 = fields.Boolean(
         string="5800 МГц")
+
+    product_specification_3_5 = fields.Boolean(
+        string="6,7 МГц")
+
+    product_specification_3_6 = fields.Boolean(
+        string="13 МГц")
     
     product_specification_4 = fields.Boolean(
-        string="Індуктивні застосування (NFC)")
+        string="Індуктивні застосування")
+
+    product_specification_4_1 = fields.Boolean(
+        string="NFC")
+
+    product_specification_4_2 = fields.Boolean(
+        string="RFID")
     
     product_specification_5 = fields.Boolean(
         string="Приймач")
@@ -184,16 +199,19 @@ class IoTCertificationOrder(models.Model):
         string="FM")
     
     product_specification_5_3 = fields.Boolean(
-        string="TV/DBV")
-    
+        string="КХ/УКХ")
+
     product_specification_5_4 = fields.Boolean(
+        string="433 МГц")
+    
+    product_specification_5_5 = fields.Boolean(
         string="Інший")
     
-    product_specification_5_5 = fields.Text(
+    product_specification_5_6 = fields.Text(
         string="Інший (вказати)")
     
-    product_specification_6 = fields.Boolean(
-        string="УКХ радіозв'язок")
+    # product_specification_6 = fields.Boolean(
+    #     string="УКХ радіозв'язок")
     
     product_specification_7 = fields.Boolean(
         string="Радіолокаційні вимірювання")
@@ -205,10 +223,10 @@ class IoTCertificationOrder(models.Model):
         string="Радіорелейний зв'язок")
     
     product_specification_10 = fields.Boolean(
-        string="Інше")
+        string="Інше (функція безпроводового заряджання)")
     
-    product_specification_10_1 = fields.Text(
-        string="Інше (вказати)")
+    # product_specification_10_1 = fields.Text(
+    #     string="Інше (вказати)")
     
     product_specification_attachment_ids = fields.Many2many(
         comodel_name='ir.attachment',
@@ -755,7 +773,8 @@ class IoTCertificationOrder(models.Model):
             self.product_specification_1_6 = False
             self.product_specification_1_7 = False
             self.product_specification_1_8 = False
-    
+            self.product_specification_1_9 = False
+
     @api.onchange('product_specification_2')
     def _onchange_product_specification_2(self):
         if not self.product_specification_2:
@@ -771,7 +790,16 @@ class IoTCertificationOrder(models.Model):
             self.product_specification_3_2 = False
             self.product_specification_3_3 = False
             self.product_specification_3_4 = False
-    
+            self.product_specification_3_5 = False
+            self.product_specification_3_6 = False
+
+
+    @api.onchange('product_specification_4')
+    def _onchange_product_specification_4(self):
+        if not self.product_specification_4:
+            self.product_specification_4_1 = False
+            self.product_specification_4_2 = False
+
     @api.onchange('product_specification_5')
     def _onchange_product_specification_5(self):
         if not self.product_specification_5:
@@ -779,17 +807,18 @@ class IoTCertificationOrder(models.Model):
             self.product_specification_5_2 = False
             self.product_specification_5_3 = False
             self.product_specification_5_4 = False
-            self.product_specification_5_5 = ""
+            self.product_specification_5_5 = False
+            self.product_specification_5_6 = ""
     
-    @api.onchange('product_specification_5_4')
-    def _onchange_product_specification_5_4(self):
-        if not self.product_specification_5_4:
-            self.product_specification_5_5 = ""
+    @api.onchange('product_specification_5_5')
+    def _onchange_product_specification_5_5(self):
+        if not self.product_specification_5_5:
+            self.product_specification_5_6 = ""
     
-    @api.onchange('product_specification_10')
-    def _onchange_product_specification_10(self):
-        if not self.product_specification_10:
-            self.product_specification_10_1 = ""
+    # @api.onchange('product_specification_10')
+    # def _onchange_product_specification_10(self):
+    #     if not self.product_specification_10:
+    #         self.product_specification_10_1 = ""
     
     @api.onchange('the_scheme_of_power_supply_2')
     def _onchange_the_scheme_of_power_supply_2(self):
