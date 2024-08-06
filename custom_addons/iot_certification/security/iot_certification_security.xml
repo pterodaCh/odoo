@@ -31,12 +31,18 @@
             <field name="comment">the user will be able to review and confirm certificates.</field>
         </record>
 
-<!--        <record id="performer_own_form_rule" model="ir.rule">-->
-<!--            <field name="name">Performer: view own forms</field>-->
-<!--            <field name="model_id" ref="module_category_certification"/>-->
-<!--            <field name="groups" eval="[(4, ref('iot_certification.group_certification_performer'))]"/>-->
-<!--            <field name="domain_force">[('create_uid','=','responsible_person')]</field>-->
-<!--        </record>-->
+        <record id="performer_own_form_rule" model="ir.rule">
+            <field name="name">performer: view onw records</field>
+            <field name="model_id" ref="model_iot_certification_order"/>
+            <field name="groups" eval="[Command.set([ref('iot_certification.group_certification_performer')])]"/>
+            <field name="domain_force">[('create_uid','=', user.id)]</field>
+        </record>
 
+        <record id="manager_own_form_rule" model="ir.rule">
+            <field name="name">Manager: view onw records</field>
+            <field name="model_id" ref="model_iot_certification_order"/>
+            <field name="groups" eval="[Command.set([ref('iot_certification.group_certification_report_manager')])]"/>
+            <field name="domain_force">[]</field>
+        </record>
     </data>
 </odoo>
