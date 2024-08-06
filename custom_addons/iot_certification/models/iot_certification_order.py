@@ -2,6 +2,7 @@ from odoo import api, fields, models, SUPERUSER_ID, exceptions
 
 class IoTCertificationOrder(models.Model):
     _name = "iot_certification_order"
+    _inherit = ['mail.thread']
     _description = "IoT Certification Order"
     _track = 1  # Enable tracking for this model
 
@@ -40,7 +41,8 @@ class IoTCertificationOrder(models.Model):
             ('approved', " Підтверджено"),
         ],
         default='draft',
-        string="Статус")
+        string="Статус",
+        tracking=True)
     
     conducted_an_assessment = fields.Many2one(
         comodel_name='res.users',
