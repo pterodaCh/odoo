@@ -19,10 +19,10 @@
                 <field name="name" string="Реєстраційний номер" decoration-bf="1"/>
                 <field name="responsible_person" widget="many2one_avatar_user"/>
                 <field name="status"
-                    decoration-success="status == 'approved'"
-                    decoration-info="(status == 'inprogress') or (status == 'draft')"
-                    decoration-warning="(status == 'needchanges') or (status == 'readyforapproval')"
-                    widget="badge"/>
+                       decoration-success="status == 'approved'"
+                       decoration-info="(status == 'inprogress') or (status == 'draft')"
+                       decoration-warning="(status == 'needchanges') or (status == 'readyforapproval')"
+                       widget="badge"/>
                 <field name="appliciant_id" widget="res_partner_many2one"/>
                 <field name="product_id" widget="many2one_barcode"/>
             </tree>
@@ -34,12 +34,26 @@
         <field name="model">iot_certification_order</field>
         <field name="arch" type="xml">
             <form string="Замовлення на сертифікацію" attrs="{'readonly': [('status', 'in', ('approved'))]}">
+                <header>
+                    <field name="status" widget="statusbar"/>
+                </header>
                 <sheet>
-                    <group name ="certification_header_1">
+                    <button name="action_ready_for_approval" type="object" string="Надіслати на перевірку"
+                            groups="iot_certification.group_certification_performer"/>
+                    <button name="action_accept_for_approval" type="object" string="Прийняти на перевірку"
+                            groups="iot_certification.group_certification_report_manager, iot_certification.group_certification_cert_manager"/>
+                    <button name="action_submit_for_revision" type="object" string="Надіслати на доопрацювання"
+                            groups="iot_certification.group_certification_report_manager, iot_certification.group_certification_cert_manager"/>
+                    <button name="action_submit" type="object" string="Підтвердити"
+                            groups="iot_certification.group_certification_report_manager, iot_certification.group_certification_cert_manager"/>
+                    <separator/>
+                    <group name="certification_header_1">
                         <group name="certification_header_11" style="width:50%%" colspan="1">
                             <field name="name" style="font-size: 28px;"/>
-                            <field name="responsible_person" widget="many2one_avatar_user" options='{"always_reload": True}'/>
-                            <field name="status"/>
+                            <field name="responsible_person" widget="many2one_avatar_user"
+                                   options='{"always_reload": True}'/>
+                            <field name="approved_cert_status" readonly="1"/>
+                            <field name="approved_report_status" readonly="1"/>
                         </group>
                         <group name="certification_header_12" style="width:50%%">
                             <group name="dates_details">
@@ -51,8 +65,10 @@
                     <separator/>
                     <group name="certification_header_2">
                         <group name="conducted_details" string="Звіт про оцінювання:">
-                            <field name="conducted_an_assessment" widget="many2one_avatar_user" options='{"always_reload": True}'/>
-                            <field name="conducted_an_analysis_and_made_a_decision_on_certification" widget="many2one_avatar_user" options='{"always_reload": True}'/>
+                            <field name="conducted_an_assessment" widget="many2one_avatar_user"
+                                   options='{"always_reload": True}'/>
+                            <field name="conducted_an_analysis_and_made_a_decision_on_certification"
+                                   widget="many2one_avatar_user" options='{"always_reload": True}'/>
                         </group>
                         <group name="certification_header_22" col="1">
                             <group name="report_for_ids_group" string="Звіт за:">
@@ -75,361 +91,514 @@
                     </group>
                     <notebook>
                         <page name="details_1" string="Деталі TGN">
-                            <h2><br></br>Оцінка відповідності  відповідно до Додатку 2 ТР Р, ПКМУ від 24.05.2017 № 355<br></br></h2>
-                            <group name="certification_header_details_tgn_order_application_form" string="1. Замовлення / Заявка" col="3">
-                                <group name="certification_header_details_tgn_order_application_form_verdict" style="width:20%%" colspan="1">
+                            <h2><br></br>Оцінка відповідності відповідно до Додатку 2 ТР Р, ПКМУ від 24.05.2017 № 355
+                                <br></br>
+                            </h2>
+                            <group name="certification_header_details_tgn_order_application_form"
+                                   string="1. Замовлення / Заявка" col="3">
+                                <group name="certification_header_details_tgn_order_application_form_verdict"
+                                       style="width:20%%" colspan="1">
                                     <field name="order_application_form_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_order_application_form_evidence" style="width:40%%" colspan="1">
-                                    <field name="appliciant_id" widget="res_partner_many2one" context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}" options='{"always_reload": True}'/>
-                                    <field name="product_id" widget="many2one_barcode" options='{"always_reload": True}'/>
-                                    <field name="producer_id" widget="res_partner_many2one" context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}" options='{"always_reload": True}'/>
+                                <group name="certification_header_details_tgn_order_application_form_evidence"
+                                       style="width:40%%" colspan="1">
+                                    <field name="appliciant_id" widget="res_partner_many2one"
+                                           context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}"
+                                           options='{"always_reload": True}'/>
+                                    <field name="product_id" widget="many2one_barcode"
+                                           options='{"always_reload": True}'/>
+                                    <field name="producer_id" widget="res_partner_many2one"
+                                           context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}"
+                                           options='{"always_reload": True}'/>
                                     <field name="enterprise_ids" widget="many2many_tags"/>
                                 </group>
-                                <group name="certification_header_details_tgn_order_application_form_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_order_application_form_attachments"
+                                       style="width:40%%" colspan="1">
                                     <field name="order_application_form_attachment_ids" widget='many2many_binary'/>
                                     <field name="order_application_form_remarks" widget="html"/>
                                 </group>
                             </group>
-                            <group name="certification_header_details_tgn_power_of_attorney" string="2. Доручення виробника (за необхідності)" col="3">
-                                <group name="certification_header_details_tgn_power_of_attorney_verdict" style="width:20%%" colspan="1">
+                            <group name="certification_header_details_tgn_power_of_attorney"
+                                   string="2. Доручення виробника (за необхідності)" col="3">
+                                <group name="certification_header_details_tgn_power_of_attorney_verdict"
+                                       style="width:20%%" colspan="1">
                                     <field name="power_of_attorney_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_power_of_attorney_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_power_of_attorney_evidence"
+                                       style="width:40%%" colspan="1">
                                 </group>
-                                <group name="certification_header_details_tgn_power_of_attorney_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_power_of_attorney_attachments"
+                                       style="width:40%%" colspan="1">
                                     <field name="power_of_attorney_attachment_ids" widget='many2many_binary'/>
                                     <field name="power_of_attorney_remarks" widget="html"/>
                                 </group>
                             </group>
-                            <group name="certification_header_details_tgn_product_specification" string="3. Застосовані радіотехнології" col="3">
-                                <group name="certification_header_details_tgn_product_specification_verdict" style="width:20%%" colspan="1">
+                            <group name="certification_header_details_tgn_product_specification"
+                                   string="3. Застосовані радіотехнології" col="3">
+                                <group name="certification_header_details_tgn_product_specification_verdict"
+                                       style="width:20%%" colspan="1">
                                     <field name="product_specification_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_product_specification_evidence" style="width:40%%" colspan="1">
-                                    <group name="certification_header_details_tgn_product_specification_evidence_1" colspan="2">
-                                        <group name="certification_header_details_tgn_product_specification_evidence_11" colspan="1">
+                                <group name="certification_header_details_tgn_product_specification_evidence"
+                                       style="width:40%%" colspan="1">
+                                    <group name="certification_header_details_tgn_product_specification_evidence_1"
+                                           colspan="2">
+                                        <group name="certification_header_details_tgn_product_specification_evidence_11"
+                                               colspan="1">
                                             <field name="product_specification_1"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_product_specification_evidence_12" colspan="1">
-                                            <field name="product_specification_1_1" attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
-                                            <field name="product_specification_1_2" attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
-                                            <field name="product_specification_1_3" attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
-                                            <field name="product_specification_1_4" attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
-                                            <field name="product_specification_1_5" attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
-                                            <field name="product_specification_1_6" attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
-                                            <field name="product_specification_1_7" attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
-                                            <field name="product_specification_1_8" attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
-                                            <field name="product_specification_1_9" attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
-                                        </group>
-                                    </group> 
-                                    
-                                    <group name="certification_header_details_tgn_product_specification_evidence_2" colspan="2">
-                                        <group name="certification_header_details_tgn_product_specification_evidence_21" colspan="1">
-                                            <field name="product_specification_2"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_product_specification_evidence_22" colspan="1">
-                                            <field name="product_specification_2_1" attrs="{'invisible': [('product_specification_2', '=', False)]}"/>
-                                            <field name="product_specification_2_2" attrs="{'invisible': [('product_specification_2', '=', False)]}"/>
-                                            <field name="product_specification_2_3" attrs="{'invisible': [('product_specification_2', '=', False)]}"/>
-                                            <field name="product_specification_2_4" attrs="{'invisible': [('product_specification_2', '=', False)]}"/>
-                                        </group>
-                                    </group> 
-                                    
-                                    <group name="certification_header_details_tgn_product_specification_evidence_3" colspan="2">
-                                        <group name="certification_header_details_tgn_product_specification_evidence_31" colspan="1">
-                                            <field name="product_specification_3"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_product_specification_evidence_32" colspan="1">
-                                            <field name="product_specification_3_1" attrs="{'invisible': [('product_specification_3', '=', False)]}"/>
-                                            <field name="product_specification_3_2" attrs="{'invisible': [('product_specification_3', '=', False)]}"/>
-                                            <field name="product_specification_3_3" attrs="{'invisible': [('product_specification_3', '=', False)]}"/>
-                                            <field name="product_specification_3_4" attrs="{'invisible': [('product_specification_3', '=', False)]}"/>
-                                            <field name="product_specification_3_5" attrs="{'invisible': [('product_specification_3', '=', False)]}"/>
-                                            <field name="product_specification_3_6" attrs="{'invisible': [('product_specification_3', '=', False)]}"/>
-                                        </group>
-                                    </group> 
-                                    
-                                    <group name="certification_header_details_tgn_product_specification_evidence_4" colspan="2">
-                                        <group name="certification_header_details_tgn_product_specification_evidence_41" colspan="1">
-                                            <field name="product_specification_4"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_product_specification_evidence_42" colspan="1">
-                                            <field name="product_specification_4_1" attrs="{'invisible': [('product_specification_4', '=', False)]}"/>
-                                            <field name="product_specification_4_2" attrs="{'invisible': [('product_specification_4', '=', False)]}"/>
-                                        </group>
-                                    </group> 
-                                    
-                                    <group name="certification_header_details_tgn_product_specification_evidence_5" colspan="2">
-                                        <group name="certification_header_details_tgn_product_specification_evidence_51" colspan="1">
-                                            <field name="product_specification_5"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_product_specification_evidence_52" colspan="1">
-                                            <field name="product_specification_5_1" attrs="{'invisible': [('product_specification_5', '=', False)]}"/>
-                                            <field name="product_specification_5_2" attrs="{'invisible': [('product_specification_5', '=', False)]}"/>
-                                            <field name="product_specification_5_3" attrs="{'invisible': [('product_specification_5', '=', False)]}"/>
-                                            <field name="product_specification_5_4" attrs="{'invisible': [('product_specification_5', '=', False)]}"/>
-                                            <field name="product_specification_5_5" attrs="{'invisible': [('product_specification_5', '=', False)]}"/>
-                                            <field name="product_specification_5_6" attrs="{'invisible': [('product_specification_5_5', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_product_specification_evidence_12"
+                                               colspan="1">
+                                            <field name="product_specification_1_1"
+                                                   attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
+                                            <field name="product_specification_1_2"
+                                                   attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
+                                            <field name="product_specification_1_3"
+                                                   attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
+                                            <field name="product_specification_1_4"
+                                                   attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
+                                            <field name="product_specification_1_5"
+                                                   attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
+                                            <field name="product_specification_1_6"
+                                                   attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
+                                            <field name="product_specification_1_7"
+                                                   attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
+                                            <field name="product_specification_1_8"
+                                                   attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
+                                            <field name="product_specification_1_9"
+                                                   attrs="{'invisible': [('product_specification_1', '=', False)]}"/>
                                         </group>
                                     </group>
-                                    
-                                    <group name="certification_header_details_tgn_product_specification_evidence_7" colspan="2">
-                                        <group name="certification_header_details_tgn_product_specification_evidence_71" colspan="1">
+
+                                    <group name="certification_header_details_tgn_product_specification_evidence_2"
+                                           colspan="2">
+                                        <group name="certification_header_details_tgn_product_specification_evidence_21"
+                                               colspan="1">
+                                            <field name="product_specification_2"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_product_specification_evidence_22"
+                                               colspan="1">
+                                            <field name="product_specification_2_1"
+                                                   attrs="{'invisible': [('product_specification_2', '=', False)]}"/>
+                                            <field name="product_specification_2_2"
+                                                   attrs="{'invisible': [('product_specification_2', '=', False)]}"/>
+                                            <field name="product_specification_2_3"
+                                                   attrs="{'invisible': [('product_specification_2', '=', False)]}"/>
+                                            <field name="product_specification_2_4"
+                                                   attrs="{'invisible': [('product_specification_2', '=', False)]}"/>
+                                        </group>
+                                    </group>
+
+                                    <group name="certification_header_details_tgn_product_specification_evidence_3"
+                                           colspan="2">
+                                        <group name="certification_header_details_tgn_product_specification_evidence_31"
+                                               colspan="1">
+                                            <field name="product_specification_3"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_product_specification_evidence_32"
+                                               colspan="1">
+                                            <field name="product_specification_3_1"
+                                                   attrs="{'invisible': [('product_specification_3', '=', False)]}"/>
+                                            <field name="product_specification_3_2"
+                                                   attrs="{'invisible': [('product_specification_3', '=', False)]}"/>
+                                            <field name="product_specification_3_3"
+                                                   attrs="{'invisible': [('product_specification_3', '=', False)]}"/>
+                                            <field name="product_specification_3_4"
+                                                   attrs="{'invisible': [('product_specification_3', '=', False)]}"/>
+                                            <field name="product_specification_3_5"
+                                                   attrs="{'invisible': [('product_specification_3', '=', False)]}"/>
+                                            <field name="product_specification_3_6"
+                                                   attrs="{'invisible': [('product_specification_3', '=', False)]}"/>
+                                        </group>
+                                    </group>
+
+                                    <group name="certification_header_details_tgn_product_specification_evidence_4"
+                                           colspan="2">
+                                        <group name="certification_header_details_tgn_product_specification_evidence_41"
+                                               colspan="1">
+                                            <field name="product_specification_4"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_product_specification_evidence_42"
+                                               colspan="1">
+                                            <field name="product_specification_4_1"
+                                                   attrs="{'invisible': [('product_specification_4', '=', False)]}"/>
+                                            <field name="product_specification_4_2"
+                                                   attrs="{'invisible': [('product_specification_4', '=', False)]}"/>
+                                        </group>
+                                    </group>
+
+                                    <group name="certification_header_details_tgn_product_specification_evidence_5"
+                                           colspan="2">
+                                        <group name="certification_header_details_tgn_product_specification_evidence_51"
+                                               colspan="1">
+                                            <field name="product_specification_5"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_product_specification_evidence_52"
+                                               colspan="1">
+                                            <field name="product_specification_5_1"
+                                                   attrs="{'invisible': [('product_specification_5', '=', False)]}"/>
+                                            <field name="product_specification_5_2"
+                                                   attrs="{'invisible': [('product_specification_5', '=', False)]}"/>
+                                            <field name="product_specification_5_3"
+                                                   attrs="{'invisible': [('product_specification_5', '=', False)]}"/>
+                                            <field name="product_specification_5_4"
+                                                   attrs="{'invisible': [('product_specification_5', '=', False)]}"/>
+                                            <field name="product_specification_5_5"
+                                                   attrs="{'invisible': [('product_specification_5', '=', False)]}"/>
+                                            <field name="product_specification_5_6"
+                                                   attrs="{'invisible': [('product_specification_5_5', '=', False)]}"/>
+                                        </group>
+                                    </group>
+
+                                    <group name="certification_header_details_tgn_product_specification_evidence_7"
+                                           colspan="2">
+                                        <group name="certification_header_details_tgn_product_specification_evidence_71"
+                                               colspan="1">
                                             <field name="product_specification_7"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_product_specification_evidence_72" colspan="1">
+                                        <group name="certification_header_details_tgn_product_specification_evidence_72"
+                                               colspan="1">
                                         </group>
-                                    </group> 
-                                    
-                                    <group name="certification_header_details_tgn_product_specification_evidence_8" colspan="2">
-                                        <group name="certification_header_details_tgn_product_specification_evidence_81" colspan="1">
+                                    </group>
+
+                                    <group name="certification_header_details_tgn_product_specification_evidence_8"
+                                           colspan="2">
+                                        <group name="certification_header_details_tgn_product_specification_evidence_81"
+                                               colspan="1">
                                             <field name="product_specification_8"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_product_specification_evidence_82" colspan="1">
+                                        <group name="certification_header_details_tgn_product_specification_evidence_82"
+                                               colspan="1">
                                         </group>
-                                    </group> 
-                                    
-                                    <group name="certification_header_details_tgn_product_specification_evidence_9" colspan="2">
-                                        <group name="certification_header_details_tgn_product_specification_evidence_91" colspan="1">
+                                    </group>
+
+                                    <group name="certification_header_details_tgn_product_specification_evidence_9"
+                                           colspan="2">
+                                        <group name="certification_header_details_tgn_product_specification_evidence_91"
+                                               colspan="1">
                                             <field name="product_specification_9"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_product_specification_evidence_92" colspan="1">
+                                        <group name="certification_header_details_tgn_product_specification_evidence_92"
+                                               colspan="1">
                                         </group>
-                                    </group> 
-                                    <group name="certification_header_details_tgn_product_specification_evidence_10" colspan="1" style="width:100%%">
+                                    </group>
+                                    <group name="certification_header_details_tgn_product_specification_evidence_10"
+                                           colspan="1" style="width:100%%">
                                         <field name="product_specification_10"/>
-<!--                                        <field name="product_specification_10_1" attrs="{'invisible': [('product_specification_10', '=', False)]}"/>-->
-                                    </group> 
+                                        <!--                                        <field name="product_specification_10_1" attrs="{'invisible': [('product_specification_10', '=', False)]}"/>-->
+                                    </group>
                                 </group>
-                                <group name="certification_header_details_tgn_product_specification_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_product_specification_attachments"
+                                       style="width:40%%" colspan="1">
                                     <field name="product_specification_attachment_ids" widget='many2many_binary'/>
                                     <field name="product_specification_remarks" widget="html"/>
                                 </group>
                             </group>
-                            <group name="certification_header_details_tgn_the_scheme_of_power_supply" string="4. Схема живлення" col="3">
-                                <group name="certification_header_details_tgn_the_scheme_of_power_supply_verdict" style="width:20%%" colspan="1">
+                            <group name="certification_header_details_tgn_the_scheme_of_power_supply"
+                                   string="4. Схема живлення" col="3">
+                                <group name="certification_header_details_tgn_the_scheme_of_power_supply_verdict"
+                                       style="width:20%%" colspan="1">
                                     <field name="the_scheme_of_power_supply_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_the_scheme_of_power_supply_evidence" style="width:40%%" colspan="1">
-                                    <group name="certification_header_details_tgn_the_scheme_of_power_supply_evidence_2" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_the_scheme_of_power_supply_evidence"
+                                       style="width:40%%" colspan="1">
+                                    <group name="certification_header_details_tgn_the_scheme_of_power_supply_evidence_2"
+                                           style="width:40%%" colspan="1">
                                         <field name="the_scheme_of_power_supply_1"/>
                                     </group>
-                                    <group name="certification_header_details_tgn_the_scheme_of_power_supply_evidence_1" colspan="2">
-                                        <group name="certification_header_details_tgn_the_scheme_of_power_supply_evidence_1_1" style="width:30%%">
+                                    <group name="certification_header_details_tgn_the_scheme_of_power_supply_evidence_1"
+                                           colspan="2">
+                                        <group name="certification_header_details_tgn_the_scheme_of_power_supply_evidence_1_1"
+                                               style="width:30%%">
                                             <field name="the_scheme_of_power_supply_2"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_the_scheme_of_power_supply_evidence_1_2" style="width:70%%">
-                                            <field name="the_scheme_of_power_supply_2_1" attrs="{'invisible': [('the_scheme_of_power_supply_2', '=', False)]}"/>
-                                            <field name="the_scheme_of_power_supply_2_1_1" attrs="{'invisible': [('the_scheme_of_power_supply_2_1', '=', False)]}"/>
-                                            <field name="the_scheme_of_power_supply_2_1_2" attrs="{'invisible': [('the_scheme_of_power_supply_2_1', '=', False)]}"/>
-                                            <field name="the_scheme_of_power_supply_2_1_3" attrs="{'invisible': [('the_scheme_of_power_supply_2_1', '=', False)]}"/>
-                                            <field name="the_scheme_of_power_supply_2_1_4" attrs="{'invisible': [('the_scheme_of_power_supply_2_1_3', '=', False)]}"/>
-                                            <field name="the_scheme_of_power_supply_2_2" attrs="{'invisible': [('the_scheme_of_power_supply_2', '=', False)]}"/>
-                                            <field name="the_scheme_of_power_supply_2_2_1" attrs="{'invisible': [('the_scheme_of_power_supply_2_2', '=', False)]}"/>
-                                            <field name="the_scheme_of_power_supply_2_2_2" attrs="{'invisible': [('the_scheme_of_power_supply_2_2', '=', False)]}"/>
-                                            <field name="the_scheme_of_power_supply_2_2_3" attrs="{'invisible': [('the_scheme_of_power_supply_2_2', '=', False)]}"/>
-                                            <field name="the_scheme_of_power_supply_2_2_4" attrs="{'invisible': [('the_scheme_of_power_supply_2_2_3', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_the_scheme_of_power_supply_evidence_1_2"
+                                               style="width:70%%">
+                                            <field name="the_scheme_of_power_supply_2_1"
+                                                   attrs="{'invisible': [('the_scheme_of_power_supply_2', '=', False)]}"/>
+                                            <field name="the_scheme_of_power_supply_2_1_1"
+                                                   attrs="{'invisible': [('the_scheme_of_power_supply_2_1', '=', False)]}"/>
+                                            <field name="the_scheme_of_power_supply_2_1_2"
+                                                   attrs="{'invisible': [('the_scheme_of_power_supply_2_1', '=', False)]}"/>
+                                            <field name="the_scheme_of_power_supply_2_1_3"
+                                                   attrs="{'invisible': [('the_scheme_of_power_supply_2_1', '=', False)]}"/>
+                                            <field name="the_scheme_of_power_supply_2_1_4"
+                                                   attrs="{'invisible': [('the_scheme_of_power_supply_2_1_3', '=', False)]}"/>
+                                            <field name="the_scheme_of_power_supply_2_2"
+                                                   attrs="{'invisible': [('the_scheme_of_power_supply_2', '=', False)]}"/>
+                                            <field name="the_scheme_of_power_supply_2_2_1"
+                                                   attrs="{'invisible': [('the_scheme_of_power_supply_2_2', '=', False)]}"/>
+                                            <field name="the_scheme_of_power_supply_2_2_2"
+                                                   attrs="{'invisible': [('the_scheme_of_power_supply_2_2', '=', False)]}"/>
+                                            <field name="the_scheme_of_power_supply_2_2_3"
+                                                   attrs="{'invisible': [('the_scheme_of_power_supply_2_2', '=', False)]}"/>
+                                            <field name="the_scheme_of_power_supply_2_2_4"
+                                                   attrs="{'invisible': [('the_scheme_of_power_supply_2_2_3', '=', False)]}"/>
                                         </group>
                                     </group>
                                 </group>
-                                <group name="certification_header_details_tgn_the_scheme_of_power_supply_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_the_scheme_of_power_supply_attachments"
+                                       style="width:40%%" colspan="1">
                                     <field name="the_scheme_of_power_supply_attachment_ids" widget='many2many_binary'/>
                                     <field name="the_scheme_of_power_supply_remarks" widget="html"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_model_line" string="5. Модельний ряд" col="3">
-                                <group name="certification_header_details_tgn_model_line_verdict" style="width:20%%" colspan="1">
+                                <group name="certification_header_details_tgn_model_line_verdict" style="width:20%%"
+                                       colspan="1">
                                     <field name="model_line_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_model_line_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_model_line_evidence" style="width:40%%"
+                                       colspan="1">
                                     <field name="model_line_model"/>
                                 </group>
-                                <group name="certification_header_details_tgn_model_line_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_model_line_attachments" style="width:40%%"
+                                       colspan="1">
                                     <field name="model_line_attachment_ids" widget='many2many_binary'/>
                                     <field name="model_line_remarks" widget="html"/>
                                 </group>
                             </group>
-                            <group name="certification_header_details_tgn_part_of_the_equipment" string="6. Склад обладнання" col="3">
-                                <group name="certification_header_details_tgn_part_of_the_equipment_verdict" style="width:20%%" colspan="1">
+                            <group name="certification_header_details_tgn_part_of_the_equipment"
+                                   string="6. Склад обладнання" col="3">
+                                <group name="certification_header_details_tgn_part_of_the_equipment_verdict"
+                                       style="width:20%%" colspan="1">
                                     <field name="part_of_the_equipment_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_part_of_the_equipment_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_part_of_the_equipment_evidence"
+                                       style="width:40%%" colspan="1">
                                     <field name="part_of_the_equipment" widget="html"/>
                                 </group>
-                                <group name="certification_header_details_tgn_part_of_the_equipment_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_part_of_the_equipment_attachments"
+                                       style="width:40%%" colspan="1">
                                     <field name="part_of_the_equipment_attachment_ids" widget='many2many_binary'/>
                                     <field name="part_of_the_equipment_remarks" widget="html"/>
                                 </group>
                             </group>
-                            <group name="certification_header_details_tgn_information_regarding_freq_bands_eirp" string="7. Технічна специфікація" col="3">
-                                <group name="certification_header_details_tgn_information_regarding_freq_bands_eirp_verdict" style="width:20%%" colspan="1">
+                            <group name="certification_header_details_tgn_information_regarding_freq_bands_eirp"
+                                   string="7. Технічна специфікація" col="3">
+                                <group name="certification_header_details_tgn_information_regarding_freq_bands_eirp_verdict"
+                                       style="width:20%%" colspan="1">
                                     <field name="information_regarding_freq_bands_eirp_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_type_information_regarding_freq_bands_eirp_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_type_information_regarding_freq_bands_eirp_evidence"
+                                       style="width:40%%" colspan="1">
                                 </group>
-                                <group name="certification_header_details_tgn_information_regarding_freq_bands_eirp_attachments" style="width:40%%" colspan="1">
-                                    <field name="information_regarding_freq_bands_eirp_attachment_ids" widget='many2many_binary'/>
+                                <group name="certification_header_details_tgn_information_regarding_freq_bands_eirp_attachments"
+                                       style="width:40%%" colspan="1">
+                                    <field name="information_regarding_freq_bands_eirp_attachment_ids"
+                                           widget='many2many_binary'/>
                                     <field name="information_regarding_freq_bands_eirp_remarks" widget="html"/>
                                 </group>
                             </group>
-                            <group name="certification_header_details_tgn_illustrations" string="8. Фотографії/ілюстрації" col="3">
-                                <group name="certification_header_details_tgn_illustrations_verdict" style="width:20%%" colspan="1">
+                            <group name="certification_header_details_tgn_illustrations"
+                                   string="8. Фотографії/ілюстрації" col="3">
+                                <group name="certification_header_details_tgn_illustrations_verdict" style="width:20%%"
+                                       colspan="1">
                                     <field name="illustrations_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_illustrations_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_illustrations_evidence" style="width:40%%"
+                                       colspan="1">
                                 </group>
-                                <group name="certification_header_details_tgn_illustrations_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_illustrations_attachments"
+                                       style="width:40%%" colspan="1">
                                     <field name="illustrations_attachment_ids" widget='many2many_binary'/>
                                     <field name="illustrations_remarks" widget="html"/>
                                 </group>
                             </group>
-                            <group name="certification_header_details_tgn_hw_sw_version" string="9. Версії програмного забезпечення" col="3">
-                                <group name="certification_header_details_tgn_hw_sw_version_verdict" style="width:20%%" colspan="1">
+                            <group name="certification_header_details_tgn_hw_sw_version"
+                                   string="9. Версії програмного забезпечення" col="3">
+                                <group name="certification_header_details_tgn_hw_sw_version_verdict" style="width:20%%"
+                                       colspan="1">
                                     <field name="hw_sw_version_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_type_hw_sw_version_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_type_hw_sw_version_evidence"
+                                       style="width:40%%" colspan="1">
                                     <field name="sw_id"/>
                                     <field name="hw_id"/>
                                 </group>
-                                <group name="certification_header_details_tgn_hw_sw_version_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_hw_sw_version_attachments"
+                                       style="width:40%%" colspan="1">
                                     <field name="hw_sw_version_attachment_ids" widget='many2many_binary'/>
                                     <field name="hw_sw_version_remarks" widget="html"/>
                                 </group>
                             </group>
-                            <group name="certification_header_details_tgn_user_manual" string="10. Інструкції з експлуатації" col="3">
-                                <group name="certification_header_details_tgn_user_manual_verdict" style="width:20%%" colspan="1">
+                            <group name="certification_header_details_tgn_user_manual"
+                                   string="10. Інструкції з експлуатації" col="3">
+                                <group name="certification_header_details_tgn_user_manual_verdict" style="width:20%%"
+                                       colspan="1">
                                     <field name="user_manual_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_type_user_manual_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_type_user_manual_evidence"
+                                       style="width:40%%" colspan="1">
                                 </group>
-                                <group name="certification_header_details_tgn_user_manual_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_user_manual_attachments"
+                                       style="width:40%%" colspan="1">
                                     <field name="user_manual_attachment_ids" widget='many2many_binary'/>
                                     <field name="user_manual_remarks" widget="html"/>
                                 </group>
                             </group>
-                            <group name="certification_header_details_tgn_compliance_documents" string="11. Документи про відповідність (сертифікати, декларації та інші додаткові відомості)" col="3">
-                                <group name="certification_header_details_tgn_compliance_documents_verdict" style="width:20%%" colspan="1">
+                            <group name="certification_header_details_tgn_compliance_documents"
+                                   string="11. Документи про відповідність (сертифікати, декларації та інші додаткові відомості)"
+                                   col="3">
+                                <group name="certification_header_details_tgn_compliance_documents_verdict"
+                                       style="width:20%%" colspan="1">
                                     <field name="compliance_documents_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_type_compliance_documents_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_type_compliance_documents_evidence"
+                                       style="width:40%%" colspan="1">
                                 </group>
-                                <group name="certification_header_details_tgn_compliance_documents_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_compliance_documents_attachments"
+                                       style="width:40%%" colspan="1">
                                     <field name="compliance_documents_attachment_ids" widget='many2many_binary'/>
                                     <field name="compliance_documents_remarks" widget="html"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_diagrams" string="12. Схеми" col="3">
-                                <group name="certification_header_details_tgn_diagrams_verdict" style="width:20%%" colspan="1">
+                                <group name="certification_header_details_tgn_diagrams_verdict" style="width:20%%"
+                                       colspan="1">
                                     <field name="diagrams_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_type_diagrams_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_type_diagrams_evidence" style="width:40%%"
+                                       colspan="1">
                                 </group>
-                                <group name="certification_header_details_tgn_diagrams_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_diagrams_attachments" style="width:40%%"
+                                       colspan="1">
                                     <field name="diagrams_attachment_ids" widget='many2many_binary'/>
                                     <field name="diagrams_remarks" widget="html"/>
                                 </group>
                             </group>
-                            <group name="certification_header_details_tgn_risk_assessment" string="13. Оцінка та аналіз ризиків" col="3">
-                                <group name="certification_header_details_tgn_risk_assessment_verdict" style="width:20%%" colspan="1">
+                            <group name="certification_header_details_tgn_risk_assessment"
+                                   string="13. Оцінка та аналіз ризиків" col="3">
+                                <group name="certification_header_details_tgn_risk_assessment_verdict"
+                                       style="width:20%%" colspan="1">
                                     <field name="risk_assessment_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_type_risk_assessment_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_type_risk_assessment_evidence"
+                                       style="width:40%%" colspan="1">
                                 </group>
-                                <group name="certification_header_details_tgn_risk_assessment_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_risk_assessment_attachments"
+                                       style="width:40%%" colspan="1">
                                     <field name="risk_assessment_attachment_ids" widget='many2many_binary'/>
                                     <field name="risk_assessment_remarks" widget="html"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_label" string="14. Маркування" col="3">
-                                <group name="certification_header_details_tgn_label_verdict" style="width:20%%" colspan="1">
+                                <group name="certification_header_details_tgn_label_verdict" style="width:20%%"
+                                       colspan="1">
                                     <field name="label_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_type_label_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_type_label_evidence" style="width:40%%"
+                                       colspan="1">
                                 </group>
-                                <group name="certification_header_details_tgn_label_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_label_attachments" style="width:40%%"
+                                       colspan="1">
                                     <field name="label_attachment_ids" widget='many2many_binary'/>
                                     <field name="label_remarks" widget="html"/>
                                 </group>
                             </group>
-                            <h2><br></br><br></br>Оцінка відповідності  відповідно до п.6, п.7 ТР Р, ПКМУ від 24.05.2017 № 355<br></br></h2>
-                            <group name="certification_header_details_tgn_safety" string="15. Суттєві вимоги згідно п.6 ТР Р (Безпека)" col="3">
-                                <group name="certification_header_details_tgn_safety_verdict" style="width:20%%" colspan="1">
+                            <h2>
+                                <br></br>
+                                <br></br>Оцінка відповідності відповідно до п.6, п.7 ТР Р, ПКМУ від 24.05.2017 № 355
+                                <br></br>
+                            </h2>
+                            <group name="certification_header_details_tgn_safety"
+                                   string="15. Суттєві вимоги згідно п.6 ТР Р (Безпека)" col="3">
+                                <group name="certification_header_details_tgn_safety_verdict" style="width:20%%"
+                                       colspan="1">
                                     <field name="safety_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_type_safety_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_type_safety_evidence" style="width:40%%"
+                                       colspan="1">
                                     <field name="safety_details" string="Вимоги" widget="many2many_tags"/>
                                     <field name="safety_protocol_no"/>
                                     <field name="safety_protocol_date"/>
                                     <field name="safety_laboratory_id"/>
                                 </group>
-                                <group name="certification_header_details_tgn_safety_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_safety_attachments" style="width:40%%"
+                                       colspan="1">
                                     <field name="safety_attachment_ids" widget='many2many_binary'/>
                                     <field name="safety_remarks" widget="html"/>
                                 </group>
                             </group>
-                            <group name="certification_header_details_tgn_health" string="16. Суттєві вимоги згідно п.6 ТР Р (Здоров'я)" col="3">
-                                <group name="certification_header_details_tgn_health_verdict" style="width:20%%" colspan="1">
+                            <group name="certification_header_details_tgn_health"
+                                   string="16. Суттєві вимоги згідно п.6 ТР Р (Здоров'я)" col="3">
+                                <group name="certification_header_details_tgn_health_verdict" style="width:20%%"
+                                       colspan="1">
                                     <field name="health_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_type_health_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_type_health_evidence" style="width:40%%"
+                                       colspan="1">
                                     <field name="health_details" string="Вимоги" widget="many2many_tags"/>
                                     <field name="health_protocol_no"/>
                                     <field name="health_protocol_date"/>
                                     <field name="health_laboratory_id"/>
                                 </group>
-                                <group name="certification_header_details_tgn_health_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_health_attachments" style="width:40%%"
+                                       colspan="1">
                                     <field name="health_attachment_ids" widget='many2many_binary'/>
                                     <field name="health_remarks" widget="html"/>
                                 </group>
                             </group>
-                            <group name="certification_header_details_tgn_emc" string="17. Суттєві вимоги згідно п.6 ТР Р (EMC)" col="3">
-                                <group name="certification_header_details_tgn_emc_verdict" style="width:20%%" colspan="1">
+                            <group name="certification_header_details_tgn_emc"
+                                   string="17. Суттєві вимоги згідно п.6 ТР Р (EMC)" col="3">
+                                <group name="certification_header_details_tgn_emc_verdict" style="width:20%%"
+                                       colspan="1">
                                     <field name="emc_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_type_emc_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_type_emc_evidence" style="width:40%%"
+                                       colspan="1">
                                     <field name="emc_details" string="Вимоги" widget="many2many_tags"/>
                                     <field name="emc_protocol_no"/>
                                     <field name="emc_protocol_date"/>
                                     <field name="emc_laboratory_id"/>
                                 </group>
-                                <group name="certification_header_details_tgn_emc_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_emc_attachments" style="width:40%%"
+                                       colspan="1">
                                     <field name="emc_attachment_ids" widget='many2many_binary'/>
                                     <field name="emc_remarks" widget="html"/>
                                 </group>
                             </group>
-                            <group name="certification_header_details_tgn_spectrum" string="18. Суттєві вимоги згідно п. 7 ТР Р (викор.РЧР)" col="3">
-                                <group name="certification_header_details_tgn_spectrum_verdict" style="width:20%%" colspan="1">
+                            <group name="certification_header_details_tgn_spectrum"
+                                   string="18. Суттєві вимоги згідно п. 7 ТР Р (викор.РЧР)" col="3">
+                                <group name="certification_header_details_tgn_spectrum_verdict" style="width:20%%"
+                                       colspan="1">
                                     <field name="spectrum_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_spectrum_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_spectrum_evidence" style="width:40%%"
+                                       colspan="1">
                                     <field name="spectrum_details" string="Вимоги" widget="many2many_tags"/>
                                     <field name="spectrum_protocol_no"/>
                                     <field name="spectrum_protocol_date"/>
                                     <field name="spectrum_laboratory_id"/>
                                 </group>
-                                <group name="certification_header_details_tgn_spectrum_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_spectrum_attachments" style="width:40%%"
+                                       colspan="1">
                                     <field name="spectrum_attachment_ids" widget='many2many_binary'/>
                                     <field name="spectrum_remarks" widget="html"/>
                                 </group>
                             </group>
-                            <group name="certification_header_details_tgn_subpart" string="19. Додаткові суттєві вимоги згідно п. 8 ТР Р" col="3">
-                                <group name="certification_header_details_tgn_subpart_verdict" style="width:20%%" colspan="1">
+                            <group name="certification_header_details_tgn_subpart"
+                                   string="19. Додаткові суттєві вимоги згідно п. 8 ТР Р" col="3">
+                                <group name="certification_header_details_tgn_subpart_verdict" style="width:20%%"
+                                       colspan="1">
                                     <field name="subpart_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_subpart_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_subpart_evidence" style="width:40%%"
+                                       colspan="1">
                                     <field name="subpart_notes" widget="html" string=""/>
                                 </group>
-                                <group name="certification_header_details_tgn_subpart_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_subpart_attachments" style="width:40%%"
+                                       colspan="1">
                                     <field name="subpart_attachment_ids" widget='many2many_binary'/>
                                     <field name="subpart_attachment_remarks" widget="html"/>
                                 </group>
                             </group>
-                            <group name="certification_header_details_tgn_conditions" string="20. Відповідність умовам застосовування на території України" col="2">
+                            <group name="certification_header_details_tgn_conditions"
+                                   string="20. Відповідність умовам застосовування на території України" col="2">
                                 <group name="certification_header_details_tgn_conditions_verdict" style="width:20%%">
                                     <field name="conditions_verdict" widget="radio"/>
                                     <field name="show_condition_1" invisible="1" readonly="1"/>
-                                    <field name="show_condition_2" invisible="1" readonly="1"/>  
+                                    <field name="show_condition_2" invisible="1" readonly="1"/>
                                     <field name="show_condition_3" invisible="1" readonly="1"/>
                                     <field name="show_condition_4" invisible="1" readonly="1"/>
                                     <field name="show_condition_5" invisible="1" readonly="1"/>
@@ -449,304 +618,477 @@
                                     <field name="show_condition_19" invisible="1" readonly="1"/>
                                     <field name="show_condition_20" invisible="1" readonly="1"/>
                                 </group>
-                                <group name="certification_header_details_tgn_conditions_details" style="width:80%%" col="1">
+                                <group name="certification_header_details_tgn_conditions_details" style="width:80%%"
+                                       col="1">
                                     <group name="image_buttons" colspan="2">
-                                        <button string="Додати умову" type="object" name="action_show_next_condition" options='{"always_reload": True}' widget="button" help="You can add up to 20 conditions"/>
-                                        <button string="Видалити останню умову" type="object" name="delete_last_condition" options='{"always_reload": True}' widget="button"/>
+                                        <button string="Додати умову" type="object" name="action_show_next_condition"
+                                                options='{"always_reload": True}' widget="button"
+                                                help="You can add up to 20 conditions"/>
+                                        <button string="Видалити останню умову" type="object"
+                                                name="delete_last_condition" options='{"always_reload": True}'
+                                                widget="button"/>
                                     </group>
-                                    <group name="certification_header_details_tgn_conditions_details_1" style="width:100%%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_1_evidence1" style="width:10%%">
-                                            <field name="condition_1_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_1', '=', False)]}"/>
+                                    <group name="certification_header_details_tgn_conditions_details_1"
+                                           style="width:100%%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_1_evidence1"
+                                               style="width:10%%">
+                                            <field name="condition_1_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_1', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_1_evidence2" style="width:43%%">
-                                            <field name="condition_1_notes" widget="html" string="" attrs="{'invisible': [('show_condition_1', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_1_evidence2"
+                                               style="width:43%%">
+                                            <field name="condition_1_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_1', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_1_evidence3" style="width:47%%">
-                                            <field name="condition_1_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_1', '=', False)]}"/>
-                                        </group>
-                                    </group>
-                                    <group name="certification_header_details_tgn_conditions_details_1" style="width:100%%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_1_evidence1" style="width:10%%">
-                                            <field name="condition_2_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_2', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_1_evidence2" style="width:43%%">
-                                            <field name="condition_2_notes" widget="html" string="" attrs="{'invisible': [('show_condition_2', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_1_evidence3" style="width:47%%">
-                                            <field name="condition_2_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_2', '=', False)]}"/>
-                                        </group>
-                                    </group>
-                                    <group name="certification_header_details_tgn_conditions_details_3" style="width:100%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_3_evidence1" style="width:10%">
-                                            <field name="condition_3_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_3', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_3_evidence2" style="width:43%">
-                                            <field name="condition_3_notes" widget="html" string="" attrs="{'invisible': [('show_condition_3', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_3_evidence3" style="width:47%">
-                                            <field name="condition_3_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_3', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_1_evidence3"
+                                               style="width:47%%">
+                                            <field name="condition_1_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_1', '=', False)]}"/>
                                         </group>
                                     </group>
-                                    <group name="certification_header_details_tgn_conditions_details_4" style="width:100%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_4_evidence1" style="width:10%">
-                                            <field name="condition_4_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_4', '=', False)]}"/>
+                                    <group name="certification_header_details_tgn_conditions_details_1"
+                                           style="width:100%%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_1_evidence1"
+                                               style="width:10%%">
+                                            <field name="condition_2_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_2', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_4_evidence2" style="width:43%">
-                                            <field name="condition_4_notes" widget="html" string="" attrs="{'invisible': [('show_condition_4', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_1_evidence2"
+                                               style="width:43%%">
+                                            <field name="condition_2_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_2', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_4_evidence3" style="width:47%">
-                                            <field name="condition_4_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_4', '=', False)]}"/>
-                                        </group>
-                                    </group>
-                                    <group name="certification_header_details_tgn_conditions_details_5" style="width:100%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_5_evidence1" style="width:10%">
-                                            <field name="condition_5_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_5', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_5_evidence2" style="width:43%">
-                                            <field name="condition_5_notes" widget="html" string="" attrs="{'invisible': [('show_condition_5', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_5_evidence3" style="width:47%">
-                                            <field name="condition_5_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_5', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_1_evidence3"
+                                               style="width:47%%">
+                                            <field name="condition_2_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_2', '=', False)]}"/>
                                         </group>
                                     </group>
-                                    <group name="certification_header_details_tgn_conditions_details_6" style="width:100%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_6_evidence1" style="width:10%">
-                                            <field name="condition_6_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_6', '=', False)]}"/>
+                                    <group name="certification_header_details_tgn_conditions_details_3"
+                                           style="width:100%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_3_evidence1"
+                                               style="width:10%">
+                                            <field name="condition_3_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_3', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_6_evidence2" style="width:43%">
-                                            <field name="condition_6_notes" widget="html" string="" attrs="{'invisible': [('show_condition_6', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_3_evidence2"
+                                               style="width:43%">
+                                            <field name="condition_3_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_3', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_6_evidence3" style="width:47%">
-                                            <field name="condition_6_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_6', '=', False)]}"/>
-                                        </group>
-                                    </group>
-                                    <group name="certification_header_details_tgn_conditions_details_7" style="width:100%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_7_evidence1" style="width:10%">
-                                            <field name="condition_7_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_7', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_7_evidence2" style="width:43%">
-                                            <field name="condition_7_notes" widget="html" string="" attrs="{'invisible': [('show_condition_7', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_7_evidence3" style="width:47%">
-                                            <field name="condition_7_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_7', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_3_evidence3"
+                                               style="width:47%">
+                                            <field name="condition_3_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_3', '=', False)]}"/>
                                         </group>
                                     </group>
-                                    <group name="certification_header_details_tgn_conditions_details_8" style="width:100%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_8_evidence1" style="width:10%">
-                                            <field name="condition_8_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_8', '=', False)]}"/>
+                                    <group name="certification_header_details_tgn_conditions_details_4"
+                                           style="width:100%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_4_evidence1"
+                                               style="width:10%">
+                                            <field name="condition_4_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_4', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_8_evidence2" style="width:43%">
-                                            <field name="condition_8_notes" widget="html" string="" attrs="{'invisible': [('show_condition_8', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_4_evidence2"
+                                               style="width:43%">
+                                            <field name="condition_4_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_4', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_8_evidence3" style="width:47%">
-                                            <field name="condition_8_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_8', '=', False)]}"/>
-                                        </group>
-                                    </group>
-                                    <group name="certification_header_details_tgn_conditions_details_9" style="width:100%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_9_evidence1" style="width:10%">
-                                            <field name="condition_9_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_9', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_9_evidence2" style="width:43%">
-                                            <field name="condition_9_notes" widget="html" string="" attrs="{'invisible': [('show_condition_9', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_9_evidence3" style="width:47%">
-                                            <field name="condition_9_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_9', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_4_evidence3"
+                                               style="width:47%">
+                                            <field name="condition_4_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_4', '=', False)]}"/>
                                         </group>
                                     </group>
-                                    <group name="certification_header_details_tgn_conditions_details_10" style="width:100%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_10_evidence1" style="width:10%">
-                                            <field name="condition_10_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_10', '=', False)]}"/>
+                                    <group name="certification_header_details_tgn_conditions_details_5"
+                                           style="width:100%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_5_evidence1"
+                                               style="width:10%">
+                                            <field name="condition_5_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_5', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_10_evidence2" style="width:43%">
-                                            <field name="condition_10_notes" widget="html" string="" attrs="{'invisible': [('show_condition_10', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_5_evidence2"
+                                               style="width:43%">
+                                            <field name="condition_5_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_5', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_10_evidence3" style="width:47%">
-                                            <field name="condition_10_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_10', '=', False)]}"/>
-                                        </group>
-                                    </group>
-                                    <group name="certification_header_details_tgn_conditions_details_11" style="width:100%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_11_evidence1" style="width:10%">
-                                            <field name="condition_11_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_11', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_11_evidence2" style="width:43%">
-                                            <field name="condition_11_notes" widget="html" string="" attrs="{'invisible': [('show_condition_11', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_11_evidence3" style="width:47%">
-                                            <field name="condition_11_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_11', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_5_evidence3"
+                                               style="width:47%">
+                                            <field name="condition_5_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_5', '=', False)]}"/>
                                         </group>
                                     </group>
-                                    <group name="certification_header_details_tgn_conditions_details_12" style="width:100%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_12_evidence1" style="width:10%">
-                                            <field name="condition_12_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_12', '=', False)]}"/>
+                                    <group name="certification_header_details_tgn_conditions_details_6"
+                                           style="width:100%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_6_evidence1"
+                                               style="width:10%">
+                                            <field name="condition_6_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_6', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_12_evidence2" style="width:43%">
-                                            <field name="condition_12_notes" widget="html" string="" attrs="{'invisible': [('show_condition_12', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_6_evidence2"
+                                               style="width:43%">
+                                            <field name="condition_6_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_6', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_12_evidence3" style="width:47%">
-                                            <field name="condition_12_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_12', '=', False)]}"/>
-                                        </group>
-                                    </group>
-                                    <group name="certification_header_details_tgn_conditions_details_13" style="width:100%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_13_evidence1" style="width:10%">
-                                            <field name="condition_13_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_13', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_13_evidence2" style="width:43%">
-                                            <field name="condition_13_notes" widget="html" string="" attrs="{'invisible': [('show_condition_13', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_13_evidence3" style="width:47%">
-                                            <field name="condition_13_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_13', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_6_evidence3"
+                                               style="width:47%">
+                                            <field name="condition_6_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_6', '=', False)]}"/>
                                         </group>
                                     </group>
-                                    <group name="certification_header_details_tgn_conditions_details_14" style="width:100%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_14_evidence1" style="width:10%">
-                                            <field name="condition_14_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_14', '=', False)]}"/>
+                                    <group name="certification_header_details_tgn_conditions_details_7"
+                                           style="width:100%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_7_evidence1"
+                                               style="width:10%">
+                                            <field name="condition_7_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_7', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_14_evidence2" style="width:43%">
-                                            <field name="condition_14_notes" widget="html" string="" attrs="{'invisible': [('show_condition_14', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_7_evidence2"
+                                               style="width:43%">
+                                            <field name="condition_7_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_7', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_14_evidence3" style="width:47%">
-                                            <field name="condition_14_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_14', '=', False)]}"/>
-                                        </group>
-                                    </group>
-                                    <group name="certification_header_details_tgn_conditions_details_15" style="width:100%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_15_evidence1" style="width:10%">
-                                            <field name="condition_15_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_15', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_15_evidence2" style="width:43%">
-                                            <field name="condition_15_notes" widget="html" string="" attrs="{'invisible': [('show_condition_15', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_15_evidence3" style="width:47%">
-                                            <field name="condition_15_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_15', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_7_evidence3"
+                                               style="width:47%">
+                                            <field name="condition_7_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_7', '=', False)]}"/>
                                         </group>
                                     </group>
-                                    <group name="certification_header_details_tgn_conditions_details_16" style="width:100%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_16_evidence1" style="width:10%">
-                                            <field name="condition_16_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_16', '=', False)]}"/>
+                                    <group name="certification_header_details_tgn_conditions_details_8"
+                                           style="width:100%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_8_evidence1"
+                                               style="width:10%">
+                                            <field name="condition_8_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_8', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_16_evidence2" style="width:43%">
-                                            <field name="condition_16_notes" widget="html" string="" attrs="{'invisible': [('show_condition_16', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_8_evidence2"
+                                               style="width:43%">
+                                            <field name="condition_8_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_8', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_16_evidence3" style="width:47%">
-                                            <field name="condition_16_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_16', '=', False)]}"/>
-                                        </group>
-                                    </group>
-                                    <group name="certification_header_details_tgn_conditions_details_17" style="width:100%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_17_evidence1" style="width:10%">
-                                            <field name="condition_17_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_17', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_17_evidence2" style="width:43%">
-                                            <field name="condition_17_notes" widget="html" string="" attrs="{'invisible': [('show_condition_17', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_17_evidence3" style="width:47%">
-                                            <field name="condition_17_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_17', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_8_evidence3"
+                                               style="width:47%">
+                                            <field name="condition_8_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_8', '=', False)]}"/>
                                         </group>
                                     </group>
-                                    <group name="certification_header_details_tgn_conditions_details_18" style="width:100%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_18_evidence1" style="width:10%">
-                                            <field name="condition_18_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_18', '=', False)]}"/>
+                                    <group name="certification_header_details_tgn_conditions_details_9"
+                                           style="width:100%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_9_evidence1"
+                                               style="width:10%">
+                                            <field name="condition_9_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_9', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_18_evidence2" style="width:43%">
-                                            <field name="condition_18_notes" widget="html" string="" attrs="{'invisible': [('show_condition_18', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_9_evidence2"
+                                               style="width:43%">
+                                            <field name="condition_9_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_9', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_18_evidence3" style="width:47%">
-                                            <field name="condition_18_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_18', '=', False)]}"/>
-                                        </group>
-                                    </group>
-                                    <group name="certification_header_details_tgn_conditions_details_19" style="width:100%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_19_evidence1" style="width:10%">
-                                            <field name="condition_19_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_19', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_19_evidence2" style="width:43%">
-                                            <field name="condition_19_notes" widget="html" string="" attrs="{'invisible': [('show_condition_19', '=', False)]}"/>
-                                        </group>
-                                        <group name="certification_header_details_tgn_condition_19_evidence3" style="width:47%">
-                                            <field name="condition_19_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_19', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_9_evidence3"
+                                               style="width:47%">
+                                            <field name="condition_9_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_9', '=', False)]}"/>
                                         </group>
                                     </group>
-                                    <group name="certification_header_details_tgn_conditions_details_20" style="width:100%" colspan="3">
-                                        <group name="certification_header_details_tgn_condition_20_evidence1" style="width:10%">
-                                            <field name="condition_20_verd" widget="radio" string="" attrs="{'invisible': [('show_condition_20', '=', False)]}"/>
+                                    <group name="certification_header_details_tgn_conditions_details_10"
+                                           style="width:100%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_10_evidence1"
+                                               style="width:10%">
+                                            <field name="condition_10_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_10', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_20_evidence2" style="width:43%">
-                                            <field name="condition_20_notes" widget="html" string="" attrs="{'invisible': [('show_condition_20', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_10_evidence2"
+                                               style="width:43%">
+                                            <field name="condition_10_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_10', '=', False)]}"/>
                                         </group>
-                                        <group name="certification_header_details_tgn_condition_20_evidence3" style="width:47%">
-                                            <field name="condition_20_attachment_ids" widget='many2many_binary' attrs="{'invisible': [('show_condition_20', '=', False)]}"/>
+                                        <group name="certification_header_details_tgn_condition_10_evidence3"
+                                               style="width:47%">
+                                            <field name="condition_10_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_10', '=', False)]}"/>
                                         </group>
                                     </group>
-                                    <group name="certification_header_details_tgn_conditions_details_remarks" style="width:100%" colspan="3">
+                                    <group name="certification_header_details_tgn_conditions_details_11"
+                                           style="width:100%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_11_evidence1"
+                                               style="width:10%">
+                                            <field name="condition_11_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_11', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_11_evidence2"
+                                               style="width:43%">
+                                            <field name="condition_11_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_11', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_11_evidence3"
+                                               style="width:47%">
+                                            <field name="condition_11_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_11', '=', False)]}"/>
+                                        </group>
+                                    </group>
+                                    <group name="certification_header_details_tgn_conditions_details_12"
+                                           style="width:100%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_12_evidence1"
+                                               style="width:10%">
+                                            <field name="condition_12_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_12', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_12_evidence2"
+                                               style="width:43%">
+                                            <field name="condition_12_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_12', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_12_evidence3"
+                                               style="width:47%">
+                                            <field name="condition_12_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_12', '=', False)]}"/>
+                                        </group>
+                                    </group>
+                                    <group name="certification_header_details_tgn_conditions_details_13"
+                                           style="width:100%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_13_evidence1"
+                                               style="width:10%">
+                                            <field name="condition_13_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_13', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_13_evidence2"
+                                               style="width:43%">
+                                            <field name="condition_13_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_13', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_13_evidence3"
+                                               style="width:47%">
+                                            <field name="condition_13_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_13', '=', False)]}"/>
+                                        </group>
+                                    </group>
+                                    <group name="certification_header_details_tgn_conditions_details_14"
+                                           style="width:100%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_14_evidence1"
+                                               style="width:10%">
+                                            <field name="condition_14_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_14', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_14_evidence2"
+                                               style="width:43%">
+                                            <field name="condition_14_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_14', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_14_evidence3"
+                                               style="width:47%">
+                                            <field name="condition_14_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_14', '=', False)]}"/>
+                                        </group>
+                                    </group>
+                                    <group name="certification_header_details_tgn_conditions_details_15"
+                                           style="width:100%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_15_evidence1"
+                                               style="width:10%">
+                                            <field name="condition_15_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_15', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_15_evidence2"
+                                               style="width:43%">
+                                            <field name="condition_15_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_15', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_15_evidence3"
+                                               style="width:47%">
+                                            <field name="condition_15_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_15', '=', False)]}"/>
+                                        </group>
+                                    </group>
+                                    <group name="certification_header_details_tgn_conditions_details_16"
+                                           style="width:100%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_16_evidence1"
+                                               style="width:10%">
+                                            <field name="condition_16_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_16', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_16_evidence2"
+                                               style="width:43%">
+                                            <field name="condition_16_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_16', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_16_evidence3"
+                                               style="width:47%">
+                                            <field name="condition_16_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_16', '=', False)]}"/>
+                                        </group>
+                                    </group>
+                                    <group name="certification_header_details_tgn_conditions_details_17"
+                                           style="width:100%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_17_evidence1"
+                                               style="width:10%">
+                                            <field name="condition_17_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_17', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_17_evidence2"
+                                               style="width:43%">
+                                            <field name="condition_17_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_17', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_17_evidence3"
+                                               style="width:47%">
+                                            <field name="condition_17_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_17', '=', False)]}"/>
+                                        </group>
+                                    </group>
+                                    <group name="certification_header_details_tgn_conditions_details_18"
+                                           style="width:100%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_18_evidence1"
+                                               style="width:10%">
+                                            <field name="condition_18_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_18', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_18_evidence2"
+                                               style="width:43%">
+                                            <field name="condition_18_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_18', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_18_evidence3"
+                                               style="width:47%">
+                                            <field name="condition_18_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_18', '=', False)]}"/>
+                                        </group>
+                                    </group>
+                                    <group name="certification_header_details_tgn_conditions_details_19"
+                                           style="width:100%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_19_evidence1"
+                                               style="width:10%">
+                                            <field name="condition_19_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_19', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_19_evidence2"
+                                               style="width:43%">
+                                            <field name="condition_19_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_19', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_19_evidence3"
+                                               style="width:47%">
+                                            <field name="condition_19_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_19', '=', False)]}"/>
+                                        </group>
+                                    </group>
+                                    <group name="certification_header_details_tgn_conditions_details_20"
+                                           style="width:100%" colspan="3">
+                                        <group name="certification_header_details_tgn_condition_20_evidence1"
+                                               style="width:10%">
+                                            <field name="condition_20_verd" widget="radio" string=""
+                                                   attrs="{'invisible': [('show_condition_20', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_20_evidence2"
+                                               style="width:43%">
+                                            <field name="condition_20_notes" widget="html" string=""
+                                                   attrs="{'invisible': [('show_condition_20', '=', False)]}"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_condition_20_evidence3"
+                                               style="width:47%">
+                                            <field name="condition_20_attachment_ids" widget='many2many_binary'
+                                                   attrs="{'invisible': [('show_condition_20', '=', False)]}"/>
+                                        </group>
+                                    </group>
+                                    <group name="certification_header_details_tgn_conditions_details_remarks"
+                                           style="width:100%" colspan="3">
                                         <field name="conditions_remarks" widget="html"/>
                                     </group>
                                 </group>
                             </group>
                         </page>
                         <page name="reporting" string="Звітність">
-                            <group name="certification_header_details_tgn_type_examination_сertificate" string="21. Сертифікат експертизи типу" col="3">
-                                <group name="certification_header_details_tgn_type_examination_certificate_verdict" style="width:20%%" colspan="1">
+                            <group name="certification_header_details_tgn_type_examination_сertificate"
+                                   string="21. Сертифікат експертизи типу" col="3">
+                                <group name="certification_header_details_tgn_type_examination_certificate_verdict"
+                                       style="width:20%%" colspan="1">
                                     <field name="type_examination_certificate_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_type_examination_сertificate_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_type_examination_сertificate_evidence"
+                                       style="width:40%%" colspan="1">
                                     <field name="type_examination_number"/>
                                     <field name="type_examination_date"/>
                                 </group>
-                                <group name="certification_header_details_tgn_type_examination_сertificate_attachments" style="width:40%%" colspan="1">
-                                    <field name="type_examination_certificate_attachment_ids" widget='many2many_binary'/>
+                                <group name="certification_header_details_tgn_type_examination_сertificate_attachments"
+                                       style="width:40%%" colspan="1">
+                                    <field name="type_examination_certificate_attachment_ids"
+                                           widget='many2many_binary'/>
                                     <field name="type_examination_certificate_remarks" widget="html"/>
                                 </group>
                             </group>
-                            <group name="certification_header_details_tgn_declaration_of_conformity" string="22. Декларація відповідності" col="3">
-                                <group name="certification_header_details_tgn_declaration_of_conformity_verdict" style="width:20%%" colspan="1">
+                            <group name="certification_header_details_tgn_declaration_of_conformity"
+                                   string="22. Декларація відповідності" col="3">
+                                <group name="certification_header_details_tgn_declaration_of_conformity_verdict"
+                                       style="width:20%%" colspan="1">
                                     <field name="declaration_of_conformity_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_declaration_of_conformity_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_declaration_of_conformity_evidence"
+                                       style="width:40%%" colspan="1">
                                     <field name="declaration_of_conformity_number"/>
                                     <field name="declaration_of_conformity_date"/>
                                 </group>
-                                <group name="certification_header_details_tgn_declaration_of_conformity_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_declaration_of_conformity_attachments"
+                                       style="width:40%%" colspan="1">
                                     <field name="declaration_of_conformity_attachment_ids" widget='many2many_binary'/>
                                     <field name="declaration_of_conformity_remarks" widget="html"/>
                                 </group>
                             </group>
-                            <group name="certification_header_details_tgn_certification_agrement" string="23. Сертифікаційна угода" col="3">
-                                <group name="certification_header_details_tgn_declaration_of_conformity_verdict" style="width:20%%" colspan="1">
+                            <group name="certification_header_details_tgn_certification_agrement"
+                                   string="23. Сертифікаційна угода" col="3">
+                                <group name="certification_header_details_tgn_declaration_of_conformity_verdict"
+                                       style="width:20%%" colspan="1">
                                     <field name="certification_agrement_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_certification_agrement_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_certification_agrement_evidence"
+                                       style="width:40%%" colspan="1">
                                     <field name="certification_agrement_number"/>
                                     <field name="certification_agrement_date"/>
                                 </group>
-                                <group name="certification_header_details_tgn_certification_agrement_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_certification_agrement_attachments"
+                                       style="width:40%%" colspan="1">
                                     <field name="certification_agrement_attachment_ids" widget='many2many_binary'/>
                                     <field name="certification_agrement_remarks" widget="html"/>
                                 </group>
                             </group>
-                            <group name="certification_header_details_tgn_сontract" string="24. Господарський договір" col="3">
-                                <group name="certification_header_details_tgn_сontract_verdict" style="width:20%%" colspan="1">
+                            <group name="certification_header_details_tgn_сontract" string="24. Господарський договір"
+                                   col="3">
+                                <group name="certification_header_details_tgn_сontract_verdict" style="width:20%%"
+                                       colspan="1">
                                     <field name="contract_verdict" widget="radio"/>
                                 </group>
-                                <group name="certification_header_details_tgn_сontract_evidence" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_сontract_evidence" style="width:40%%"
+                                       colspan="1">
                                     <field name="contract_number"/>
                                     <field name="contract_date"/>
                                 </group>
-                                <group name="certification_header_details_tgn_сontract_attachments" style="width:40%%" colspan="1">
+                                <group name="certification_header_details_tgn_сontract_attachments" style="width:40%%"
+                                       colspan="1">
                                     <field name="contract_attachment_ids" widget='many2many_binary'/>
                                     <field name="contract_remarks" widget="html"/>
                                 </group>
                             </group>
-                        <h2><br></br>Оцінка відповідності згідно з Додатком 3 ТР Р (дивись окремий звіт)</h2>
-                                <button string="Дивитись окремий звіт" type="object" name="open_or_create_additional_order" options='{"always_reload": True}' widget="button"/>
-                        </page><page name="reporting" string="Нотатки">
+                            <h2><br></br>Оцінка відповідності згідно з Додатком 3 ТР Р (дивись окремий звіт)
+                            </h2>
+                            <button string="Дивитись окремий звіт" type="object" name="open_or_create_additional_order"
+                                    options='{"always_reload": True}' widget="button"/>
+                        </page>
+                        <page name="reporting" string="Нотатки">
                             <group name="notes">
-                                <field name="general_notes_subpart_notes" widget="html" attrs="{'readonly': [('general_notes_subpart_notes_editability', '!=', True)]}"/>
+                                <field name="general_notes_subpart_notes" widget="html"
+                                       attrs="{'readonly': [('general_notes_subpart_notes_editability', '!=', True)]}"/>
                                 <field name="general_notes_subpart_notes_editability" invisible="1" readonly="1"/>
                             </group>
                             <group name="notes_buttons">
-                                <button string="Редагувати нотатки" type="object" name="action_modify_notes" options='{"always_reload": True}' widget="button"/>
-                                <button string="Зберегти нотатки" type="object" name="action_save_notes" options='{"always_reload": True}' widget="button"/>
+                                <button string="Редагувати нотатки" type="object" name="action_modify_notes"
+                                        options='{"always_reload": True}' widget="button"/>
+                                <button string="Зберегти нотатки" type="object" name="action_save_notes"
+                                        options='{"always_reload": True}' widget="button"/>
                             </group>
                         </page>
                     </notebook>
                 </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
             </form>
         </field>
     </record>

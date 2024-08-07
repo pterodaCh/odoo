@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="0">
-
         <record id="module_category_certification" model="ir.module.category">
             <field name="name">Certification</field>
             <field name="description">Helps you manage your certification process.</field>
@@ -32,7 +31,7 @@
         </record>
 
         <record id="performer_own_form_rule" model="ir.rule">
-            <field name="name">performer: view onw records</field>
+            <field name="name">Performer: view onw records</field>
             <field name="model_id" ref="model_iot_certification_order"/>
             <field name="groups" eval="[Command.set([ref('iot_certification.group_certification_performer')])]"/>
             <field name="domain_force">[('create_uid','=', user.id)]</field>
