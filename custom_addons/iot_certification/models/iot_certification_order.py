@@ -1,5 +1,10 @@
 from odoo import api, fields, models, SUPERUSER_ID, exceptions
 
+# TODO
+#  Закастомити повідомлення при зміні статусу заявки
+#  Перенести кніпку прінт як екщин на батон. юзнути цей відос(https://www.youtube.com/watch?v=nF1PRDdUFds)
+
+
 class IoTCertificationOrder(models.Model):
     _name = "iot_certification_order"
     _inherit = ['mail.thread']
@@ -957,49 +962,66 @@ class IoTCertificationOrder(models.Model):
     @api.onchange('status')
     def _onchange_status(self):
         for record in self:
-            if record.status == 'approved':
+            if record.status == 'approved' or record.status == 'readyforapproval':
                 verdict_fields = [field_name for field_name in record._fields if 'verdict' in field_name]
                 for field_name in verdict_fields:
                     if record[field_name] != 'ok':
                         raise exceptions.ValidationError('Помилка: є поля зі значенням "See remark". Статус не може бути змінений. Виправте всі ремарки і повторіть запит знову. Поле, що спричинило помилку: "{}"'.format(field_name))
-                    
+
                     
     def copy_record_and_update_name(self):
         for record in self:
             copied_record = record.copy()
-            copied_record.write({'name': record.name + ' (COPY)'})
+            copied_record.write({'name': record.name + ' (КОПІЯ)'})
 
     def action_ready_for_approval(self):
         for record in self:
             if record.status == 'readyforapproval':
-                raise exceptions.ValidationError('Заявку вже надіслано на перевірку')
+                raise exceptions.ValidationError('Помилка: заявку вже надіслано на перевірку')
             elif record.status == 'inprogress':
-                raise exceptions.ValidationError('Заявка перевіряється. На цьому етапі статус заявки змінити неможливо')
+                raise exceptions.ValidationError('Помилка: заявка перевіряється. На цьому етапі статус заявки змінити неможливо')
             elif record.status == 'approved':
-                raise exceptions.ValidationError('Заявку підтверджено. На цьому етапі статус заявки змінити неможливо')
+                raise exceptions.ValidationError('Помилка: заявку підтверджено. На цьому етапі статус заявки змінити неможливо')
             else:
                 record.status = 'readyforapproval'
 
     def action_accept_for_approval(self):
         for record in self:
-             record.status = 'inprogress'
+            if record.status == 'readyforapproval':
+                record.status = 'inprogress'
+            elif record.status == 'approved':
+                raise exceptions.ValidationError('Помилка: заявку підтверджено. На цьому етапі статус заявки змінити неможливо')
+            else:
+                raise exceptions.ValidationError('Помилка: заявка не готова до перевірки')
+
     def action_submit_for_revision(self):
         for record in self:
-             record.status = 'needchanges'
+            if record.status == 'inprogress':
+                record.status = 'needchanges'
+            elif record.status == 'approved':
+                raise exceptions.ValidationError('Помилка: заявку підтверджено. На цьому етапі статус заявки змінити неможливо')
+            else:
+                raise exceptions.ValidationError('Помилка: неможливо надіслати на доопрацювання. Заявка не перевіряється')
 
     def action_submit(self):
         for record in self:
+            if record.status != 'inprogress':
+                raise exceptions.ValidationError('Помилка: неможливо підтвердити. Заявка не перевіряється')
             if self.env.user.has_group('iot_certification.group_certification_report_manager'):
                 record.approved_report_status = True
             if self.env.user.has_group('iot_certification.group_certification_cert_manager'):
                 record.approved_cert_status = True
-            if record.approved_cert_status and record.approved_report_status:
+            if record.approved_cert_status or record.approved_report_status:
                 record.status = 'approved'
         return {
             'type': 'ir.actions.client',
             'tag': 'reload',
         }
-    # def action_report(self):
-    #     for record in self:
-    #         if not record.approved_report_status:
-    #             raise exceptions.ValidationError('Заявку не підтверджено керівником. Звіт неможливо надрукувати')
+
+
+    def print_report(self):
+        for record in self:
+            if not record.approved_report_status:
+                raise exceptions.ValidationError('Помилка: звіт неможливо надрукувати. Заявку не підтверджено керівником')
+            else:
+                return self.env.ref('iot_certification.action_report').report_action(self)
