@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="iot_application_report_header_style">
+        <style>
+            body { font-size: 12px; }
+            h1, h2, h3, h4, h5, h6 { margin:0pt }
+            p {
+            margin: 0;
+            padding: 0;
+            line-height: 1;
+            }
+            li, table { margin-top:0pt; margin-bottom:0pt }
+            h1 { page-break-inside:auto; page-break-after:avoid; font-family:'Times New Roman'; font-size:12pt;
+            font-weight:normal; color:#000000 }
+            h2 { text-align:center; page-break-inside:auto; page-break-after:avoid; font-family:'Times New Roman';
+            font-size:12pt; font-weight:bold; color:#000000 }
+            h3 { text-indent:42.55pt; text-align:justify; page-break-inside:auto; page-break-after:avoid;
+            font-family:'Times
+            New Roman'; font-size:12pt; font-weight:bold; color:#000000 }
+            h4 { text-align:center; page-break-inside:auto; page-break-after:avoid; font-family:'Times New Roman';
+            font-size:10pt; font-weight:normal; font-style:normal; color:#000000 }
+            h5 { text-align:center; page-break-inside:auto; page-break-after:avoid; font-family:'Times New Roman';
+            font-size:14pt; font-weight:bold; color:#000000 }
+            h6 { text-indent:1.7pt; text-align:center; page-break-inside:auto; page-break-after:avoid;
+            font-family:'Times
+            New Roman'; font-size:12pt; font-weight:bold; color:#000000 }
+            .Heading7 { text-align:center; page-break-inside:auto; page-break-after:avoid; font-family:'Times New
+            Roman';
+            font-size:11pt; font-weight:bold; font-style:normal; color:#000000 }
+            .Heading8 { text-align:center; page-break-inside:auto; page-break-after:avoid; font-family:'Times New
+            Roman';
+            font-size:14pt; font-weight:bold; color:#000000 }
+            .Heading9 { text-indent:36pt; text-align:center; page-break-inside:auto; page-break-after:avoid;
+            font-family:'Times New Roman'; font-size:10pt; font-weight:normal; font-style:normal; color:#000000 }
+            .BalloonText { font-family:Tahoma; font-size:8pt }
+            .BlockText { margin-top:6pt; margin-right:-14.2pt; margin-left:-14.2pt; text-align:center;
+            font-family:Arial;
+            font-size:11pt; font-weight:bold }
+            .BodyText { margin-bottom:6pt }
+            .BodyText2 { margin-bottom:6pt; line-height:200% }
+            .BodyText21 { text-align:justify; font-size:12pt }
+            .BodyTextIndent { margin-left:14.15pt; margin-bottom:6pt }
+            .Caption { text-indent:42.55pt; text-align:center; font-size:12pt; font-weight:bold; color:#000000 }
+            .Empfnger { line-height:12pt; widows:0; orphans:0; font-size:12pt }
+            .FootnoteText { font-family:Calibri }
+            .HTMLPreformatted { font-family:'Courier New' }
+            .ListParagraph { margin-left:36pt; margin-bottom:10pt; line-height:115%; font-family:Calibri; font-size:11pt
+            }
+            .NoSpacing { font-size:18pt; text-decoration:underline; color:#ff00ff }
+            .NormalWeb { margin-top:5pt; margin-bottom:5pt; font-size:12pt }
+            .PlainText { font-family:Calibri; font-size:11pt }
+            .Subtitle { text-indent:42.55pt; text-align:center; font-size:14pt; font-weight:bold }
+            .Title { text-indent:42.55pt; text-align:center; font-size:12pt; font-weight:bold }
+            .\31 0 { text-indent:36pt; text-align:justify; widows:0; orphans:0; font-family:'Courier New';
+            font-size:12pt }
+            .a4 { margin-top:3pt; margin-bottom:3pt; text-indent:35.45pt; text-align:justify; font-size:12pt;
+            color:#000000
+            }
+            span.Emphasis { font-style:italic }
+            span.FootnoteReference { vertical-align:super }
+            span.Hyperlink { text-decoration:underline; color:#0000ff }
+            span.Strong { font-weight:bold }
+            span.\31 { font-size:12pt }
+            span.\32 { font-size:12pt; font-weight:bold; color:#000000 }
+            span.\33 { font-size:12pt; font-weight:bold; color:#000000 }
+            span.\34 { font-size:18pt; text-decoration:underline; color:#ff00ff }
+            span.\35 { font-size:14pt; font-weight:bold; color:#000000 }
+            span.\36 { font-size:12pt; font-weight:bold }
+            span.\37 { font-size:11pt; font-weight:bold }
+            span.\38 { font-size:14pt; font-weight:bold }
+            span.\39 { font-size:18pt; text-decoration:underline; color:#ff00ff }
+            span.a { font-size:12pt; font-weight:bold }
+            span.a0 { font-size:14pt; font-weight:bold }
+            span.HTML { font-family:'Courier New' }
+            span.a6 { font-family:Calibri; font-size:11pt }
+            span.a2 { font-family:Calibri }
+            span.a3 { font-family:Tahoma; font-size:8pt }
+            @media (max-width: 900px) {
+            img {
+            max-width: 100%;
+            height: auto;
+            }
+
+            .table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            }
+
+            .header-table {
+            width: 100%;
+            border-collapse: collapse;
+            }
+
+            .header-td, .header-th {
+            padding: 8px;
+            text-align: left;
+            }
+
+            .border-right {
+            border-top: 1px solid white;
+            border-bottom: 1px solid white;
+            border-left: 1px solid white;
+            border-right: 1px solid black; /* Черная правая граница */
+            }
+
+            .border-empty {
+            border-top: 1px solid white;
+            border-bottom: 1px solid white;
+            border-left: 1px solid white;
+            border-right: 1px solid white; /* Черная правая граница */
+            }
+
+            .border-around {
+            border: 1px solid black;
+            }
+            }
+        </style>
+    </template>
+</odoo>

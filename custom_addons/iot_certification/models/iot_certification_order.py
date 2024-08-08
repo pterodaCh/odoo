@@ -90,6 +90,22 @@ class IoTCertificationOrder(models.Model):
         string="Підприємства",
         #domain="['|', ('partner_id', '=', applicant_id), ('partner_id', '=', producer_id)]"
         )
+
+    presence_of_sample_verdict = fields.Selection(
+        selection=[
+            ('ok', "Ok"),
+            ('remark', "See remark"),
+        ],
+        string="Рішення")
+
+    presence_of_sample_attachment_ids = fields.Many2many(
+        comodel_name='ir.attachment',
+        relation='power_of_attorney_attachment_relation',
+        string='Коментар'
+    )
+
+    presence_of_sample_remarks = fields.Html(
+        string="Remarks")
     
     power_of_attorney_verdict = fields.Selection(
         selection=[
@@ -607,6 +623,22 @@ class IoTCertificationOrder(models.Model):
     )
     
     spectrum_remarks = fields.Html(
+        string="Remarks")
+    
+    product_reassessment_verdict = fields.Selection(
+        selection=[
+            ('ok', "Ok"),
+            ('remark', "See remark"),
+        ],
+        string="Рішення")
+
+    product_reassessment_attachment_ids = fields.Many2many(
+        comodel_name='ir.attachment',
+        relation='power_of_attorney_attachment_relation',
+        string='Коментар'
+    )
+
+    product_reassessment_remarks = fields.Html(
         string="Remarks")
     
     subpart_verdict = fields.Selection(

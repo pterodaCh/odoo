@@ -1,0 +1,780 @@
+<?xml version="1.0"?>
+
+<odoo>
+    <template id="iot_application_report_html_document">
+        <div class="page">
+            <em>(Будь ласка, заповніть уважно. Надані дані будуть зазначені в
+                сертифікатах експертизи типу (відомості про виробника та продукцію).
+                Заповнений бланк замовлення може бути відправлений факсом або
+                електронною поштою / Please fill in carefully. The given data will be
+                indicated in certificates of examination type (information about the
+                manufacturer and products). A completed order form can be sent by fax or
+                e-mail)
+            </em>
+            <br/>
+            <table class="main-table">
+                <tbody>
+                    <tr class="table-gray-bg">
+                        <td colspan="1" class="numbered-cell-center">
+                            1.
+                        </td>
+                        <td colspan="16">
+                            <strong>Загальна інформація стосовно Заявника /
+                                <em>General information about the Applicant</em>:
+                            </strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            1.1.
+                        </td>
+                        <td colspan="8">Назва організації /
+                            <em>Organization name:</em>
+                        </td>
+                        <td colspan="8">
+                            <em>
+                                <t t-if="o.appliciant_id.is_company == True" t-out="o.appliciant_id.name"/>
+                                <t t-else="" t-out="o.appliciant_id.parent_id.name"/>
+                            </em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            1.2.
+                        </td>
+                        <td colspan="8">Адреса/код ЄДРПОУ / <em>Legal</em> a
+                            <em>ddress / EDRPOU
+                                code:
+                            </em>
+                        </td>
+                        <td colspan="8">
+                            <em>
+                                <t t-out="o.appliciant_id.contact_address"/>
+<!--                                <t t-out="', '.join(filter(None, [-->
+<!--                                    o.appliciant_id.zip,-->
+<!--                                    o.appliciant_id.city,-->
+<!--                                    'вул. ' + o.appliciant_id.street if o.appliciant_id.street else '',-->
+<!--                                    o.appliciant_id.street2 if o.appliciant_id.street2 else '',-->
+<!--                                    'к. ' + o.appliciant_id.street2.split()[-1] if o.appliciant_id.street2 else '',-->
+<!--                                    o.appliciant_id.vat if o.appliciant_id.vat else ''-->
+<!--                                ]))"/>-->
+                            </em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            1.3.
+                        </td>
+                        <td colspan="8">Статус заявника /
+                            <em>Applicant Status:</em>
+                        </td>
+                        <td style="text-align: right;">Виробник /
+                            <em>Manufacturer</em>
+                        </td>
+                        <td>
+                            <span t-if="o.appliciant_id.partner_type == 'producer'">☒</span>
+                            <span t-else="">☐</span>
+                        </td>
+                        <td colspan="5" style="text-align: right;">Уповноважений представник /
+                            Authorized Representative
+                        </td>
+                        <td>
+                            <span t-if="o.appliciant_id.partner_type == 'applicant'">☒</span>
+                            <span t-else="">☐</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            1.4.
+                        </td>
+                        <td colspan="8">
+                            Доручення/договір/довіреність
+                            <br/>
+                            (для уповноваженого представника)
+                            <br/>
+                        </td>
+                        <td colspan="8">
+                            <em>
+                                від
+                                <t t-out="o.create_date.strftime('%d.%m.%Y')"/>
+                                <!--                            TODO: change date to normal one, check if field right-->
+                                , "
+                                <t t-if="o.appliciant_id.is_company == True" t-out="o.appliciant_id.name"/>
+                                <t t-else="" t-out="o.appliciant_id.parent_id.name"/>
+                                "
+                            </em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            1.5.
+                        </td>
+                        <td colspan="8">
+                            <strong>Контактна особа (організація) /
+                                <em>Contact
+                                    person (organization)
+                                </em>
+                            </strong>
+                        </td>
+                        <td colspan="8">
+                            <em>
+                                <t t-out="o.appliciant_id.name"/>
+                            </em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"/>
+                        <td colspan="7">Тел / Faх</td>
+                        <td colspan="9">
+                            <em>
+                                <t t-out="o.appliciant_id.phone"/>
+                            </em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"/>
+                        <td colspan="7">e-mail:</td>
+                        <td colspan="9">
+                            <t t-out="o.appliciant_id.email"/>
+                        </td>
+                    </tr>
+                    <tr class="table-gray-bg">
+                        <td colspan="1" class="numbered-cell-center">
+                            2.
+                        </td>
+                        <td colspan="16">
+                            <strong>Продукція, що заявлена на оцінку відповідності
+                                / Products applied for conformity assessment:
+                            </strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            2.1.
+                        </td>
+                        <td colspan="16">Ідентифікація продукту, яка заявлена на сертифікацію
+                            (тип/торговельна марка/модель (модельний ряд) продукції) /
+                            Identification of the product that is claimed for certification (type /
+                            trademark / model (product line) of products):
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"/>
+                        <td colspan="16">
+                            <em>
+                                <t t-out="o.product_id.name"/>
+                                 моделі
+                                <t t-out="o.model_line_model"/>
+                            </em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            2.2.
+                        </td>
+                        <td colspan="16" style="text-align: left;">
+                            <strong>Виробник</strong>
+                            (назва виробника, юридична адреса) <strong>/ Manufacturer</strong> (name
+                            of manufacturer, legal address):
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"/>
+                        <td colspan="16">
+                            <em>
+                                <t t-out="o.producer_id.contact_address"/>
+                                ,
+                                на підприємствах:
+                                <t t-set="count" t-value="0"/>
+                                <t t-set="result" t-value='""'/>
+                                <t t-foreach="o.enterprise_ids" t-as="enterprise">
+                                    <t t-set="count" t-value="count + 1"/>
+                                    <t t-set="result" t-value="result + '; ' + str(count) + ') ' + str(enterprise)"/>
+                                </t>
+                                <t t-out="result"/>
+<!--                                <t t-out="'; '.join([(count := count + 1) + ') ' + enterprise for enterprise in o.enterprise_ids])"/>-->
+                                .
+<!--                                <t t-out="','.join(filter(None, [-->
+<!--                    o.appliciant_id.name,-->
+<!--                    o.appliciant_id.zip,-->
+<!--                    o.appliciant_id.city,-->
+<!--                    'вул. ' + o.appliciant_id.street if o.appliciant_id.street else '',-->
+<!--                    o.appliciant_id.street2 if o.appliciant_id.street2 else '',-->
+<!--                    'к. ' + o.appliciant_id.street2.split()[-1] if o.appliciant_id.street2 else '',-->
+<!--                    o.appliciant_id.vat if o.appliciant_id.vat else ''-->
+<!--                ]))"/>-->
+                            </em>
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            2.3.
+                        </td>
+                        <td colspan="16">
+                            <strong>Склад обладнання (компоненти і аксесуари, які
+                                впливають на відповідність суттєвим вимогам ТР Р) /
+                                <em>Part of the
+                                    equipment (components and accessories that affect to the compliance with
+                                    essential requirements of RED)
+                                </em>
+                            </strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"/>
+                        <td colspan="16">
+                            <em>
+                                <t t-out="o.part_of_the_equipment"/>
+                            </em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            2.4.
+                        </td>
+                        <td colspan="16">
+                            <strong>Радіотехнологія, що використовується у
+                                продукції /
+                                <em>Radio technology used in products:</em>
+                            </strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="18">
+                            <span t-if="o.product_specification_1 == True">☒</span>
+                            <span t-else="">☐</span>
+                            Широкосмуговий радіодоступ (
+                            <span t-if="o.product_specification_1_1 == True">☒</span>
+                            <span t-else="">☐</span>
+                            IEEE 802.11 b/g;
+                            <span t-if="o.product_specification_1_3 == True">☒</span>
+                            <span t-else="">☐</span>
+                            IEEE 802.11n;
+                            <span t-if="o.product_specification_1_2 == True">☒</span>
+                            <span t-else="">☐</span>
+                            IEEE 802.11а;
+                            <span t-if="o.product_specification_1_4 == True">☒</span>
+                            <span t-else="">☐</span>
+                            IEEE 802.11 ас;
+                            <br/>
+
+                            <span t-if="o.product_specification_1_5 == True">☒</span>
+                            <span t-else="">☐</span>
+                            IEEE 802.11 аx
+                            <span t-if="o.product_specification_1_7 == True">☒</span>
+                            <span t-else="">☐</span>
+                            Bluetooth;
+                            <span t-if="o.product_specification_1_8 == True">☒</span>
+                            <span t-else="">☐</span>
+                            ZigBee;
+                            <span t-if="o.product_specification_1_9 == True">☒</span>
+                            <span t-else="">☐</span>
+                            2400 МГц;
+                            <span t-if="o.product_specification_1_6 == True">☒</span>
+                            <span t-else="">☐</span>
+                            IEEE 802.16);
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="18">
+
+                            <span t-if="o.product_specification_2 == True">☒</span>
+                            <span t-else="">☐</span>
+                            Цифровий стільниковий радіозв'язок (
+                            <span t-if="o.product_specification_2_1 == True">☒</span>
+                            <span t-else="">☐</span>
+                            GSM 900/1800;
+                            <span t-if="o.product_specification_2_3 == True">☒</span>
+                            <span t-else="">☐</span>
+                            ІМТ-2000;
+                            <span t-if="o.product_specification_2_2 == True">☒</span>
+                            <span t-else="">☐</span>
+                            LTE;
+                            <span t-if="o.product_specification_2_4 == True">☒</span>
+                            <span t-else="">☐</span>
+                            CDMA-800);
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="18">
+
+                            <span t-if="o.product_specification_3 == True">☒</span>
+                            <span t-else="">☐</span>
+                            Пристрої короткого радіусу дії (
+                            <span t-if="o.product_specification_3_5 == True">☒</span>
+                            <span t-else="">☐</span>
+                            6,7 МГц;
+                            <span t-if="o.product_specification_3_6 == True">☒</span>
+                            <span t-else="">☐</span>
+                            13 МГц;
+                            <span t-if="o.product_specification_3_1 == True">☒</span>
+                            <span t-else="">☐</span>
+                            433 МГц;
+                            <span t-if="o.product_specification_3_2 == True">☒</span>
+                            <span t-else="">☐</span>
+                            868 МГц;
+                            <span t-if="o.product_specification_3_3 == True">☒</span>
+                            <span t-else="">☐</span>
+                            2400 МГц;
+                            <span t-if="o.product_specification_3_4 == True">☒</span>
+                            <span t-else="">☐</span>
+                            5800 МГц);
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="18">
+
+                            <span t-if="o.product_specification_4 == True">☒</span>
+                            <span t-else="">☐</span>
+                            Індуктивні застосування (
+                            <span t-if="o.product_specification_4_1 == True">☒</span>
+                            <span t-else="">☐</span>
+                            NFC
+                            <span t-if="o.product_specification_4_2 == True">☒</span>
+                            <span t-else="">☐</span>
+                            RFID);
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="18">
+
+                            <span t-if="o.product_specification_9 == True">☒</span>
+                            <span t-else="">☐</span>
+                            Радіорелейний зв'язок;
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="18">
+
+                            <span t-if="o.product_specification_7 == True">☒</span>
+                            <span t-else="">☐</span>
+                            Радіолокаційні вимірювання;
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="18">
+
+                            <span t-if="o.product_specification_8 == True">☒</span>
+                            <span t-else="">☐</span>
+                            Супутниковий радіозв'язок;
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="18">
+
+                            <span t-if="o.product_specification_5 == True">☒</span>
+                            <span t-else="">☐</span>
+                            Приймачі (
+                            <span t-if="o.product_specification_5_1 == True">☒</span>
+                            <span t-else="">☐</span>
+                            GNSS;
+                            <span t-if="o.product_specification_5_2 == True">☒</span>
+                            <span t-else="">☐</span>
+                            FM;
+                            <span t-if="o.product_specification_5_3 == True">☒</span>
+                            <span t-else="">☐</span>
+                            КХ/УКХ;
+                            <span t-if="o.product_specification_5_4 == True">☒</span>
+                            <span t-else="">☐</span>
+                            433 МГц);
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="18">
+
+                            <span t-if="o.product_specification_10 == True">☒</span>
+                            <span t-else="">☐</span>
+                            Інше (функція безпроводового заряджання)
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr class="table-gray-bg">
+                        <td colspan="1" class="numbered-cell-center">
+                            3.
+                        </td>
+                        <td colspan="16" style="text-align: left;">
+                            <strong>Необхідні послуги /
+                                Required Services:
+                            </strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            3.1.
+                        </td>
+                        <td colspan="16">
+                            <strong>Проведення оцінки відповідності</strong>
+                            з
+                            метою підтвердження відповідності суттєвим вимогам ТР Р /
+                            <em>To conduct
+                                a conformity assessment to confirm compliance with the essential
+                                requirements of the RED
+                            </em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1"/>
+                        <td colspan="1">
+                            <span t-if="o.type_examination_certificate_verdict == 'ok'">☒</span>
+                            <span t-else="">☐</span>
+                        </td>
+                        <td colspan="7">
+                            <strong>Модуль B (експертиза типу)</strong>
+                        </td>
+                        <td colspan="1">
+                            <span t-if="o.type_examination_certificate_verdict == 'ok'">☐</span>
+                            <span t-else="">☒</span>
+                        </td>
+                        <td colspan="7">
+                            <strong>Модуль H (відповідність на основі цілковитого
+                                забезпечення якості)
+                            </strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            3.2.
+                        </td>
+                        <td colspan="16">
+                            <strong>Перелік стандартів</strong>
+                            та/або інших
+                            нормативних документів, на відповідність до яких необхідно провести
+                            оцінку відповідності /
+                            <em>The list of standards and / or other
+                                normative documents to which it is necessary to provide compliance
+                                assessment
+                            </em>
+                            <strong>:</strong>
+                            <em>
+                                <t t-set="dstu_objects"
+                                   t-value="o.safety_details + o.health_details + o.emc_details + o.spectrum_details"
+                                />
+                                <t t-out="', '.join([dstu.name for dstu in dstu_objects])"/>
+                            </em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            3.3.
+                        </td>
+                        <td colspan="1" style="text-align: left;">
+                            <span t-if="o.product_reassessment_verdict == 'ok'">☒</span>
+                            <span t-else="">☐</span>
+                        </td>
+                        <td colspan="13">
+                            <strong>Повторна оцінка</strong>
+                            продукту в зв'язку з
+                            відповідними змінами продукту та/або законодавства /
+                            <em>Re-assessment
+                                of a product due to relevant product/normative changes
+                            </em>
+                        </td>
+                        <td colspan="2"/>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            3.4.
+                        </td>
+                        <td colspan="1" style="text-align: left;">
+                            <span t-if="o.power_of_attorney_verdict == 'ok'">☒</span>
+                            <span t-else="">☐</span>
+                        </td>
+                        <td colspan="13">
+                            <strong>Інші послуги</strong>
+                            (будь ласка, зазначте
+                            нижче або окремим додатком до Замовлення)/
+                            <em>Other Services (please
+                                specify below or per extra sheet)
+                            </em>
+                        </td>
+                        <td colspan="2"/>
+                    </tr>
+                    <tr class="table-gray-bg">
+                        <td colspan="1" class="numbered-cell-center">
+                            4.
+                        </td>
+                        <td colspan="16" style="text-align: left;">
+                            <strong>Зобов'язання Заявника / <em>The Applicant's
+                                Obligations</em>:
+                            </strong>
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            4.1.
+                        </td>
+                        <td colspan="16" style="text-align: left;">
+                            Згідно п.3 Додатку 2 ТР Р повідомляю про те, що така ж заявка не
+                            подана до жодного іншого призначеного органу з оцінки відповідності /
+                            <em>To declare that the same Application has not been filed to any other
+                                Notified Body
+                            </em>
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            4.2.
+                        </td>
+                        <td colspan="16" style="text-align: left;">
+                            Виконувати всі умови Сертифікаційної угоди /
+                            <em>To perform all
+                                conditions of the Certification agreement
+                            </em>
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            4.3.
+                        </td>
+                        <td colspan="16" style="text-align: left;">
+                            Сплатити всі витрати за проведення оцінки відповідності / To pa
+                            <em>y
+                                all costs for conducting conformity assessment
+                            </em>
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr class="table-gray-bg">
+                        <td colspan="1" rowspan="2" class="numbered-cell-center">
+                            5.
+                        </td>
+                        <td colspan="10" rowspan="2" style="text-align: left;">
+                            <strong>Наявність зразку для випробувань /</strong>
+                            <br/>
+                            <em>
+                                <strong>Presence of sample for testing</strong>
+                            </em>
+                            <br/>
+                        </td>
+                        <td colspan="6" style="text-align: left;">
+                            <span t-if="o.presence_of_sample_verdict == 'ok'">☒</span>
+                            <span t-else="">☐</span>
+                             - ТАК
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr class="table-gray-bg">
+                        <td colspan="6" style="text-align: left;">
+                            <span t-if="o.presence_of_sample_verdict == 'ok'">☐</span>
+                            <span t-else="">☒</span>
+                             - НІ
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr class="table-gray-bg">
+                        <td colspan="1" class="numbered-cell-center">
+                            6.
+                        </td>
+                        <td colspan="16" style="text-align: left;">
+                            <strong>До Заявки додається
+                                технічна документація відповідно до Додатку 4 ТР Р (окремим додатком до
+                                Заявки) / <em>Technical documentation (separate Annex to the
+                                    Application)</em>:
+                            </strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            6.1.
+                        </td>
+                        <td>
+                            <span t-if="o.illustrations_verdict == 'ok'">☒</span>
+                            <span t-else="">☐</span>
+                        </td>
+                        <td colspan="15">
+                            Фотографії або ілюстрації, що показують зовнішній вигляд, маркування
+                            та внутрішнє компонування /
+                            <em>Photographs/Illustrations;</em>
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            6.2.
+                        </td>
+                        <td>
+                            <span t-if="o.hw_sw_version_verdict == 'ok'">☒</span>
+                            <span t-else="">☐</span>
+                        </td>
+                        <td colspan="15">
+                            Версії програмного забезпечення або апаратно реалізованого
+                            програмного забезпечення, які можуть впливати на відповідність суттєвим
+                            вимогам ТР Р /
+                            <em>HW/SW Version;</em>
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            6.3.
+                        </td>
+                        <td colspan="1">
+                            <span t-if="o.user_manual_verdict == 'ok'">☒</span>
+                            <span t-else="">☐</span>
+                        </td>
+                        <td colspan="15">
+                            Інструкція з експлуатації (українською мовою, згідно п. 26 ТР РО та з
+                            обов'язковим розділом БЕЗПЕКА) /
+                            <em>User Manual;</em>
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            6.4.
+                        </td>
+                        <td colspan="1">
+                            <span t-if="o.information_regarding_freq_bands_eirp_verdict == 'ok'">☒</span>
+                            <span t-else="">☐</span>
+                        </td>
+                        <td colspan="15">
+                            Технічна специфікація/ <em>Technical specification</em>;
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            6.5.
+                        </td>
+                        <td colspan="1">
+                            <span t-if="o.compliance_documents_verdict == 'ok'">☒</span>
+                            <span t-else="">☐</span>
+                        </td>
+                        <td colspan="15">
+                            Копія декларації про відповідність, сертифікати на продукцію та
+                            підприємства, тощо / Declaration of conformity, certificates for
+                            products and enterprises, etc.;
+                            <br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            6.6.
+                        </td>
+                        <td colspan="1">
+                            <span t-if="o.diagrams_verdict == 'ok'">☒</span>
+                            <span t-else="">☐</span>
+                        </td>
+                        <td colspan="15">
+                            Технологічні креслення і схеми компонентів, вузлової зборки,
+                            електричні схеми, технічний проект та інша подібна інформація /
+                            <em>Block Diagram / Schematics / PCB Layout / Bill Of
+                                Materials;
+                            </em>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            6.7.
+                        </td>
+                        <td colspan="1">
+                            <span t-if="o.risk_assessment_verdict == 'ok'">☒</span>
+                            <span t-else="">☐</span>
+                        </td>
+                        <td colspan="15">
+                            Оцінка та аналіз ризиків /
+                            <em>Risk Assessment;</em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            6.8.
+                        </td>
+                        <td colspan="1">
+                            ☐
+                            <!--                            <span t-if="o.illustrations_verdict == 'ok'">☒</span>-->
+                            <!--                            <span t-else="">☐</span> TODO: Протоколи випробувань-->
+                        </td>
+                        <td colspan="15">
+                            Протоколи випробувань /
+                            <em>Test reports.</em>
+                        </td>
+                    </tr>
+                    <tr class="table-gray-bg">
+                        <td colspan="1" class="numbered-cell-center">
+                            7.
+                        </td>
+                        <td colspan="16" style="text-align: left;">
+                            <strong>Протокол аналізу
+                                Заявки:
+                            </strong>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            7.1.
+                        </td>
+                        <td style="text-align: left;">☐</td>
+                        <td colspan="15" style="text-align: left;">Будь-які розбіжності у
+                            розумінні між органом оцінки відповідності (ООВ) і заявником
+                            (далі-сторонами) усунено.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            7.2.
+                        </td>
+                        <td style="text-align: left;">☐</td>
+                        <td colspan="15" style="text-align: left;">Сторонами чітко визначені,
+                            документально оформлені і зрозумілі вимоги до провадження оцінки
+                            відповідності.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="numbered-cell">
+                            7.3.
+                        </td>
+                        <td style="text-align: left;">☐</td>
+                        <td colspan="15" style="text-align: left;">ООВ здатен надати послуги з
+                            оцінки відповідності стосовно заявленої сфери акредитації, інші
+                            спеціальні вимоги відсутні.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="my-footer-table">
+                <tr>
+                    <td class="my-footer-td">
+                        <strong>Представник ООВ</strong>
+                        _________________
+                    </td>
+                    <td class="my-footer-td">
+                        <strong>Заявник</strong>:
+                        <br/>
+                        Керівник організації _______________________
+                        <div class="my-footer-label">
+                            Підпис/
+                            <em>signature</em>
+                        </div>
+
+
+                    </td>
+                    <td class="my-footer-td">
+                        <br/>
+                        ______________________
+                        <div class="my-footer-second-label">
+                            ініціал(и), прізвище/
+                            <em>full name</em>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+            <div style="text-align: center; margin-top: 2px;">„___” _____________ 2024 р.</div>
+            <br/>
+        </div>
+    </template>
+</odoo>

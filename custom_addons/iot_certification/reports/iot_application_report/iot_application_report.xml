@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+
+<odoo>
+    <record id="paperformat_no_hf" model="report.paperformat">
+        <field name="name">A4</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">2</field>
+        <field name="margin_bottom">2</field>
+        <field name="margin_left">12</field>
+        <field name="margin_right">4</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <template id="iot_application_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <t t-call="iot_certification.iot_application_report_style"/>
+                    <t t-call="iot_certification.iot_application_report_header_style"/>
+                    <t t-call="iot_certification.iot_application_report_header_html_document"/>
+                    <t t-call="iot_certification.iot_application_report_html_document"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="iot_application_report_action" model="ir.actions.report">
+        <field name="name">Роздрукувати заявку</field>
+        <field name="model">iot_certification_order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">iot_certification.iot_application_report_template</field>
+        <field name="report_file">event.iot_application_report_template</field>
+        <field name="print_report_name">f"Application report No.{object.name}"</field>
+        <field name="paperformat_id" ref="iot_certification.paperformat_no_hf"/>
+        <field name="binding_model_id" ref="model_iot_certification_order"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
