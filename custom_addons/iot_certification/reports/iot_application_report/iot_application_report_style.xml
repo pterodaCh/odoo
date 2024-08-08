@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+
+<odoo>
+    <template id="iot_application_report_style">
+        <style>
+            body {
+              font-size: 12px;
+            }
+
+            .main-table {
+                break-inside: auto;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td {
+                break-inside: avoid;
+                break-after: auto;
+                border: 1px solid black;
+                padding: 8px;
+            }
+
+            .table-gray-bg {
+                background-color: lightgray;
+            }
+
+            .numbered-cell {
+                width: 10px;
+                text-align: left;
+            }
+
+            .numbered-cell-center {
+                width: 10px;
+                text-align: left;
+                padding-left: 18px;
+            }
+
+            .my-footer-label {
+                font-size: 8px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .my-footer-second-label {
+                font-size: 8px;
+                width: 100%;
+                text-align: left;
+            }
+
+            .my-footer-table {
+                border-collapse: collapse;
+                border: 1px solid white;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .my-footer-td {
+                border: none;
+                padding: 0;
+            }
+        </style>
+    </template>
+</odoo>

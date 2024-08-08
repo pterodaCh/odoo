@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="iot_application_report_header_html_document">
+        <p class="Heading8" style="text-indent:85.05pt; text-align:left; font-size:12pt">
+            <span style="height:0pt; display:block; position:absolute; z-index:10">
+                <img src="/iot_certification/static/application_report/header-logo.jpeg"
+                     width="122" height="126" alt="Logo"
+                     style="margin-top:-7pt; margin-left:-5.05pt; position:absolute"/>
+            </span>
+            <span style="font-family:Calibri; letter-spacing:2pt">&#xa0;</span>
+            <span style="font-family:Calibri; letter-spacing:2pt">Заявка клієнта / Customer Order</span>
+            <span style="font-family:Calibri; letter-spacing:2pt">&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span>
+            <span style="font-family:Calibri; font-size:9pt; font-weight:normal; letter-spacing:2pt">ФОВ-19/01</span>
+        </p>
+        <p style="text-indent:85.05pt">
+            <span style="font-family:Calibri; font-size:8pt">&#xa0;</span>
+            <span style="font-family:Calibri">Послуги з оцінки відповідності / Services for Conformity Assessment</span>
+        </p>
+        <p style="text-align:right; font-size:8pt">
+            <span style="font-family:Calibri; letter-spacing:0.5pt">&#xa0;</span>
+        </p>
+        <p style="text-align:right; font-size:8pt">
+            <span style="font-family:Calibri; letter-spacing:0.5pt">NB</span>
+            <strong>
+                <span style="font-family:Calibri; letter-spacing:0.5pt">TR.UA.052</span>
+            </strong>
+            <span style="font-family:Calibri; letter-spacing:0.5pt">/Номер реєстрації ООВ</span>
+            <strong>
+                <span style="font-family:Calibri; letter-spacing:0.5pt">TR.UA.052</span>
+            </strong>
+        </p>
+        <p style="font-size:4pt">
+            <span style="font-family:Calibri">&#xa0;</span>
+        </p>
+        <table class="header-table" style="width:100%; border-collapse:collapse">
+            <colgroup>
+                <col style="width: 24%"/>
+                <col style="width: 30%"/>
+                <col style="width: 45%"/>
+            </colgroup>
+            <tbody>
+                <tr style="height:114.45pt">
+                    <td class="header-td border-empty"
+                        style="width:124.1pt; padding-right:3.5pt; padding-left:3.5pt; vertical-align:top">
+                        <p style="text-align:right; font-size:11pt">
+                            <strong>
+                                <span style="font-family:Calibri; letter-spacing:0.5pt">&#xa0;</span>
+                            </strong>
+                        </p>
+                        <p style="text-align:right; font-size:11pt">
+                            <strong>
+                                <span style="font-family:Calibri; letter-spacing:0.5pt">&#xa0;</span>
+                            </strong>
+                        </p>
+                        <p style="font-size:11pt">
+                            <span style="height:0pt; display:block; position:absolute; z-index:10">
+                                <img src="/iot_certification/static/application_report/header-divider.png" width="2"
+                                     height="96" alt=""
+                                     style="margin-top:3.1pt; margin-left:146.25pt; position:absolute"/>
+                            </span>
+                            <strong>
+                                <span style="font-family:Calibri; letter-spacing:0.5pt">Ukraine</span>
+                            </strong>
+                        </p>
+                        <p style="font-size:11pt">
+                            <strong>
+                                <span style="font-family:Calibri; ">NB UKCHASTOTNAGLIAD</span>
+                            </strong>
+                        </p>
+                        <p style="font-size:11pt">
+                            <strong>
+                                <span style="font-family:Calibri; ">Prospect Peremogy, 151</span>
+                            </strong>
+                        </p>
+                        <p class="Empfnger" style="line-height:normal; widows:2; orphans:2; font-size:11pt">
+                            <strong>
+                                <span style="font-family:Calibri; letter-spacing:0.5pt">03179 Kyiv</span>
+                            </strong>
+                        </p>
+                    </td>
+                    <td class="header-td border-right"
+                        style="width:156pt; padding-right:3.5pt; padding-left:3.5pt; vertical-align:top">
+                        <p class="Empfnger" style="margin-bottom:2pt; widows:2; orphans:2">
+                            <strong>
+                                <span style="font-family:Calibri; font-size:11pt; letter-spacing:0.5pt">&#xa0;</span>
+                            </strong>
+                        </p>
+                        <p class="Empfnger" style="margin-bottom:2pt; widows:2; orphans:2">
+                            <strong>
+                                <span style="font-family:Calibri; font-size:11pt; letter-spacing:0.5pt">&#xa0;</span>
+                            </strong>
+                        </p>
+                        <p class="Empfnger" style="margin-bottom:2pt; widows:2; orphans:2">
+                            <strong>
+                                <span style="font-family:Calibri; font-size:11pt; letter-spacing:0.5pt">Україна</span>
+                            </strong>
+                        </p>
+                        <p class="Empfnger" style="line-height:normal; widows:2; orphans:2; font-size:11pt">
+                            <strong>
+                                <span style="font-family:Calibri; ">ООВ УКРЧАСТОТНАГЛЯД</span>
+                            </strong>
+                        </p>
+                        <p class="Empfnger" style="line-height:normal; widows:2; orphans:2; font-size:11pt">
+                            <strong>
+                                <span style="font-family:Calibri; ">пр-т Перемоги, 151</span>
+                            </strong>
+                        </p>
+                        <p class="Empfnger" style="line-height:normal; widows:2; orphans:2; font-size:11pt">
+                            <strong>
+                                <span style="font-family:Calibri; letter-spacing:0.5pt">03179, м. Київ</span>
+                            </strong>
+                        </p>
+                    </td>
+                    <td class="header-td border-around"
+                        style="width:241.05pt; border:0.75pt solid #000000; padding-right:3.12pt; padding-left:3.12pt; vertical-align:top">
+                        <p style="font-size:9pt">
+                            <span style="font-family:Calibri; font-size:8pt">Реєстраційний № заявки клієнта/Customer’s
+                                Purchase Order No.:
+                            </span>
+                            <u>
+                                <span t-field="o.name"/>________________________________
+                            </u>
+                            <!--                        <u>-->
+                            <!--                            <span style="width:29.76pt; font-family:'Lucida Console'; display:inline-block">&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span>-->
+                            <!--                        </u>-->
+                            <!--                        <u>-->
+                            <!--                            <span style="width:35.4pt; font-family:'Lucida Console'; display:inline-block">&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span>-->
+                            <!--                        </u>-->
+                            <!--                        <u>-->
+                            <!--                            <span style="width:35.4pt; font-family:'Lucida Console'; display:inline-block">&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span>-->
+                            <!--                        </u>-->
+                            <!--                        <u>-->
+                            <!--                            <span style="width:35.4pt; font-family:'Lucida Console'; display:inline-block">&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;&#xa0;</span>-->
+                            <!--                        </u>-->
+                        </p>
+                        <p>
+                            <span style="font-family:Calibri; font-size:6pt">to be completed by Customer, if available/в
+                                разі необхідності,
+                            </span>
+                            <span style="font-family:Calibri; font-size:6pt">заповнюється Клієнтом</span>
+                        </p>
+                        <p style="font-size:4pt">
+                            <span style="font-family:Calibri">&#xa0;</span>
+                        </p>
+                        <p style="font-size:12pt">
+                            <span style="font-family:Calibri; font-size:8pt">Реєстраційний № заявки</span>
+                            <span style="font-family:Calibri; font-size:8pt">&#xa0;</span>
+                            <span style="font-family:Calibri; font-size:8pt">УКРЧАСТОТНАГЛЯД /UKCHASTOTNAGLIAD</span>
+                            <span style="font-family:Calibri"></span>
+                            <span style="font-family:Calibri; font-size:8pt">Order No.:</span>
+                            <strong>
+                                <span style="font-family:Calibri; font-size:8pt; "></span>
+                            </strong>
+                            <strong>
+                                <u>
+                                    <span style="font-family:Calibri; font-size:9pt; ">УЧН-23/D.</span>
+                                </u>
+                            </strong>
+                            <u>
+                                <span style="width:10.95pt; font-family:'Lucida Console'; font-size:9pt; display:inline-block">
+                                    &#xa0;&#xa0;
+                                </span>
+                            </u>
+                        </p>
+                        <p style="font-size:3pt">
+                            <span style="font-family:Calibri">&#xa0;</span>
+                        </p>
+                        <p style="font-size:8pt">
+                            <span style="font-family:Calibri">Дата реєстрації заявки</span>
+                            <strong>
+                                <span style="font-family:Calibri; "></span>
+                            </strong>
+                            <span style="font-family:Calibri">
+                                <u>
+                                    <t t-out="o.create_date.strftime('%d.%m.')"/>
+                                </u>
+                                <t t-out="o.create_date.strftime('%Y р.')"/>
+                            </span>
+                            <!--                        TODO: change date-->
+                        </p>
+                        <p style="margin-right:3.55pt; line-height:12pt">
+                            <span style="font-family:Calibri; font-size:8pt">Призначити:</span>
+                        </p>
+                        <p style="margin-right:3.7pt; font-size:8pt">
+                            <span style="font-family:Calibri">відповідальним виконавцем: ______________________</span>
+                        </p>
+                        <p style="margin-right:3.7pt; font-size:3pt">
+                            <span style="font-family:Calibri">&#xa0;</span>
+                        </p>
+                        <p style="margin-right:3.55pt; line-height:12pt">
+                            <span style="font-family:Calibri; font-size:8pt">Начальник ВОВ ___________________</span>
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p class="BodyTextIndent" style="margin-left:0pt; margin-bottom:0pt; text-align:justify; font-size:2pt">
+            <em>
+                <span style="font-family:Calibri; ">&#xa0;</span>
+            </em>
+        </p>
+        <p class="BodyTextIndent" style="margin-left:0pt; margin-bottom:0pt; text-align:justify; font-size:2pt">
+            <em>
+                <span style="font-family:Calibri; ">&#xa0;</span>
+            </em>
+        </p>
+        <p class="BodyTextIndent" style="margin-left:0pt; margin-bottom:0pt; text-align:justify; font-size:2pt">
+            <em>
+                <span style="font-family:Calibri; ">&#xa0;</span>
+            </em>
+        </p>
+        <p class="BodyTextIndent" style="margin-left:0pt; margin-bottom:0pt; text-align:justify; font-size:2pt">
+            <em>
+                <span style="font-family:Calibri; ">&#xa0;</span>
+            </em>
+        </p>
+        <p class="BodyTextIndent" style="margin-left:0pt; margin-bottom:0pt; text-align:justify; font-size:2pt">
+            <em>
+                <span style="font-family:Calibri; ">&#xa0;</span>
+            </em>
+        </p>
+    </template>
+</odoo>
