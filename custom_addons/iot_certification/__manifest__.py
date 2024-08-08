@@ -9,7 +9,8 @@
         'mail'
     ],
     'data': [
-        'security/iot_certification_security.xml',
+        'security/ir_rules.xml',
+        'security/res_groups.xml',
         'security/ir.model.access.csv',
         'views/iot_certification_partner.xml',
         'views/iot_certification_dstu.xml',
