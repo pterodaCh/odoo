@@ -7,9 +7,11 @@
         'product'
     ],
     'data': [
+        # iot security related
         'security/ir_rules.xml',
         'security/res_groups.xml',
         'security/ir.model.access.csv',
+
         'views/iot_certification_partner.xml',
         'views/iot_certification_dstu.xml',
         'views/iot_certification_report_for-view.xml',
@@ -20,7 +22,6 @@
         'views/iot_certification_testing_laboratory.xml',
         'views/iot_certification_additional_order_view.xml',
         'views/iot_certification_enterprise.xml',
-
         # iot application report related
         'reports/iot_application_report/iot_application_report_style.xml',
         'reports/iot_application_report/iot_application_report_header_style.xml',

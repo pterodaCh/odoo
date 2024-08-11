@@ -36,7 +36,7 @@
         <field name="report_file">event.iot_application_report_template</field>
         <field name="print_report_name">f"Application report No.{object.name}"</field>
         <field name="paperformat_id" ref="iot_certification.paperformat_no_hf"/>
-        <field name="binding_model_id" ref="model_iot_certification_order"/>
+        <field name="binding_model_id" eval="False"/>
         <field name="binding_type">report</field>
     </record>
 </odoo>

@@ -1,9 +1,5 @@
 from odoo import api, fields, models, SUPERUSER_ID, exceptions
 
-# TODO
-#  Закастомити повідомлення при зміні статусу заявки
-#  Перенести кніпку прінт як екщин на батон. юзнути цей відос(https://www.youtube.com/watch?v=nF1PRDdUFds)
-
 
 class IoTCertificationOrder(models.Model):
     _name = "iot_certification_order"
@@ -1017,11 +1013,9 @@ class IoTCertificationOrder(models.Model):
             'type': 'ir.actions.client',
             'tag': 'reload',
         }
-
-
     def print_report(self):
         for record in self:
             if not record.approved_report_status:
                 raise exceptions.ValidationError('Помилка: звіт неможливо надрукувати. Заявку не підтверджено керівником')
             else:
-                return self.env.ref('iot_certification.action_report').report_action(self)
+                 return self.env.ref('iot_certification.iot_application_report_action').report_action(self)
