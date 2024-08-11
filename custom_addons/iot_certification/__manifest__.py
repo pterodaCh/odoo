@@ -4,7 +4,8 @@
     'author': 'Nadiia Melnyk',
     'depends': [
         'base',
-        'product'
+        'product',
+        'mail'
     ],
     'data': [
         # iot security related
