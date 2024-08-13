@@ -1,7 +1,9 @@
 from odoo import api, fields, models, SUPERUSER_ID, exceptions
 
+
 class IoTCertificationOrder(models.Model):
     _name = "iot_certification_order"
+    _inherit = ['mail.thread']
     _description = "IoT Certification Order"
     _track = 1  # Enable tracking for this model
 
@@ -40,8 +42,15 @@ class IoTCertificationOrder(models.Model):
             ('approved', " Підтверджено"),
         ],
         default='draft',
-        string="Статус")
-    
+        string="Статус",
+        tracking=True)
+
+    approved_cert_status = fields.Boolean(
+        string='Сертифікацію підтверджено', default=False)
+
+    approved_report_status = fields.Boolean(
+        string='Звітування підтверджено', default=False)
+
     conducted_an_assessment = fields.Many2one(
         comodel_name='res.users',
         string="Оцінювання проведено",
@@ -90,6 +99,22 @@ class IoTCertificationOrder(models.Model):
         string="Підприємства",
         #domain="['|', ('partner_id', '=', applicant_id), ('partner_id', '=', producer_id)]"
         )
+
+    presence_of_sample_verdict = fields.Selection(
+        selection=[
+            ('ok', "Ok"),
+            ('remark', "See remark"),
+        ],
+        string="Рішення")
+
+    presence_of_sample_attachment_ids = fields.Many2many(
+        comodel_name='ir.attachment',
+        relation='power_of_attorney_attachment_relation',
+        string='Коментар'
+    )
+
+    presence_of_sample_remarks = fields.Html(
+        string="Remarks")
     
     power_of_attorney_verdict = fields.Selection(
         selection=[
@@ -140,6 +165,9 @@ class IoTCertificationOrder(models.Model):
     
     product_specification_1_8 = fields.Boolean(
         string="ZigBee")
+
+    product_specification_1_9 = fields.Boolean(
+        string="2400 МГц")
     
     product_specification_2 = fields.Boolean(
         string="Цифровий стільниковий радіозв'язок")
@@ -170,9 +198,21 @@ class IoTCertificationOrder(models.Model):
     
     product_specification_3_4 = fields.Boolean(
         string="5800 МГц")
+
+    product_specification_3_5 = fields.Boolean(
+        string="6,7 МГц")
+
+    product_specification_3_6 = fields.Boolean(
+        string="13 МГц")
     
     product_specification_4 = fields.Boolean(
-        string="Індуктивні застосування (NFC)")
+        string="Індуктивні застосування")
+
+    product_specification_4_1 = fields.Boolean(
+        string="NFC")
+
+    product_specification_4_2 = fields.Boolean(
+        string="RFID")
     
     product_specification_5 = fields.Boolean(
         string="Приймач")
@@ -184,16 +224,19 @@ class IoTCertificationOrder(models.Model):
         string="FM")
     
     product_specification_5_3 = fields.Boolean(
-        string="TV/DBV")
-    
+        string="КХ/УКХ")
+
     product_specification_5_4 = fields.Boolean(
+        string="433 МГц")
+    
+    product_specification_5_5 = fields.Boolean(
         string="Інший")
     
-    product_specification_5_5 = fields.Text(
+    product_specification_5_6 = fields.Text(
         string="Інший (вказати)")
     
-    product_specification_6 = fields.Boolean(
-        string="УКХ радіозв'язок")
+    # product_specification_6 = fields.Boolean(
+    #     string="УКХ радіозв'язок")
     
     product_specification_7 = fields.Boolean(
         string="Радіолокаційні вимірювання")
@@ -205,10 +248,10 @@ class IoTCertificationOrder(models.Model):
         string="Радіорелейний зв'язок")
     
     product_specification_10 = fields.Boolean(
-        string="Інше")
+        string="Інше (функція безпроводового заряджання)")
     
-    product_specification_10_1 = fields.Text(
-        string="Інше (вказати)")
+    # product_specification_10_1 = fields.Text(
+    #     string="Інше (вказати)")
     
     product_specification_attachment_ids = fields.Many2many(
         comodel_name='ir.attachment',
@@ -591,6 +634,22 @@ class IoTCertificationOrder(models.Model):
     spectrum_remarks = fields.Html(
         string="Remarks")
     
+    product_reassessment_verdict = fields.Selection(
+        selection=[
+            ('ok', "Ok"),
+            ('remark', "See remark"),
+        ],
+        string="Рішення")
+
+    product_reassessment_attachment_ids = fields.Many2many(
+        comodel_name='ir.attachment',
+        relation='power_of_attorney_attachment_relation',
+        string='Коментар'
+    )
+
+    product_reassessment_remarks = fields.Html(
+        string="Remarks")
+    
     subpart_verdict = fields.Selection(
         selection=[
             ('ok', "Ok"),
@@ -755,7 +814,8 @@ class IoTCertificationOrder(models.Model):
             self.product_specification_1_6 = False
             self.product_specification_1_7 = False
             self.product_specification_1_8 = False
-    
+            self.product_specification_1_9 = False
+
     @api.onchange('product_specification_2')
     def _onchange_product_specification_2(self):
         if not self.product_specification_2:
@@ -771,7 +831,16 @@ class IoTCertificationOrder(models.Model):
             self.product_specification_3_2 = False
             self.product_specification_3_3 = False
             self.product_specification_3_4 = False
-    
+            self.product_specification_3_5 = False
+            self.product_specification_3_6 = False
+
+
+    @api.onchange('product_specification_4')
+    def _onchange_product_specification_4(self):
+        if not self.product_specification_4:
+            self.product_specification_4_1 = False
+            self.product_specification_4_2 = False
+
     @api.onchange('product_specification_5')
     def _onchange_product_specification_5(self):
         if not self.product_specification_5:
@@ -779,17 +848,18 @@ class IoTCertificationOrder(models.Model):
             self.product_specification_5_2 = False
             self.product_specification_5_3 = False
             self.product_specification_5_4 = False
-            self.product_specification_5_5 = ""
+            self.product_specification_5_5 = False
+            self.product_specification_5_6 = ""
     
-    @api.onchange('product_specification_5_4')
-    def _onchange_product_specification_5_4(self):
-        if not self.product_specification_5_4:
-            self.product_specification_5_5 = ""
+    @api.onchange('product_specification_5_5')
+    def _onchange_product_specification_5_5(self):
+        if not self.product_specification_5_5:
+            self.product_specification_5_6 = ""
     
-    @api.onchange('product_specification_10')
-    def _onchange_product_specification_10(self):
-        if not self.product_specification_10:
-            self.product_specification_10_1 = ""
+    # @api.onchange('product_specification_10')
+    # def _onchange_product_specification_10(self):
+    #     if not self.product_specification_10:
+    #         self.product_specification_10_1 = ""
     
     @api.onchange('the_scheme_of_power_supply_2')
     def _onchange_the_scheme_of_power_supply_2(self):
@@ -888,14 +958,64 @@ class IoTCertificationOrder(models.Model):
     @api.onchange('status')
     def _onchange_status(self):
         for record in self:
-            if record.status == 'approved':
+            if record.status == 'approved' or record.status == 'readyforapproval':
                 verdict_fields = [field_name for field_name in record._fields if 'verdict' in field_name]
                 for field_name in verdict_fields:
                     if record[field_name] != 'ok':
                         raise exceptions.ValidationError('Помилка: є поля зі значенням "See remark". Статус не може бути змінений. Виправте всі ремарки і повторіть запит знову. Поле, що спричинило помилку: "{}"'.format(field_name))
-                    
+
                     
     def copy_record_and_update_name(self):
         for record in self:
             copied_record = record.copy()
-            copied_record.write({'name': record.name + ' (COPY)'})
+            copied_record.write({'name': record.name + ' (КОПІЯ)'})
+
+    def action_ready_for_approval(self):
+        for record in self:
+            if record.status == 'readyforapproval':
+                raise exceptions.ValidationError('Помилка: заявку вже надіслано на перевірку')
+            elif record.status == 'inprogress':
+                raise exceptions.ValidationError('Помилка: заявка перевіряється. На цьому етапі статус заявки змінити неможливо')
+            elif record.status == 'approved':
+                raise exceptions.ValidationError('Помилка: заявку підтверджено. На цьому етапі статус заявки змінити неможливо')
+            else:
+                record.status = 'readyforapproval'
+
+    def action_accept_for_approval(self):
+        for record in self:
+            if record.status == 'readyforapproval':
+                record.status = 'inprogress'
+            elif record.status == 'approved':
+                raise exceptions.ValidationError('Помилка: заявку підтверджено. На цьому етапі статус заявки змінити неможливо')
+            else:
+                raise exceptions.ValidationError('Помилка: заявка не готова до перевірки')
+
+    def action_submit_for_revision(self):
+        for record in self:
+            if record.status == 'inprogress':
+                record.status = 'needchanges'
+            elif record.status == 'approved':
+                raise exceptions.ValidationError('Помилка: заявку підтверджено. На цьому етапі статус заявки змінити неможливо')
+            else:
+                raise exceptions.ValidationError('Помилка: неможливо надіслати на доопрацювання. Заявка не перевіряється')
+
+    def action_submit(self):
+        for record in self:
+            if record.status != 'inprogress':
+                raise exceptions.ValidationError('Помилка: неможливо підтвердити. Заявка не перевіряється')
+            if self.env.user.has_group('iot_certification.group_certification_report_manager'):
+                record.approved_report_status = True
+            if self.env.user.has_group('iot_certification.group_certification_cert_manager'):
+                record.approved_cert_status = True
+            if record.approved_cert_status or record.approved_report_status:
+                record.status = 'approved'
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'reload',
+        }
+    def print_report(self):
+        for record in self:
+            if not record.approved_report_status:
+                raise exceptions.ValidationError('Помилка: звіт неможливо надрукувати. Заявку не підтверджено керівником')
+            else:
+                 return self.env.ref('iot_certification.iot_application_report_action').report_action(self)
