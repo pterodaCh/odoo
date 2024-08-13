@@ -235,8 +235,8 @@ class IoTCertificationOrder(models.Model):
     product_specification_5_6 = fields.Text(
         string="Інший (вказати)")
     
-    # product_specification_6 = fields.Boolean(
-    #     string="УКХ радіозв'язок")
+    product_specification_6 = fields.Boolean(
+        string="УКХ радіозв'язок")
     
     product_specification_7 = fields.Boolean(
         string="Радіолокаційні вимірювання")
