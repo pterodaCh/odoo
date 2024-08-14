@@ -29,6 +29,8 @@
         'reports/iot_application_report/iot_application_report_header_html_document.xml',
         'reports/iot_application_report/iot_application_report_html_document.xml',
         'reports/iot_application_report/iot_application_report.xml',
+        # iot report related
+        'reports/iot_certification_report.xml',
     ],
     'installable': True,
     'auto_install': True,

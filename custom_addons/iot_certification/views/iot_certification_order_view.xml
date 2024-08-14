@@ -268,6 +268,17 @@
                                         </group>
                                     </group>
 
+                                    <group name="certification_header_details_tgn_product_specification_evidence_6"
+                                           colspan="2">
+                                        <group name="certification_header_details_tgn_product_specification_evidence_61"
+                                               colspan="1">
+                                            <field name="product_specification_6"/>
+                                        </group>
+                                        <group name="certification_header_details_tgn_product_specification_evidence_62"
+                                               colspan="1">
+                                        </group>
+                                    </group>
+
                                     <group name="certification_header_details_tgn_product_specification_evidence_7"
                                            colspan="2">
                                         <group name="certification_header_details_tgn_product_specification_evidence_71"
