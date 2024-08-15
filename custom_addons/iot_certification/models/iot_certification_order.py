@@ -1013,9 +1013,30 @@ class IoTCertificationOrder(models.Model):
             'type': 'ir.actions.client',
             'tag': 'reload',
         }
+
+    # def print_options(self):
+    #     return {
+    #         'res_model': 'res.partner',
+    #         'type': 'ir.actions.act_window',
+    #         'view_mode': 'form',
+    #         'view_id': self.env.ref('base.view_empty_form').id
+    #     }
+
+    def print_application(self):
+        return self.env.ref('iot_certification.iot_application_report_action').report_action(self)
+
     def print_report(self):
         for record in self:
             if not record.approved_report_status:
-                raise exceptions.ValidationError('Помилка: звіт неможливо надрукувати. Заявку не підтверджено керівником')
+                raise exceptions.ValidationError('Помилка: звіт неможливо надрукувати. Заявку не підтверджено відповідним керівником')
             else:
-                 return self.env.ref('iot_certification.iot_application_report_action').report_action(self)
+                 return self.env.ref('iot_certification.action_report').report_action(self)
+
+    def print_cert(self):
+        pass
+        # for record in self:
+        #     if not record.approved_cert_status:
+        #         raise exceptions.ValidationError('Помилка: сертифікат неможливо надрукувати. Заявку не підтверджено відповідним керівником')
+        #     else:
+        #          return self.env.ref('iot_certification.action_report').report_action(self)
+

@@ -4,6 +4,7 @@
         <field name="res_model">iot_certification_report_for</field>
         <field name="view_mode">tree,form</field>
     </record>
+
     <record id="action_open_iot_certification_assessment" model="ir.actions.act_window">
         <field name="name">Open IoT Certification Assessments</field>
         <field name="res_model">iot_certification_assessment</field>
@@ -15,6 +16,9 @@
         <field name="model">iot_certification_order</field>
         <field name="arch" type="xml">
             <tree string="Замовлення на сертифікацію">
+<!--                <button name="print_report" type="object" icon="fa-solid fa-print"-->
+<!--                        string="Надрукувати"-->
+<!--                        groups="iot_certification.group_certification_report_manager, iot_certification.group_certification_cert_manager"/>-->
                 <button name="copy_record_and_update_name" string="Копіювати" type="object"/>
                 <field name="name" string="Реєстраційний номер" decoration-bf="1"/>
                 <field name="responsible_person" widget="many2one_avatar_user"/>
@@ -33,10 +37,16 @@
         <field name="name">iot_certification_order.form</field>
         <field name="model">iot_certification_order</field>
         <field name="arch" type="xml">
-            <form string="Замовлення на сертифікацію" attrs="{'readonly': [('status', 'in', ('approved'))]}">
+            <form string="Замовлення на сертифікацію" attrs="{'readonly': [('status', '=', ('approved'))]}">
                 <header>
+                    <button name="print_application" type="object" icon="fa-solid fa-print" class="oe_highlight"
+                            string="Друк заявки"
+                            groups="iot_certification.group_certification_report_manager, iot_certification.group_certification_cert_manager"/>
                     <button name="print_report" type="object" icon="fa-solid fa-print" class="oe_highlight"
-                            string="Надрукувати"
+                            string="Друк звіту"
+                            groups="iot_certification.group_certification_report_manager, iot_certification.group_certification_cert_manager"/>
+                    <button name="print_cert" type="object" icon="fa-solid fa-print" class="oe_highlight"
+                            string="Друк сертифікату"
                             groups="iot_certification.group_certification_report_manager, iot_certification.group_certification_cert_manager"/>
                     <field name="status" widget="statusbar"/>
                 </header>
