@@ -7,6 +7,8 @@ class IoTCertificationOrder(models.Model):
     _description = "IoT Certification Order"
     _track = 1  # Enable tracking for this model
 
+    additional_order_ids = fields.One2many('iot_certification_additional_order', 'order_id', string='Additional Orders')
+
     name  = fields.Char(
         string='Реєстраційний номер', 
         required=True)
@@ -221,7 +223,7 @@ class IoTCertificationOrder(models.Model):
         string="GNSS")
     
     product_specification_5_2 = fields.Boolean(
-        string="FM")
+        string="FM/AM")
     
     product_specification_5_3 = fields.Boolean(
         string="КХ/УКХ")
@@ -234,6 +236,12 @@ class IoTCertificationOrder(models.Model):
     
     product_specification_5_6 = fields.Text(
         string="Інший (вказати)")
+
+    product_specification_5_7 = fields.Boolean(
+        string="DAB")
+
+    product_specification_5_8 = fields.Boolean(
+        string="TV/DBV")
     
     product_specification_6 = fields.Boolean(
         string="УКХ радіозв'язок")
@@ -250,8 +258,8 @@ class IoTCertificationOrder(models.Model):
     product_specification_10 = fields.Boolean(
         string="Інше (функція безпроводового заряджання)")
     
-    # product_specification_10_1 = fields.Text(
-    #     string="Інше (вказати)")
+    product_specification_10_1 = fields.Text(
+        string="Інше (вказати)")
     
     product_specification_attachment_ids = fields.Many2many(
         comodel_name='ir.attachment',
@@ -927,7 +935,7 @@ class IoTCertificationOrder(models.Model):
         self.general_notes_subpart_notes_editability = False
         
     def open_or_create_additional_order(self):
-        additional_order = self.env['iot_certification_additional_order'].search([('name', '=', self.name)], limit=1)
+        additional_order = self.env['iot_certification_additional_order'].search([('order_id', '=', self.id)], limit=1)
         
         if additional_order:
             # Open the existing additional order
@@ -942,7 +950,10 @@ class IoTCertificationOrder(models.Model):
             }
         else:
             # Create a new additional order with the same name
-            additional_order = self.env['iot_certification_additional_order'].create({'name': self.name})
+            additional_order = self.env['iot_certification_additional_order'].create({
+                'order_id': self.id,
+                'name': self.name
+            })
             return {
                 'name': 'Additional Order',
                 'type': 'ir.actions.act_window',

@@ -39,32 +39,42 @@
                                     <td style="border: 1px solid black; text-align: left;">2</td>
                                     <td style="border: 1px solid black; text-align: left;">Визначення переліку стандартів та інших нормативних документів, на відповідність яким здійснюється оцінювання</td>
                                     <td style="border: 1px solid black; text-align: left; padding: 0;">
-                                        <table class="table table-sm table-bordered" style="width: 100%; border-collapse: collapse; margin: 0; padding: 0;">
-                                            <tr>
-                                                <td style="border: 1px solid black; width: 30%; border-top: none; border-left: none;"><strong>п.6 ТР Р (Безпека)</strong></td>
-                                                <td style="border: 1px solid black; border-top: none; border-right: none; padding: 5px">
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border: 1px solid black; width: 30%; border-left: none;"><strong>п.6 ТР Р (Захист здоров'я)</strong></td>
-                                                <td style="border: 1px solid black; border-right: none; padding: 5px">
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border: 1px solid black; width: 30%; border-left: none;"><strong>п.6 ТР Р (Електромагнітна сумісність)</strong></td>
-                                                <td style="border: 1px solid black; border-right: none;">
-
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="border: 1px solid black; width: 30%; border-bottom: none; border-left: none;"><strong>п.6 ТР Р (Ефективне використання радіочастотного ресурсу України)</strong></td>
-                                                <td style="border: 1px solid black; border-bottom: none; border-right: none;">
-
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        <t t-foreach="doc.additional_order_ids" t-as="ao">
+                                            <table class="table table-sm table-bordered" style="width: 100%; border-collapse: collapse; margin: 0; padding: 0;">
+                                                <tr>
+                                                    <td style="border: 1px solid black; width: 30%; border-top: none; border-left: none;"><strong>п.6 ТР Р (Безпека)</strong></td>
+                                                    <td style="border: 1px solid black; border-top: none; border-right: none; padding: 5px">
+                                                        <t t-foreach="ao.safety_details_1" t-as="safety_detail">
+                                                            <div style="margin-top: 5px" t-esc="safety_detail.name"/>
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="border: 1px solid black; width: 30%; border-left: none;"><strong>п.6 ТР Р (Захист здоров'я)</strong></td>
+                                                    <td style="border: 1px solid black; border-right: none; padding: 5px">
+                                                        <t t-foreach="ao.health_details_1" t-as="health_detail">
+                                                            <div style="margin-top: 5px" t-esc="health_detail.name"/>
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="border: 1px solid black; width: 30%; border-left: none;"><strong>п.6 ТР Р (Електромагнітна сумісність)</strong></td>
+                                                    <td style="border: 1px solid black; border-right: none;">
+                                                        <t t-foreach="ao.emc_details_1" t-as="emc_detail">
+                                                            <div style="margin-top: 5px" t-esc="emc_detail.name"/>
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="border: 1px solid black; width: 30%; border-bottom: none; border-left: none;"><strong>п.6 ТР Р (Ефективне використання радіочастотного ресурсу України)</strong></td>
+                                                    <td style="border: 1px solid black; border-bottom: none; border-right: none;">
+                                                        <t t-foreach="ao.spectrum_details_1" t-as="spectrum_detail">
+                                                            <div style="margin-top: 5px" t-esc="spectrum_detail.name"/>
+                                                        </t>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </t>
                                     </td>
                                     <td style="border: 1px solid black; text-align: left">
                                         <p>Визначений та погоджений перелік стандартів.<br/>Заявка охоплює НД, стосовно яких ООВ призначений</p>
@@ -405,7 +415,7 @@
                             </thead>
                             <tbody>
                                 <td style="border: 1px solid black; text-align: left;">
-                                    <div style="margin-bottom: 15px"><b>Звіт про оцінювання/Evaluation Report:</b></div>
+                                    <div style="margin-bottom: 10px"><b>Звіт про оцінювання/Evaluation Report:</b></div>
                                     <div style="margin-left: 5px; max-width: 300px; word-wrap: break-word; margin-bottom: 10px"><span style="font-size: 16pt; line-height: 0.5;display: inline;">&#9744;</span> Оцінювання проведено/ Conducted an assessment:</div>
                                     <p><span style="display: inline-block; width: 160px; border-bottom: 1px solid black; margin-left: 20px;"></span> <b><span t-esc="doc.conducted_an_assessment.name"/></b></p>
                                     <div style="margin-left: 5px; max-width: 300px; word-wrap: break-word; margin-bottom: 10px"><span style="font-size: 16pt; line-height: 0.5;display: inline;">&#9744;</span> Аналізування проведено та прийнято рішення щодо видачі Сертифікату експертизи типу/ conducted an analysis and made a decision on certification:</div>
@@ -440,7 +450,7 @@
                                 <td style="border: 1px solid black; border-right: none; width: 3%; text-align: left;">
                                     <span style="font-size: 16pt; padding: 5px; line-height: 0.8; display: inline">&#9744;</span>
                                 </td>
-                                <td colspan="4" style="border: 1px solid black; padding: 10px; border-left: none; text-align: center;">Оцінка відповідності відповідно до Додатку 2 ТР Р, ПКМУ від 24.05.2017 № 355 /
+                                <td colspan="4" style="border: 1px solid black; padding: 8px; border-left: none; text-align: center;">Оцінка відповідності відповідно до Додатку 2 ТР Р, ПКМУ від 24.05.2017 № 355 /
                                     Conformity assessment acc. to Annex III of Directive 2014/53/EU</td>
                             </tr>
                             <tr>
@@ -575,7 +585,7 @@
                                     </div>
                                     <div style="margin-left: 20px;">
                                         <!-- Широкосмуговий радіодоступ -->
-                                        <div style="font-weight: bold; margin-top: 10px;">
+                                        <div style="font-weight: bold; margin-top: 5px;">
                                             <t t-if="doc.product_specification_1">
                                                 <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
                                             </t>
@@ -617,6 +627,14 @@
                                                         <t t-else="">
                                                             <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
                                                         </t> Bluetooth;
+                                                    </div>
+                                                    <div>
+                                                        <t t-if="doc.product_specification_1_9">
+                                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                                                        </t> 2400 Мгц;
                                                     </div>
                                                 </div>
                                                 <div style="display: table-cell; width: 50%; vertical-align: top;">
@@ -735,6 +753,14 @@
                                                             <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
                                                         </t> 868 МГц
                                                     </div>
+                                                    <div>
+                                                        <t t-if="doc.product_specification_3_5">
+                                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                                                        </t> 6.7 МГц
+                                                    </div>
                                                 </div>
                                                 <div style="display: table-cell; width: 50%; vertical-align: top;">
                                                     <div>
@@ -752,6 +778,14 @@
                                                         <t t-else="">
                                                             <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
                                                         </t> 5800 МГц
+                                                    </div>
+                                                    <div>
+                                                        <t t-if="doc.product_specification_3_6">
+                                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                                                        </t> 13 МГц
                                                     </div>
                                                 </div>
                                             </div>
@@ -778,6 +812,16 @@
                                                         </t> NFC
                                                     </div>
                                                 </div>
+                                                <div style="display: table-cell; width: 50%; vertical-align: top;">
+                                                    <div>
+                                                        <t t-if="doc.product_specification_4_2">
+                                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                                                        </t> RFID
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -801,6 +845,30 @@
                                                             <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
                                                         </t> GNSS
                                                     </div>
+                                                    <div>
+                                                        <t t-if="doc.product_specification_5_3">
+                                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                                                        </t> КХ/УКХ
+                                                    </div>
+                                                    <div>
+                                                        <t t-if="doc.product_specification_5_8">
+                                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                                                        </t> TV/DBV
+                                                    </div>
+                                                    <div>
+                                                        <t t-if="doc.product_specification_5_7">
+                                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                                                        </t> DAB
+                                                    </div>
                                                 </div>
                                                 <div style="display: table-cell; width: 50%; vertical-align: top;">
                                                     <div>
@@ -809,7 +877,7 @@
                                                         </t>
                                                         <t t-else="">
                                                             <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
-                                                        </t> FM
+                                                        </t> FM/AM
                                                     </div>
                                                     <div>
                                                         <t t-if="doc.product_specification_5_4">
@@ -870,7 +938,7 @@
                                                 </t>
                                                 <t t-else="">
                                                     <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
-                                                </t> інше
+                                                </t> інше<t t-if="doc.product_specification_10">(<span t-esc="doc.product_specification_10_1"/>)</t>
                                             </div>
                                         </div>
                                     </div>
@@ -965,7 +1033,7 @@
                                                         </t>
                                                         <t t-else="">
                                                             <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
-                                                        </t> перетворювач (<span t-field="doc.the_scheme_of_power_supply_2_1_4"/>);
+                                                        </t> перетворювач <t t-if="doc.the_scheme_of_power_supply_2_1_3">(<span t-field="doc.the_scheme_of_power_supply_2_1_4"/>);</t>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1003,7 +1071,7 @@
                                                         </t>
                                                         <t t-else="">
                                                             <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
-                                                        </t> перетворювач (<span t-field="doc.the_scheme_of_power_supply_2_2_4"/>);
+                                                        </t> перетворювач <t t-if="doc.the_scheme_of_power_supply_2_2_3">(<span t-field="doc.the_scheme_of_power_supply_2_2_4"/>);</t>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1891,53 +1959,61 @@
                                     Conformity Assessment acc. To Annex IV of Directive 2014/53/EU (please see separate report)</td>
                             </tr>
                         </table>
-                        <p style="text-align: left; margin-left: 50px"><strong>Аналіз (експертиза) протоколів випробувань <span t-field="doc.name"/></strong> </p>
 
-                        <table class="table table-sm table-bordered" style="width: 100%; border-collapse: collapse; text-align: center;">
-                            <thead>
-                                <tr>
-                                    <th rowspan="2" style="width: 8%; text-align: center; border: 1px solid black;">Суттєва вимога</th>
-                                    <th style="width: 20%; text-align: center; border: 1px solid black;">Стандарт</th>
-                                    <th style="width: 35%; text-align: center; border: 1px solid black;">Стандарт /№ та дата протоколу випробувань/ випробувальна лабораторія</th>
-                                    <th style="width: 22%; text-align: center; border: 1px solid black;">Спосіб застосування технічних вказівок стандарту (вимог) стандарту:</th>
-                                    <th style="width: 15%; text-align: center; border: 1px solid black;">Висновок</th>
-                                </tr>
-                                <tr>
-                                    <th colspan="2" style="border: 1px solid black; text-align: center;"><strong>ООВ</strong></th>
-                                    <th colspan="2" style="border: 1px solid black; text-align: center;"><strong>ВЦ</strong></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="border: 1px solid black; text-align: left;">п.6 ТР Р (Безпека)</td>
-                                    <td style="border: 1px solid black; text-align: left;"></td>
-                                    <td style="border: 1px solid black; text-align: left;"></td>
-                                    <td style="border: 1px solid black; text-align: left;"></td>
-                                    <td style="border: 1px solid black; text-align: left;"></td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid black; text-align: left;">п.6 ТР Р (Здоров'я)</td>
-                                    <td style="border: 1px solid black; text-align: left;"></td>
-                                    <td style="border: 1px solid black; text-align: left;"></td>
-                                    <td style="border: 1px solid black; text-align: left;"></td>
-                                    <td style="border: 1px solid black; text-align: left;"></td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid black; text-align: left;">п.6 ТР Р (ЕМС)</td>
-                                    <td style="border: 1px solid black; text-align: left;"></td>
-                                    <td style="border: 1px solid black; text-align: left;"></td>
-                                    <td style="border: 1px solid black; text-align: left;"></td>
-                                    <td style="border: 1px solid black; text-align: left;"></td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid black; text-align: left;">п.7 ТР Р (викор. РЧР)</td>
-                                    <td style="border: 1px solid black; text-align: left;"></td>
-                                    <td style="border: 1px solid black; text-align: left;"></td>
-                                    <td style="border: 1px solid black; text-align: left;"></td>
-                                    <td style="border: 1px solid black; text-align: left;"></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <t t-foreach="doc.additional_order_ids" t-as="ao">
+                            <p style="text-align: left; margin-left: 50px"><strong>Аналіз (експертиза) протоколів випробувань <span t-field="ao.name"/></strong> </p>
+                            <table class="table table-sm table-bordered" style="width: 100%; border-collapse: collapse; text-align: center; margin-bottom: 30px">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2" style="width: 8%; text-align: center; border: 1px solid black;">Суттєва вимога</th>
+                                        <th style="width: 20%; text-align: center; border: 1px solid black;">Стандарт</th>
+                                        <th style="width: 35%; text-align: center; border: 1px solid black;">Стандарт /№ та дата протоколу випробувань/ випробувальна лабораторія</th>
+                                        <th style="width: 22%; text-align: center; border: 1px solid black;">Спосіб застосування технічних вказівок стандарту (вимог) стандарту:</th>
+                                        <th style="width: 15%; text-align: center; border: 1px solid black;">Висновок</th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2" style="border: 1px solid black; text-align: center;"><strong>ООВ</strong></th>
+                                        <th colspan="2" style="border: 1px solid black; text-align: center;"><strong>ВЦ</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="border: 1px solid black; text-align: left;">п.6 ТР Р (Безпека)</td>
+                                        <td style="border: 1px solid black; text-align: left;"></td>
+                                        <td style="border: 1px solid black; text-align: left;"></td>
+                                        <td style="border: 1px solid black; text-align: left;"></td>
+                                        <td style="border: 1px solid black; text-align: left;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid black; text-align: left;">п.6 ТР Р (Здоров'я)</td>
+                                        <td style="border: 1px solid black; text-align: left;"></td>
+                                        <td style="border: 1px solid black; text-align: left;"></td>
+                                        <td style="border: 1px solid black; text-align: left;"></td>
+                                        <td style="border: 1px solid black; text-align: left;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid black; text-align: left;">п.6 ТР Р (ЕМС)</td>
+                                        <td style="border: 1px solid black; text-align: left;"></td>
+                                        <td style="border: 1px solid black; text-align: left;"></td>
+                                        <td style="border: 1px solid black; text-align: left;"></td>
+                                        <td style="border: 1px solid black; text-align: left;"></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: 1px solid black; text-align: left;">п.7 ТР Р (викор. РЧР)</td>
+                                        <td style="border: 1px solid black; text-align: left;"></td>
+                                        <td style="border: 1px solid black; text-align: left;"></td>
+                                        <td style="border: 1px solid black; text-align: left;"></td>
+                                        <td style="border: 1px solid black; text-align: left;"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </t>
+
+                        <p style="text-align: center; font-weight: bold">ПРИМІТКИ/<i>NOTES</i></p>
+                        <div style="margin-left: 50px; margin-right: 50px; text-align: left">
+                            <t t-raw="doc.general_notes_subpart_notes"/>
+                        </div>
+
                         <style>
                             .document-header {
                                 display: flex;

@@ -4,6 +4,8 @@ class IoTCertificationAdditionalOrder(models.Model):
     _name = "iot_certification_additional_order"
     _description = "IoT Certification Additional Order"
 
+    order_id = fields.Many2one('iot_certification_order', string='Order')
+
     name  = fields.Char(
         string='Реєстраційний номер', 
         required=True)
