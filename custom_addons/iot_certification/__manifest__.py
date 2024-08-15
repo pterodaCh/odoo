@@ -9,8 +9,8 @@
     ],
     'data': [
         # iot security related
-        'security/ir_rules.xml',
         'security/res_groups.xml',
+        'security/ir_rules.xml',
         'security/ir.model.access.csv',
         #view
         'views/iot_certification_partner.xml',
