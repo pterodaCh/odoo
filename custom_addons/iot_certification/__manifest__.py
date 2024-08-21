@@ -30,7 +30,12 @@
         'reports/iot_application_report/iot_application_report_html_document.xml',
         'reports/iot_application_report/iot_application_report.xml',
         # iot report related
-        'reports/iot_certification_report.xml',
+        'reports/iot_certification_report/iot_certification_report.xml',
+        'reports/iot_certification_report/iot_certification_report_protocol.xml',
+        'reports/iot_certification_report/iot_certification_report_plan.xml',
+        'reports/iot_certification_report/iot_certification_report_form.xml',
+        'reports/iot_certification_report/iot_certification_report_analysis_and_notes.xml',
+        'reports/iot_certification_report/iot_certification_report_styles.xml',
     ],
     'installable': True,
     'auto_install': True,

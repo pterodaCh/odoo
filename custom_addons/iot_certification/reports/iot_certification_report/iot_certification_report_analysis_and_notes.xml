@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_analysis_and_notes_template">
+        <t t-foreach="doc.additional_order_ids" t-as="ao">
+            <p style="text-align: left; margin-left: 50px">
+                <strong>Аналіз (експертиза) протоколів випробувань
+                    <span t-field="ao.name"/>
+                </strong>
+            </p>
+            <table class="table table-sm table-bordered"
+                   style="width: 100%; border-collapse: collapse; text-align: center; margin-bottom: 30px">
+                <thead>
+                    <tr>
+                        <th rowspan="2" style="width: 5%; text-align: center; border: 1px solid black;">
+                            Суттєва вимога
+                        </th>
+                        <th style="width: 20%; text-align: center; border: 1px solid black;">Стандарт
+                        </th>
+                        <th style="width: 33%; text-align: center; border: 1px solid black;">Стандарт /№
+                            та дата протоколу випробувань/ випробувальна лабораторія
+                        </th>
+                        <th style="width: 27%; text-align: center; border: 1px solid black;">Спосіб
+                            застосування технічних вказівок стандарту (вимог) стандарту:
+                        </th>
+                        <th style="width: 15%; text-align: center; border: 1px solid black;">Висновок
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="2" style="border: 1px solid black; text-align: center;">
+                            <strong>ООВ</strong>
+                        </th>
+                        <th colspan="2" style="border: 1px solid black; text-align: center;">
+                            <strong>ВЦ</strong>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="border: 1px solid black; text-align: left;">п.6 ТР Р (Безпека)</td>
+                        <td style="border: 1px solid black; text-align: left; padding-top: 0">
+                            <t t-foreach="ao.safety_details_1" t-as="safety_detail">
+                                <div style="margin-top: 5px" t-esc="safety_detail.name"/>
+                            </t>
+                        </td>
+                        <td style="border: 1px solid black; text-align: left; padding-top: 0">
+                            <t t-foreach="ao.safety_details_2" t-as="safety_detail">
+                                <div style="margin-top: 5px" t-esc="safety_detail.name"/>
+                            </t>
+                            <div>TEST REPORT №
+                                <span t-esc="ao.safety_protocol_no"/>
+                                <t t-if="ao.safety_protocol_date">від
+                                    <span t-esc="ao.safety_protocol_date.strftime('%d.%m.%Y')"/>
+                                </t>
+                            </div>
+                            <div>Випробувальна лабораторія:
+                                <span t-esc="ao.safety_laboratory_id.name"/>
+                            </div>
+                            <div style="margin-top: 20px">
+                                <t t-foreach="ao.safety_attachment_ids" t-as="safety">
+                                    <div>
+                                        <t t-esc="safety.name"/>
+                                    </div>
+                                </t>
+                            </div>
+                        </td>
+                        <td style="border: 1px solid black; text-align: left; font-size: 7pt">
+                            <div style="margin-top: 5px;">
+                                <t t-if="ao.safety_verdict == 'none'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                                </t>
+                                <t t-if="ao.safety_verdict != 'none'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                                </t>
+                                відсутній
+                            </div>
+
+                            <div style="margin-top: 5px;">
+                                <t t-if="ao.safety_verdict == 'full'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                                </t>
+                                <t t-if="ao.safety_verdict != 'full'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                                </t>
+                                Повністю застосовані вимоги стандарту
+                            </div>
+
+                            <div style="margin-top: 5px;">
+                                <t t-if="ao.safety_verdict == 'part'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                                </t>
+                                <t t-if="ao.safety_verdict != 'part'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                                </t>
+                                НЕ повністю застосовані вимоги стандарту
+                            </div>
+
+                            <div style="margin-top: 5px;">
+                                <t t-if="ao.safety_verdict == 'other'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                                </t>
+                                <t t-if="ao.safety_verdict != 'other'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                                </t>
+                                інше
+                            </div>
+                        </td>
+                        <td style="border: 1px solid black; text-align: left;">
+                            <div t-raw="ao.safety_result"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; text-align: left;">п.6 ТР Р (Здоров'я)</td>
+                        <td style="border: 1px solid black; text-align: left; padding-top: 0">
+                            <t t-foreach="ao.health_details_1" t-as="health_detail">
+                                <div style="margin-top: 5px" t-esc="health_detail.name"/>
+                            </t>
+                        </td>
+                        <td style="border: 1px solid black; text-align: left;">
+                            <t t-foreach="ao.health_details_2" t-as="health_detail">
+                                <div style="margin-top: 5px" t-esc="health_detail.name"/>
+                            </t>
+                            <div>TEST REPORT №
+                                <span t-esc="ao.health_protocol_no"/>
+                                <t t-if="ao.health_protocol_date">від
+                                    <span t-esc="ao.health_protocol_date.strftime('%d.%m.%Y')"/>
+                                </t>
+                            </div>
+                            <div>Випробувальна лабораторія:
+                                <span t-esc="ao.health_laboratory_id.name"/>
+                            </div>
+                            <div style="margin-top: 20px">
+                                <t t-foreach="ao.health_attachment_ids" t-as="health">
+                                    <div>
+                                        <t t-esc="health.name"/>
+                                    </div>
+                                </t>
+                            </div>
+                        </td>
+                        <td style="border: 1px solid black; text-align: left; font-size: 7pt">
+                            <div style="margin-top: 5px;">
+                                <t t-if="ao.health_verdict == 'none'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                                </t>
+                                <t t-if="ao.health_verdict != 'none'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                                </t>
+                                відсутній
+                            </div>
+
+                            <div style="margin-top: 5px;">
+                                <t t-if="ao.health_verdict == 'full'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                                </t>
+                                <t t-if="ao.health_verdict != 'full'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                                </t>
+                                Повністю застосовані вимоги стандарту
+                            </div>
+
+                            <div style="margin-top: 5px;">
+                                <t t-if="ao.health_verdict == 'part'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                                </t>
+                                <t t-if="ao.health_verdict != 'part'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                                </t>
+                                НЕ повністю застосовані вимоги стандарту
+                            </div>
+
+                            <div style="margin-top: 5px;">
+                                <t t-if="ao.health_verdict == 'other'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                                </t>
+                                <t t-if="ao.health_verdict != 'other'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                                </t>
+                                інше
+                            </div>
+                        </td>
+                        <td style="border: 1px solid black; text-align: left;">
+                            <div t-raw="ao.health_result"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; text-align: left;">п.6 ТР Р (ЕМС)</td>
+                        <td style="border: 1px solid black; text-align: left; padding-top: 0">
+                            <t t-foreach="ao.emc_details_1" t-as="emc_detail">
+                                <div style="margin-top: 5px" t-esc="emc_detail.name"/>
+                            </t>
+                        </td>
+                        <td style="border: 1px solid black; text-align: left;">
+                            <t t-foreach="ao.emc_details_2" t-as="emc_detail">
+                                <div style="margin-top: 5px" t-esc="emc_detail.name"/>
+                            </t>
+                            <div>TEST REPORT №
+                                <span t-esc="ao.emc_protocol_no"/>
+                                <t t-if="ao.emc_protocol_date">від
+                                    <span t-esc="ao.emc_protocol_date.strftime('%d.%m.%Y')"/>
+                                </t>
+                            </div>
+                            <div>Випробувальна лабораторія:
+                                <span t-esc="ao.emc_laboratory_id.name"/>
+                            </div>
+                            <div style="margin-top: 20px">
+                                <t t-foreach="ao.emc_attachment_ids" t-as="emc">
+                                    <div>
+                                        <t t-esc="emc.name"/>
+                                    </div>
+                                </t>
+                            </div>
+                        </td>
+                        <td style="border: 1px solid black; text-align: left; font-size: 7pt">
+                            <div style="margin-top: 5px;">
+                                <t t-if="ao.emc_verdict == 'none'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                                </t>
+                                <t t-if="ao.emc_verdict != 'none'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                                </t>
+                                відсутній
+                            </div>
+
+                            <div style="margin-top: 5px;">
+                                <t t-if="ao.emc_verdict == 'full'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                                </t>
+                                <t t-if="ao.emc_verdict != 'full'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                                </t>
+                                Повністю застосовані вимоги стандарту
+                            </div>
+
+                            <div style="margin-top: 5px;">
+                                <t t-if="ao.emc_verdict == 'part'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                                </t>
+                                <t t-if="ao.emc_verdict != 'part'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                                </t>
+                                НЕ повністю застосовані вимоги стандарту
+                            </div>
+
+                            <div style="margin-top: 5px;">
+                                <t t-if="ao.emc_verdict == 'other'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                                </t>
+                                <t t-if="ao.emc_verdict != 'other'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                                </t>
+                                інше
+                            </div>
+                        </td>
+                        <td style="border: 1px solid black; text-align: left;">
+                            <div t-raw="ao.emc_result"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; text-align: left;">п.7 ТР Р (викор. РЧР)
+                        </td>
+                        <td style="border: 1px solid black; text-align: left; padding-top: 0">
+                            <t t-foreach="ao.spectrum_details_1" t-as="spectrum_detail">
+                                <div style="margin-top: 5px" t-esc="spectrum_detail.name"/>
+                            </t>
+                        </td>
+                        <td style="border: 1px solid black; text-align: left;">
+                            <t t-foreach="ao.spectrum_details_2" t-as="spectrum_detail">
+                                <div style="margin-top: 5px" t-esc="spectrum_detail.name"/>
+                            </t>
+                            <div>TEST REPORT №
+                                <span t-esc="ao.spectrum_protocol_no"/>
+                                <t t-if="ao.spectrum_protocol_date">від
+                                    <span t-esc="ao.spectrum_protocol_date.strftime('%d.%m.%Y')"/>
+                                </t>
+                            </div>
+                            <div>Випробувальна лабораторія:
+                                <span t-esc="ao.spectrum_laboratory_id.name"/>
+                            </div>
+                            <div style="margin-top: 20px">
+                                <t t-foreach="ao.spectrum_attachment_ids" t-as="spectrum">
+                                    <div>
+                                        <t t-esc="spectrum.name"/>
+                                    </div>
+                                </t>
+                            </div>
+                        </td>
+                        <td style="border: 1px solid black; text-align: left; font-size: 7pt">
+                            <div style="margin-top: 5px;">
+                                <t t-if="ao.spectrum_verdict == 'none'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                                </t>
+                                <t t-if="ao.spectrum_verdict != 'none'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                                </t>
+                                відсутній
+                            </div>
+
+                            <div style="margin-top: 5px;">
+                                <t t-if="ao.spectrum_verdict == 'full'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                                </t>
+                                <t t-if="ao.spectrum_verdict != 'full'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                                </t>
+                                Повністю застосовані вимоги стандарту
+                            </div>
+
+                            <div style="margin-top: 5px;">
+                                <t t-if="ao.spectrum_verdict == 'part'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                                </t>
+                                <t t-if="ao.spectrum_verdict != 'part'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                                </t>
+                                НЕ повністю застосовані вимоги стандарту
+                            </div>
+
+                            <div style="margin-top: 5px;">
+                                <t t-if="ao.spectrum_verdict == 'other'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                                </t>
+                                <t t-if="ao.spectrum_verdict != 'other'">
+                                    <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                                </t>
+                                інше
+                            </div>
+                        </td>
+                        <td style="border: 1px solid black; text-align: left;">
+                            <div t-raw="ao.spectrum_result"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </t>
+
+        <t t-if="doc.general_notes_subpart_notes">
+            <p style="text-align: center; font-weight: bold">ПРИМІТКИ/
+                <i>NOTES</i>
+            </p>
+        </t>
+        <div style="margin-left: 50px; margin-right: 50px; text-align: left">
+            <t t-raw="doc.general_notes_subpart_notes"/>
+        </div>
+
+    </template>
+</odoo>
