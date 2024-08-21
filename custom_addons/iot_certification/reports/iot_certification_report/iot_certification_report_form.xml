@@ -1,0 +1,2045 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_form_template">
+        <div class="document-header">
+            <div class="header-left">
+                <img src="/iot_certification/static/certification_report/logo.jpeg" alt="Logo"/>
+            </div>
+            <div class="header-right">
+                ФОВ-19/02
+            </div>
+            <div class="header-center">
+                <p>
+                    Державне підприємство "Український державний центр радіочастот (УДЦР)"
+                    <br/>
+                    Орган з оцінки відповідності УДЦР (ООВ УКРЧАСТОТНАГЛЯД)
+                    <br/>
+                    Атестат про акредитацію №10179. Номер призначеного ООВ UA.TR.052
+                    <br/>
+                    03179, м. Київ, пр-т Перемоги, 151
+                    <br/>
+                    UKRAINIAN STATE CENTRE OF RADIO FREQUENCIES (UCRF)
+                    <br/>
+                    Certification Body UCRF (CB UKRCHASTOTNAGLYAD)
+                    <br/>
+                    Accreditation Certificate №10222. Identification number of the assigned CAB
+                    UA.TR.052
+                    <br/>
+                    03179, Kyiv-179, Peremogy St.,151, Ukraine
+                    <br/>
+                    tel. +38 (044) 422-85-46, 422-85-44
+                    <br/>
+                    tel./fax +38 (044) 422-85-41
+                    <br/>
+                    E-mail:
+                    <a href="mailto:oc@ucrf.gov.ua">oc@ucrf.gov.ua</a>
+                </p>
+            </div>
+        </div>
+
+        <table class="table table-sm table-bordered"
+               style="width: 100%; border-collapse: collapse; text-align: center;">
+            <thead>
+                <tr>
+                    <th style="width: 50%; text-align: left; border: 1px solid black;">
+                        <div>Реєстраційний номер/
+                            <br/>
+                            <i style="margin-left: 20px; font-weight: normal;">Registration Number:</i>
+                            <span style="margin-left: 10px; font-weight: normal;" t-field="doc.name"/>
+                        </div>
+                    </th>
+                    <th style="width: 50%; text-align: left; border: 1px solid black;">
+                        Дата/
+                        <i style="font-weight: normal">Date of:</i>
+                        <br/>
+                        <span style="width: 150px;">початок/
+                            <i style="font-weight: normal">commencement
+                                of work
+                            </i>
+                        </span>
+                        <t t-if="doc.date_of_commencement_of_work">
+                            <span t-esc="doc.date_of_commencement_of_work.strftime('%d.%m.%Y')"
+                                  style="float: right; font-weight: normal;"/>
+                        </t>
+                        <br/>
+                        <span style="width: 150px;">закінчення/
+                            <i style="font-weight: normal">report
+                            </i>
+                        </span>
+                        <t t-if="doc.date_of_report">
+                            <span t-esc="doc.date_of_report.strftime('%d.%m.%Y')"
+                                  style="float: right; font-weight: normal;"/>
+                        </t>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 10px">
+                        <b>Звіт про оцінювання/Evaluation Report:</b>
+                    </div>
+                    <div style="margin-left: 5px; max-width: 300px; word-wrap: break-word; margin-bottom: 10px">
+                        <span style="font-size: 16pt; line-height: 0.5;display: inline;">&#9744;</span>
+                        Оцінювання проведено/ Conducted an assessment:
+                    </div>
+                    <p>
+                        <span style="display: inline-block; width: 160px; border-bottom: 1px solid black; margin-left: 20px;"></span>
+                        <b>
+                            <span t-esc="doc.conducted_an_assessment.name"/>
+                        </b>
+                    </p>
+                    <div style="margin-left: 5px; max-width: 300px; word-wrap: break-word; margin-bottom: 10px">
+                        <span style="font-size: 16pt; line-height: 0.5;display: inline;">&#9744;</span>
+                        Аналізування проведено та прийнято рішення щодо видачі Сертифікату експертизи
+                        типу/ conducted an analysis and made a decision on certification:
+                    </div>
+                    <p>
+                        <span style="display: inline-block; width: 160px; border-bottom: 1px solid black; margin-left: 20px;"></span>
+                        <b>
+                            <span t-esc="doc.conducted_an_analysis_and_made_a_decision_on_certification.name"/>
+                        </b>
+                    </p>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-left: 20px; margin-bottom: 10px; margin-top: 10px">
+                        <b>Звіт за/ Report for:</b>
+                    </div>
+                    <t t-foreach="doc.report_for_ids" t-as="report_for">
+                        <div style="margin-bottom: 5px; margin-left: 10px; font-weight: normal;">
+                            <div>
+                                <span style="font-size: 16pt; line-height: 0.5"
+                                      t-if="report_for.verdict == True">&#9745;
+                                </span>
+                                <span style="font-size: 16pt; line-height: 0.5" t-else="">&#9744;</span>
+                                <span style="font-size: 8pt;" t-esc="report_for.name"/>
+                            </div>
+                        </div>
+                    </t>
+                    <div style="margin-left: 20px; margin-bottom: 10px; margin-top: 10px">
+                        <b>Оцінювання/ Assessment:</b>
+                    </div>
+                    <t t-foreach="doc.assessment_ids" t-as="assessment">
+                        <div style="margin-bottom: 5px; margin-left: 10px; font-weight: normal;">
+                            <div>
+                                <span style="font-size: 16pt; line-height: 0.5"
+                                      t-if="assessment.verdict == True">&#9745;
+                                </span>
+                                <span style="font-size: 16pt; line-height: 0.5" t-else="">&#9744;</span>
+                                <span style="font-size: 8pt;" t-esc="assessment.name"/>
+                            </div>
+                        </div>
+                    </t>
+                </td>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered" style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="border: 1px solid black; border-right: none; width: 3%; text-align: left;">
+                    <span style="font-size: 16pt; padding: 5px; line-height: 0.8; display: inline">
+                        &#9744;
+                    </span>
+                </td>
+                <td colspan="4"
+                    style="border: 1px solid black; padding: 8px; border-left: none; text-align: center;">
+                    Оцінка відповідності відповідно до Додатку 2 ТР Р, ПКМУ від 24.05.2017 № 355 /
+                    Conformity assessment acc. to Annex III of Directive 2014/53/EU
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; padding: 5px; text-align: center; font-weight: bold;">
+                    № з/п
+                </td>
+                <td style="border: 1px solid black; padding: 5px; width: 25%; text-align: center; font-weight: bold;">
+                    Деталі TGN/ TGN Details
+                </td>
+                <td style="border: 1px solid black; padding: 5px; width: 12%; text-align: center; font-weight: bold;">
+                    Рішення/ Verdict
+                </td>
+                <td style="border: 1px solid black; padding: 5px; width: 45%; text-align: center; font-weight: bold;">
+                    Доказова база / Evidence
+                </td>
+                <td style="border: 1px solid black; padding: 5px; width: 15%; text-align: center; font-weight: bold;">
+                    КОМЕНТАР/ Remark(s)
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    1
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Замовлення / Заявка
+                        <br/>
+                        <i>Order / Application Form</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.order_application_form_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.order_application_form_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.order_application_form_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.order_application_form_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <p>
+                        <strong>Заявник:</strong>
+                        <span t-field="doc.appliciant_id"/>
+                    </p>
+                    <p>
+                        <strong>Продукт:</strong>
+                        <span t-field="doc.product_id"/>
+                    </p>
+                    <p>
+                        <strong>Виробник:</strong>
+                        <span t-field="doc.producer_id"/>
+                    </p>
+                    <p>
+                        <strong>Підприємство:</strong>
+                        <span t-field="doc.enterprise_ids"/>
+                    </p>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.order_application_form_attachment_ids" t-as="application">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="application.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.order_application_form_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    2
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Доручення виробника (за необхідності)
+                        <br/>
+                        <i>/Power of Attorney</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.power_of_attorney_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.power_of_attorney_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.power_of_attorney_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.power_of_attorney_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.power_of_attorney_attachment_ids" t-as="attorney">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="attorney.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.power_of_attorney_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    3
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Застосовані радіотехнології
+                        <br/>
+                        <i>/Product Specification</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.product_specification_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.product_specification_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.product_specification_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.product_specification_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <!-- Опис радіотехнологій -->
+                    <div style="font-weight: bold;">
+                        ОПИС РАДІОТЕХНОЛОГІЙ:
+                    </div>
+                    <div style="margin-left: 20px;">
+                        <!-- Широкосмуговий радіодоступ -->
+                        <div style="font-weight: bold; margin-top: 5px;">
+                            <t t-if="doc.product_specification_1">
+                                <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                            </t>
+                            <t t-else="">
+                                <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                            </t>
+                            Широкосмуговий радіодоступ:
+                        </div>
+                        <div style="display: table; width: 100%; margin-left: 30px; margin-top: 5px">
+                            <div style="display: table-row;">
+                                <div style="display: table-cell; width: 50%; vertical-align: top;">
+                                    <div>
+                                        <t t-if="doc.product_specification_1_1">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        IEEE 802.11 b/g;
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.product_specification_1_2">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        IEEE 802.11a;
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.product_specification_1_3">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        IEEE 802.11n;
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.product_specification_1_7">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        Bluetooth;
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.product_specification_1_9">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        2400 Мгц;
+                                    </div>
+                                </div>
+                                <div style="display: table-cell; width: 50%; vertical-align: top;">
+                                    <div>
+                                        <t t-if="doc.product_specification_1_4">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        IEEE 802.11 ac;
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.product_specification_1_6">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        IEEE 802.16
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.product_specification_1_5">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        IEEE 802.11 ax;
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.product_specification_1_8">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        ZigBee;
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Цифровий стільниковий радіозв'язок -->
+                        <div style="font-weight: bold;">
+                            <t t-if="doc.product_specification_2">
+                                <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                            </t>
+                            <t t-else="">
+                                <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                            </t>
+                            Цифровий стільниковий радіозв'язок:
+
+                        </div>
+                        <div style="display: table; width: 100%; margin-left: 30px; margin-top: 5px">
+                            <div style="display: table-row;">
+                                <div style="display: table-cell; width: 50%; vertical-align: top;">
+                                    <div>
+                                        <t t-if="doc.product_specification_2_1">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        GSM;
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.product_specification_2_2">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        LTE;
+                                    </div>
+                                </div>
+                                <div style="display: table-cell; width: 50%; vertical-align: top;">
+                                    <div>
+                                        <t t-if="doc.product_specification_2_3">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        IMT-2000 (UMTS);
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.product_specification_2_4">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        CDMA-800;
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Пристрій короткого радіусу дії -->
+                        <div style="font-weight: bold;">
+                            <t t-if="doc.product_specification_3">
+                                <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                            </t>
+                            <t t-else="">
+                                <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                            </t>
+                            Пристрій короткого радіусу дії:
+                        </div>
+                        <div style="display: table; width: 100%; margin-left: 30px; margin-top: 5px">
+                            <div style="display: table-row;">
+                                <div style="display: table-cell; width: 50%; vertical-align: top;">
+                                    <div>
+                                        <t t-if="doc.product_specification_3_1">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        433 МГц
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.product_specification_3_2">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        868 МГц
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.product_specification_3_5">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        6.7 МГц
+                                    </div>
+                                </div>
+                                <div style="display: table-cell; width: 50%; vertical-align: top;">
+                                    <div>
+                                        <t t-if="doc.product_specification_3_3">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        2400 МГц
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.product_specification_3_4">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        5800 МГц
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.product_specification_3_6">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        13 МГц
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Індуктивні застосування -->
+                        <div style="font-weight: bold;">
+                            <t t-if="doc.product_specification_4">
+                                <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                            </t>
+                            <t t-else="">
+                                <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                            </t>
+                            Індуктивні застосування (NFC):
+                        </div>
+                        <div style="display: table; width: 100%; margin-left: 30px; margin-top: 5px">
+                            <div style="display: table-row;">
+                                <div style="display: table-cell; width: 50%; vertical-align: top;">
+                                    <div>
+                                        <t t-if="doc.product_specification_4_1">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        NFC
+                                    </div>
+                                </div>
+                                <div style="display: table-cell; width: 50%; vertical-align: top;">
+                                    <div>
+                                        <t t-if="doc.product_specification_4_2">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        RFID
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Приймач -->
+                        <div style="font-weight: bold;">
+                            <t t-if="doc.product_specification_5">
+                                <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                            </t>
+                            <t t-else="">
+                                <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                            </t>
+                            Приймач:
+                        </div>
+                        <div style="display: table; width: 100%; margin-left: 30px; margin-top: 5px">
+                            <div style="display: table-row;">
+                                <div style="display: table-cell; width: 50%; vertical-align: top;">
+                                    <div>
+                                        <t t-if="doc.product_specification_5_1">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        GNSS
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.product_specification_5_3">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        КХ/УКХ
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.product_specification_5_8">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        TV/DBV
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.product_specification_5_7">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        DAB
+                                    </div>
+                                </div>
+                                <div style="display: table-cell; width: 50%; vertical-align: top;">
+                                    <div>
+                                        <t t-if="doc.product_specification_5_2">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        FM/AM
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.product_specification_5_4">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        433 МГц
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.product_specification_5_5">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        інший
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div>
+                                <t t-if="doc.product_specification_6">
+                                    <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                                </t>
+                                <t t-else="">
+                                    <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                                </t>
+                                УЖК радіозв'язок
+                            </div>
+                            <div>
+                                <t t-if="doc.product_specification_7">
+                                    <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                                </t>
+                                <t t-else="">
+                                    <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                                </t>
+                                Радіолокаційні вимірювання
+                            </div>
+                            <div>
+                                <t t-if="doc.product_specification_8">
+                                    <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                                </t>
+                                <t t-else="">
+                                    <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                                </t>
+                                Супутниковий радіозв'язок
+                            </div>
+                            <div>
+                                <t t-if="doc.product_specification_9">
+                                    <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                                </t>
+                                <t t-else="">
+                                    <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                                </t>
+                                Радіорелейний зв'язок
+                            </div>
+                            <div>
+                                <t t-if="doc.product_specification_10">
+                                    <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                                </t>
+                                <t t-else="">
+                                    <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                                </t>
+                                інше
+                                <t t-if="doc.product_specification_10">(<span
+                                        t-esc="doc.product_specification_10_1"/>)
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.product_specification_attachment_ids" t-as="specification">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="specification.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.product_specification_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    4
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Схема живлення
+                        <br/>
+                        <i>/The scheme of power supply</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.the_scheme_of_power_supply_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.the_scheme_of_power_supply_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.the_scheme_of_power_supply_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.the_scheme_of_power_supply_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>
+                        <div>
+                            <t t-if="doc.the_scheme_of_power_supply_1">
+                                <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                            </t>
+                            <t t-else="">
+                                <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                            </t>
+                            БАТАРЕЯ
+                        </div>
+
+                        <div>
+                            <t t-if="doc.the_scheme_of_power_supply_2">
+                                <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                            </t>
+                            <t t-else="">
+                                <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                            </t>
+                            МЕРЕЖА
+                        </div>
+                        <div style="margin-left: 30px">
+                            <t t-if="doc.the_scheme_of_power_supply_2_1">
+                                <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                            </t>
+                            <t t-else="">
+                                <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                            </t>
+                            Змінний струм:
+                        </div>
+                        <div style="display: table; width: 100%; margin-left: 50px; margin-top: 5px">
+                            <div style="display: table-row;">
+                                <div style="display: table-cell; width: 50%; vertical-align: top;">
+                                    <div>
+                                        <t t-if="doc.the_scheme_of_power_supply_2_1_1">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        шнур живлення;
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.the_scheme_of_power_supply_2_1_2">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        безпосереднє приєднання;
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.the_scheme_of_power_supply_2_1_3">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        перетворювач
+                                        <t t-if="doc.the_scheme_of_power_supply_2_1_3">(<span
+                                                t-field="doc.the_scheme_of_power_supply_2_1_4"/>);
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-left: 30px">
+                            <t t-if="doc.the_scheme_of_power_supply_2_2">
+                                <span style="font-size: 16pt; line-height: 0.8">&#9745;</span>
+                            </t>
+                            <t t-else="">
+                                <span style="font-size: 16pt; line-height: 0.8">&#9744;</span>
+                            </t>
+                            Постійний струм:
+                        </div>
+                        <div style="display: table; width: 100%; margin-left: 50px; margin-top: 5px">
+                            <div style="display: table-row;">
+                                <div style="display: table-cell; width: 50%; vertical-align: top;">
+                                    <div>
+                                        <t t-if="doc.the_scheme_of_power_supply_2_2_1">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        шнур живлення;
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.the_scheme_of_power_supply_2_2_2">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        безпосереднє приєднання;
+                                    </div>
+                                    <div>
+                                        <t t-if="doc.the_scheme_of_power_supply_2_2_3">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9745;
+                                            </span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-size: 16pt; line-height: 0.8">&#9744;
+                                            </span>
+                                        </t>
+                                        перетворювач
+                                        <t t-if="doc.the_scheme_of_power_supply_2_2_3">(<span
+                                                t-field="doc.the_scheme_of_power_supply_2_2_4"/>);
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.the_scheme_of_power_supply_attachment_ids" t-as="power">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="power.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.the_scheme_of_power_supply_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    5
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Модельний ряд
+                        <br/>
+                        <i>/Model line</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.model_line_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.model_line_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.model_line_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.model_line_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <t t-esc="doc.model_line_model"/>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.model_line_attachment_ids" t-as="model">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="model.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.model_line_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    6
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Склад обладнання
+                        <br/>
+                        <i>/Part of the equipment</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.part_of_the_equipment_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.part_of_the_equipment_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.part_of_the_equipment_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.part_of_the_equipment_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <t t-esc="doc.part_of_the_equipment"/>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.part_of_the_equipment_attachment_ids" t-as="attorney">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="attorney.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.part_of_the_equipment_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    7
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Технічна специфікація
+                        <br/>
+                        <i>/Information regarding freq. bands/EIRP</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.information_regarding_freq_bands_eirp_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.information_regarding_freq_bands_eirp_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.information_regarding_freq_bands_eirp_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.information_regarding_freq_bands_eirp_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.information_regarding_freq_bands_eirp_attachment_ids"
+                           t-as="information">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="information.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.information_regarding_freq_bands_eirp_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    8
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Фотографії/ілюстрації<br/>Photographs/Illustrations
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.illustrations_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.illustrations_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.illustrations_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.illustrations_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.illustrations_attachment_ids" t-as="attorney">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="attorney.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.illustrations_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    9
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Версії програмного забезпечення/
+                        <br/>
+                        <i>HW/SW Version</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.hw_sw_version_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.hw_sw_version_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.hw_sw_version_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.hw_sw_version_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>H/W Version:
+                        <span t-esc="doc.hw_id.name"/>
+                    </div>
+                    <div>S/W Version:
+                        <span t-esc="doc.sw_id.name"/>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.hw_sw_version_attachment_ids" t-as="version">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="version.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.hw_sw_version_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    10
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Інструкція з експлуатації
+                        <br/>
+                        <i>/User Manual</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.user_manual_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.user_manual_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.user_manual_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.user_manual_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.user_manual_attachment_ids" t-as="manual">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="manual.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.user_manual_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    11
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Документи про відповідність (Сертифікати, декларації та інші додаткові
+                        відомості)
+                        <br/>
+                        <i>/Compliance Documents</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.compliance_documents_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.compliance_documents_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.compliance_documents_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.compliance_documents_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.compliance_documents_attachment_ids" t-as="documents">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="documents.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.compliance_documents_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    12
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Схеми/
+                        <i>Block Diagram<br/>/Schematics /PCB Layout<br/>/Bill of Materials
+                        </i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.diagrams_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.diagrams_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.diagrams_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.diagrams_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.diagrams_attachment_ids" t-as="d">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="d.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.diagrams_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    13
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Оцінка та аналіз ризиків
+                        <br/>
+                        <i>/Risk Assessment</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.risk_assessment_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.risk_assessment_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.risk_assessment_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.risk_assessment_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.risk_assessment_attachment_ids" t-as="risk">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="risk.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.risk_assessment_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    14
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Маркування/
+                        <br/>
+                        <i>Label/Packaging<br/>Information/ Restrictions of use
+                        </i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.label_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.label_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.label_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.label_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;"></td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.label_attachment_ids" t-as="label">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="label.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.label_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; border-right: none; width: 3%; text-align: left;">
+                    <span style="font-size: 16pt; padding: 5px; line-height: 0.8; display: inline">
+                        &#9744;
+                    </span>
+                </td>
+                <td colspan="4"
+                    style="border: 1px solid black; padding: 10px; border-left: none; text-align: left; margin-left: 20px;">
+                    Оцінка відповідності відповідно до п.6, п.7 ТР Р, ПКМУ від 24.05.2017 № 355 /
+                    Conformity Assessment acc. to items 3.1, 3.2, of Directive 2014/53/EU
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    15
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Суттєві вимоги згідно п.6 ТР Р (Безпека)/
+                        <br/>
+                        <i>Evidence acc. to article 3.1a (Safety)</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.safety_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.safety_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.safety_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.safety_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <t t-foreach="doc.safety_details" t-as="safety">
+                        <div style="margin-bottom: 5px">
+                            <t t-esc="safety.name"/>
+                        </div>
+                    </t>
+                    <div>ПРОТОКОЛ №
+                        <span t-esc="doc.safety_protocol_no"/>
+                        <t t-if="doc.safety_protocol_date">від
+                            <span t-esc="doc.safety_protocol_date.strftime('%d.%m.%Y')"/>
+                        </t>
+                    </div>
+                    <div>Випробувальна лабораторія:
+                        <span t-esc="doc.safety_laboratory_id.name"/>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.safety_attachment_ids" t-as="safety">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="safety.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.safety_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    16
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Суттєві вимоги згідно п.6 ТР Р (Здоров'я)/
+                        <br/>
+                        <i>Evidence acc. to article 3.1a (Health)</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.health_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.health_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.health_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.health_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <t t-foreach="doc.health_details" t-as="health">
+                        <div style="margin-bottom: 5px">
+                            <t t-esc="health.name"/>
+                        </div>
+                    </t>
+                    <div>ПРОТОКОЛ №
+                        <span t-esc="doc.health_protocol_no"/>
+                        <t t-if="doc.health_protocol_date">від
+                            <span t-esc="doc.health_protocol_date.strftime('%d.%m.%Y')"/>
+                        </t>
+                    </div>
+                    <div>Випробувальна лабораторія:
+                        <span t-esc="doc.health_laboratory_id.name"/>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.health_attachment_ids" t-as="health">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="health.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.health_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    17
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Суттєві вимоги згідно п.6 ТР Р (ЕМС)/
+                        <br/>
+                        <i>Evidence acc. to article 3.1b (EMC)</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.emc_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.emc_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.emc_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.emc_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <t t-foreach="doc.emc_details" t-as="emc">
+                        <div style="margin-bottom: 5px">
+                            <t t-esc="emc.name"/>
+                        </div>
+                    </t>
+                    <div>ПРОТОКОЛ №
+                        <span t-esc="doc.emc_protocol_no"/>
+                        <t t-if="doc.emc_protocol_date">від
+                            <span t-esc="doc.emc_protocol_date.strftime('%d.%m.%Y')"/>
+                        </t>
+                    </div>
+                    <div>Випробувальна лабораторія:
+                        <span t-esc="doc.emc_laboratory_id.name"/>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.emc_attachment_ids" t-as="emc">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="emc.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.emc_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    18
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Суттєві вимоги згідно п.7 ТР Р (викор.РЧР)/
+                        <br/>
+                        <i>Evidence acc. To article 3.2 (RF Spectrum)</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.spectrum_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.spectrum_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.spectrum_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.spectrum_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <t t-foreach="doc.spectrum_details" t-as="safety">
+                        <div style="margin-bottom: 5px">
+                            <t t-esc="safety.name"/>
+                        </div>
+                    </t>
+                    <div>ПРОТОКОЛ №
+                        <span t-esc="doc.spectrum_protocol_no"/>
+                        <t t-if="doc.spectrum_protocol_date">від
+                            <span t-esc="doc.spectrum_protocol_date.strftime('%d.%m.%Y')"/>
+                        </t>
+                    </div>
+                    <div>Випробувальна лабораторія:
+                        <span t-esc="doc.spectrum_laboratory_id.name"/>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.spectrum_attachment_ids" t-as="safety">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="spectrum.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.spectrum_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    19
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Додаткові суттєві вимоги згідно п.8 ТР Р/
+                        <br/>
+                        <i>Evidence acc. To article 3.3 (Subpart(s) to be specified)</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.subpart_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.subpart_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.subpart_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.subpart_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <t t-esc="doc.subpart_notes"/>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.subpart_attachment_ids" t-as="subpart">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="subpart.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.subpart_attachment_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    20
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Відповідність умовам застосовання на території України/
+                        <br/>
+                        <i>Compliance of the claimed radio equipment and conditions of granting on the
+                            market and usage
+                        </i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.conditions_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.conditions_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.conditions_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.conditions_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td colspan="2" style="border: 1px solid black; text-align: left; padding: 0;">
+                    <table style="width: 100%; border-collapse: collapse; margin: 0; padding: 0; border: none">
+                        <t t-foreach="range(1, 21)" t-as="i">
+                            <t t-if="doc['show_condition_' + str(i)]">
+                                <tr>
+                                    <td style="border: 1px solid black; border-left: none; text-align: left; width: 19.8%">
+                                        <div style="text-align: left; margin-top: 5px">
+                                            <t t-if="doc['condition_' + str(i) + '_verd'] == 'yes'">
+                                                <span style="font-size: 16pt; line-height: 0.5">
+                                                    &#9745;
+                                                </span>
+                                            </t>
+                                            <t t-if="doc['condition_' + str(i) + '_verd'] != 'yes'">
+                                                <span style="font-size: 16pt; line-height: 0.5">
+                                                    &#9744;
+                                                </span>
+                                            </t>
+                                            ТАК
+                                        </div>
+                                        <div style="text-align: left; margin-top: 5px">
+                                            <t t-if="doc['condition_' + str(i) + '_verd'] == 'no'">
+                                                <span style="font-size: 16pt; line-height: 0.5">
+                                                    &#9745;
+                                                </span>
+                                            </t>
+                                            <t t-if="doc['condition_' + str(i) + '_verd'] != 'no'">
+                                                <span style="font-size: 16pt; line-height: 0.5">
+                                                    &#9744;
+                                                </span>
+                                            </t>
+                                            НІ
+                                        </div>
+                                    </td>
+                                    <td style="border: 1px solid black; text-align: left; width: 55%">
+                                        <t t-esc="doc['condition_' + str(i) + '_notes']"/>
+                                    </td>
+                                    <td style="border: 1px solid black; border-right: none; text-align: left; width: 25.2%">
+                                        <t t-foreach="doc['condition_' + str(i) + '_attachment_ids']"
+                                           t-as="attachment">
+                                            <span t-esc="attachment.name"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" style="border: 1px solid black; text-align: left">
+                    <div>
+                        <strong>ЗВІТНІСТЬ/</strong>
+                        <i>Reporting</i>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    21
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Сертифікат експертизи типу/
+                        <br/>
+                        <i>Type Examination Certificate</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.type_examination_certificate_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.type_examination_certificate_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.type_examination_certificate_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.type_examination_certificate_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>№
+                        <span t-esc="doc.type_examination_number"/>
+                        <t t-if="doc.type_examination_date">від
+                            <span t-esc="doc.type_examination_date.strftime('%d.%m.%Y')"/>
+                        </t>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.type_examination_certificate_attachment_ids" t-as="type">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="type.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.type_examination_certificate_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    22
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Декларація відповідності/
+                        <br/>
+                        <i>Declaration Of Conformity</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.declaration_of_conformity_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.declaration_of_conformity_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.declaration_of_conformity_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.declaration_of_conformity_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>№
+                        <span t-esc="doc.declaration_of_conformity_number"/>
+                        <t t-if="doc.declaration_of_conformity_date">від
+                            <span t-esc="doc.declaration_of_conformity_date.strftime('%d.%m.%Y')"/>
+                        </t>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.declaration_of_conformity_attachment_ids" t-as="declaration">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="declaration.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.declaration_of_conformity_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    23
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Сертифікаційна угода/
+                        <br/>
+                        <i>Certification agreement</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.certification_agrement_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.certification_agrement_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.certification_agrement_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.certification_agrement_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>№
+                        <span t-esc="doc.certification_agrement_number"/>
+                        <t t-if="doc.certification_agrement_date">від
+                            <span t-esc="doc.certification_agrement_date.strftime('%d.%m.%Y')"/>
+                        </t>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.certification_agrement_attachment_ids" t-as="agrement">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="agreement.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.certification_agrement_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid black; text-align: center;">
+                    24
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>Господарський договір/
+                        <br/>
+                        <i>Contract</i>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.contract_verdict == 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.contract_verdict != 'ok'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        Ok
+                    </div>
+                    <div style="margin-top: 5px;">
+                        <t t-if="doc.contract_verdict == 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9745;</span>
+                        </t>
+                        <t t-if="doc.contract_verdict != 'remark'">
+                            <span style="font-size: 16pt; line-height: 0.5">&#9744;</span>
+                        </t>
+                        see remark
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div>№
+                        <span t-esc="doc.contract_number"/>
+                        <t t-if="doc.contract_date">від
+                            <span t-esc="doc.contract_date.strftime('%d.%m.%Y')"/>
+                        </t>
+                    </div>
+                </td>
+                <td style="border: 1px solid black; text-align: left;">
+                    <div style="margin-bottom: 30px">
+                        <t t-foreach="doc.contract_attachment_ids" t-as="type">
+                            <div style="margin-bottom: 5px">
+                                <t t-esc="type.name"/>
+                            </div>
+                        </t>
+                    </div>
+                    <div style="display: table; width: 100%; height: 100%;">
+                        <div style="display: table-cell; vertical-align: bottom;">
+                            <div t-raw="doc.contract_remarks"/>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table class="table table-sm table-bordered" style="width: 100%; border-collapse: collapse;">
+            <tr>
+                <td style="border: 1px solid black; border-right: none; width: 3%; text-align: left;">
+                    <span style="font-size: 16pt; padding: 5px; line-height: 0.8; display: inline">
+                        &#9744;
+                    </span>
+                </td>
+                <td colspan="4"
+                    style="border: 1px solid black; padding: 10px; border-left: none; text-align: center; margin-left: 20px;">
+                    Оцінка відповідності відповідно до Додатку 3 ТР Р (дивись окремий звіт)/
+                    Conformity Assessment acc. To Annex IV of Directive 2014/53/EU (please see separate
+                    report)
+                </td>
+            </tr>
+        </table>
+
+    </template>
+</odoo>
