@@ -129,11 +129,7 @@
                     <td style="border: 1px solid black; text-align: left;">
                         <p>
                             <strong>
-                                <t t-foreach="doc.diagrams_attachment_ids" t-as="attachment">
-                                    <div style="margin-bottom: 5px">
-                                        <t t-esc="attachment.name"/>
-                                    </div>
-                                </t>
+                                Модуль В
                             </strong>
                         </p>
                     </td>

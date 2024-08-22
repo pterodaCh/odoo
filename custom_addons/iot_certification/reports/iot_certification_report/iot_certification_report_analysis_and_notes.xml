@@ -2,7 +2,7 @@
 <odoo>
     <template id="report_analysis_and_notes_template">
         <t t-foreach="doc.additional_order_ids" t-as="ao">
-            <p style="text-align: left; margin-left: 50px">
+            <p style="text-align: left; margin-left: 50px; margin-top: 50px">
                 <strong>Аналіз (експертиза) протоколів випробувань
                     <span t-field="ao.name"/>
                 </strong>
