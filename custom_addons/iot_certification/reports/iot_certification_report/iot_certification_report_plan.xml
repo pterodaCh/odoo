@@ -33,7 +33,7 @@
                     <td style="border: 1px solid black; text-align: left;">Визначення відповідального
                         виконавця та групи виконавців
                     </td>
-                    <td style="border: 1px solid black; text-align: left;">Administrator</td>
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/></td>
                     <td style="border: 1px solid black; text-align: left;">
                         <p>
                             <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
@@ -48,7 +48,7 @@
                     <td style="border: 1px solid black; text-align: left;">Оцінювання достатності
                         технічного файлу
                     </td>
-                    <td style="border: 1px solid black; text-align: left;">Відповідальний виконавець
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/>
                     </td>
                     <td style="border: 1px solid black; text-align: left;">
                         <p>
@@ -70,7 +70,7 @@
                 </tr>
                 <tr>
                     <td style="border: 1px solid black; text-align: left;">Вимоги безпеки</td>
-                    <td style="border: 1px solid black; text-align: left;">Відповідальний виконавець
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/>
                     </td>
                     <td style="border: 1px solid black; text-align: left;">
                         <p>
@@ -83,7 +83,7 @@
                 </tr>
                 <tr>
                     <td style="border: 1px solid black; text-align: left;">Захист здоров'я</td>
-                    <td style="border: 1px solid black; text-align: left;">Відповідальний виконавець
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/>
                     </td>
                     <td style="border: 1px solid black; text-align: left;">
                         <p>
@@ -97,7 +97,7 @@
                 <tr>
                     <td style="border: 1px solid black; text-align: left;">Електромагнітна сумісність
                     </td>
-                    <td style="border: 1px solid black; text-align: left;">Відповідальний виконавець
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/>
                     </td>
                     <td style="border: 1px solid black; text-align: left;">
                         <p>
@@ -112,7 +112,7 @@
                     <td style="border: 1px solid black; text-align: left;">Ефективне використання
                         радіочастотного ресурсу України
                     </td>
-                    <td style="border: 1px solid black; text-align: left;">Відповідальний виконавець
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/>
                     </td>
                     <td style="border: 1px solid black; text-align: left;">
                         <p>
@@ -128,7 +128,7 @@
                     <td style="border: 1px solid black; text-align: left;">Аналізування результатів
                         оцінювання
                     </td>
-                    <td style="border: 1px solid black; text-align: left;">Administrator</td>
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/></td>
                     <td style="border: 1px solid black; text-align: left;">
                         <p>
                             <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
@@ -143,7 +143,7 @@
                     <td style="border: 1px solid black; text-align: left;">Прийняття рішення ззза
                         результатами оцінки відповідності
                     </td>
-                    <td style="border: 1px solid black; text-align: left;">Administrator</td>
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/></td>
                     <td style="border: 1px solid black; text-align: left;">
                         <p>
                             <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
@@ -158,7 +158,7 @@
                     <td style="border: 1px solid black; text-align: left;">Заходи, за результатами
                         прийнятого рішення:
                     </td>
-                    <td style="border: 1px solid black; text-align: left;">Відповідальний виконавець
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/>
                     </td>
                     <td style="border: 1px solid black; text-align: left;">
                         <p>
@@ -174,7 +174,7 @@
                     <td style="border: 1px solid black; text-align: left;">Оформлення звітних
                         документів
                     </td>
-                    <td style="border: 1px solid black; text-align: left;">Відповідальний виконавець
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/>
                     </td>
                     <td style="border: 1px solid black; text-align: left;">
                         <p>
@@ -207,7 +207,7 @@
                     <td style="border: 1px solid black; text-align: left;">Передача клієнту офіційних
                         документів щодо оцінювання
                     </td>
-                    <td style="border: 1px solid black; text-align: left;">Відповідальний виконавець
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/>
                     </td>
                     <td style="border: 1px solid black; text-align: left;">
                         <p>
@@ -221,7 +221,7 @@
                 <tr>
                     <td style="border: 1px solid black; text-align: left;">10</td>
                     <td style="border: 1px solid black; text-align: left;">Передача справи в архів</td>
-                    <td style="border: 1px solid black; text-align: left;">Відповідальний виконавець
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/>
                     </td>
                     <td style="border: 1px solid black; text-align: left;">
                         <p>

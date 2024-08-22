@@ -1801,6 +1801,12 @@
                                 </tr>
                             </t>
                         </t>
+                        <tr>
+                            <td colspan="2"> </td>
+                            <td style="border: 1px solid black; border-right: none; border-bottom: none; text-align: left; width: 25.2%">
+                                <t t-esc="doc.conditions_remarks"/>
+                            </td>
+                        </tr>
                     </table>
                 </td>
             </tr>
