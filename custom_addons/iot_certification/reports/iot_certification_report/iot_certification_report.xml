@@ -38,6 +38,7 @@
             name="iot_certification.report_template"
             file="iot_certification.report_template"
             paperformat="paperformat_payslip_group"
+            menu="False"
         />
 
     </data>
