@@ -980,14 +980,14 @@ class IoTCertificationOrder(models.Model):
     
     
     
-    @api.onchange('status')
-    def _onchange_status(self):
-        for record in self:
-            if record.status == 'approved' or record.status == 'readyforapproval':
-                verdict_fields = [field_name for field_name in record._fields if 'verdict' in field_name]
-                for field_name in verdict_fields:
-                    if record[field_name] != 'ok':
-                        raise exceptions.ValidationError('Помилка: є поля зі значенням "See remark". Статус не може бути змінений. Виправте всі ремарки і повторіть запит знову. Поле, що спричинило помилку: "{}"'.format(field_name))
+    # @api.onchange('status')
+    # def _onchange_status(self):
+    #     for record in self:
+    #         if record.status == 'approved' or record.status == 'readyforapproval':
+    #             verdict_fields = [field_name for field_name in record._fields if 'verdict' in field_name]
+    #             for field_name in verdict_fields:
+    #                 if record[field_name] != 'Ok':
+    #                     raise exceptions.ValidationError('Помилка: є поля зі значенням "See remark". Статус не може бути змінений. Виправте всі ремарки і повторіть запит знову. Поле, що спричинило помилку: "{}"'.format(field_name))
 
                     
     def copy_record_and_update_name(self):
@@ -1064,4 +1064,3 @@ class IoTCertificationOrder(models.Model):
         #         raise exceptions.ValidationError('Помилка: сертифікат неможливо надрукувати. Заявку не підтверджено відповідним керівником')
         #     else:
         #          return self.env.ref('iot_certification.action_report').report_action(self)
-
