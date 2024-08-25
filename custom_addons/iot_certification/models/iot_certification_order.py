@@ -1,4 +1,6 @@
 from odoo import api, fields, models, SUPERUSER_ID, exceptions
+from babel.dates import format_date
+import datetime
 
 
 class IoTCertificationOrder(models.Model):
@@ -1044,10 +1046,74 @@ class IoTCertificationOrder(models.Model):
                  return self.env.ref('iot_certification.action_report').report_action(self)
 
     def print_cert(self):
-        pass
-        # for record in self:
-        #     if not record.approved_cert_status:
-        #         raise exceptions.ValidationError('Помилка: сертифікат неможливо надрукувати. Заявку не підтверджено відповідним керівником')
-        #     else:
-        #          return self.env.ref('iot_certification.action_report').report_action(self)
+        for record in self:
+            if not record.approved_cert_status:
+                raise exceptions.ValidationError('Помилка: сертифікат неможливо надрукувати. Заявку не підтверджено відповідним керівником')
+            else:
+                 return self.env.ref('iot_certification.iot_certification_certification_report_action').report_action(self)
 
+    @staticmethod
+    def get_formatted_date():
+        today = datetime.datetime.today()
+        return format_date(today, format='d MMMM yyyy', locale='uk_UA')
+
+    def get_equipment_description(self) -> str:
+        result = str()
+        result += "IEEE 812 "
+        ieee_letters: list[str] = list()
+
+        if self.product_specification_2_1:
+            result += "GSM 900/1800" + "; "
+        if self.product_specification_2_2:
+            result += "LTE" + "; "
+        if self.product_specification_2_3:
+            result += "ІМТ-2000 (UMTS)" + "; "
+        if self.product_specification_2_4:
+            result += "CDMA-800" + "; "
+
+        if self.product_specification_1_2:
+            ieee_letters.append("a")
+        if self.product_specification_1_1:
+            ieee_letters.append("b/g")
+        if self.product_specification_1_3:
+            ieee_letters.append("n")
+        if self.product_specification_1_4:
+            ieee_letters.append("ac")
+        if self.product_specification_1_5:
+            ieee_letters.append("ax")
+        result += "/".join(ieee_letters) + "; "
+
+        if self.product_specification_1_6:
+            result += "IEEE 802.16" + "; "
+        if self.product_specification_1_7:
+            result += "Bluetooth" + "; "
+        if self.product_specification_1_6:
+            result += "ZigBee" + "; "
+        if self.product_specification_1_6:
+            result += "2400 МГц" + "; "
+
+        if self.product_specification_4_1:
+            result += "NFC" + "; "
+        if self.product_specification_4_2:
+            result += "RFID" + "; "
+
+        receivers: list[str] = list()
+
+        if self.product_specification_5_1:
+            receivers.append("GNSS")
+        if self.product_specification_5_2:
+            receivers.append("FM/AM")
+        if self.product_specification_5_3:
+            receivers.append("КХ/УКХ")
+        if self.product_specification_5_4:
+            receivers.append("433 МГц")
+        if self.product_specification_5_7:
+            receivers.append("DAB")
+        if self.product_specification_5_8:
+            receivers.append("TV/DBV")
+        if self.product_specification_5_5 and self.product_specification_5_6:
+            receivers.append(self.product_specification_5_6)
+
+        result += ", ".join(receivers) + " приймачі"
+
+        return result

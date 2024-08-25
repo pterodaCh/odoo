@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="iot_certification_certification_report_appendix_1_html">
+        <p style="margin-right:21.2pt; text-align:right">
+            &#xa0;
+        </p>
+        <p style="font-size:6pt">
+            &#xa0;
+        </p>
+        <p style="font-size:6pt">
+            &#xa0;
+        </p>
+        <p style="font-size:6pt">
+            &#xa0;
+        </p>
+        <p style="font-size:6pt">
+            &#xa0;
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:10pt">
+            <strong>
+                <span style="font-family:Calibri; ">УКРАЇНСЬКИЙ ДЕРЖАВНИЙ ЦЕНТР РАДІОЧАСТОТ</span>
+            </strong>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:8pt">
+            <em>
+                <span style="font-family:Calibri; ">UKRAINIAN STATE CENTRE OF RADIO FREQUENCIES</span>
+            </em>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:10pt">
+            <strong>
+                <span style="font-family:Calibri; ">ОРГАН З ОЦІНКИ ВІДПОВІДНОСТІ (ООВ УКРЧАСТОТНАГЛЯД)</span>
+            </strong>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:9pt">
+            <em>
+                <span style="font-family:Calibri; font-size:8pt; ">CONFORMITY ASSESSMENT BODY (</span>
+            </em>
+            <span class="shorttext" style="font-family:Calibri; font-style:italic">CAB</span>
+            <em>
+                <span style="font-family:Calibri; font-size:8pt; ">UKRCHASTOTNAGLIAD)</span>
+            </em>
+        </p>
+        <p style="text-align:center; font-size:10pt">
+            <img src="/iot_certification/static/certification_report/certificate_appendix_1.png" width="200" height="32" alt=""/>
+        </p>
+        <p style="text-align:center; font-size:14pt">
+            <span style="font-family:Calibri">до сертифіката експертизи типу</span>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center">
+            <em>
+                <span style="font-family:Calibri; ">Annex to Type Examination Certificate</span>
+            </em>
+        </p>
+        <table style="border-collapse:collapse">
+            <tr style="height:16.75pt">
+                <td style="width:265.6pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <p style="font-size:4pt">
+                        <strong>
+                            <span style="font-family:Calibri; ">&#xa0;</span>
+                        </strong>
+                    </p>
+                    <p>
+                        <strong>
+                            <span style="font-family:Calibri; ">№</span>
+                        </strong>
+                        <span style="font-family:Calibri"></span>
+                        <strong>
+                            <span style="font-family:Calibri; ">UA.R.TR.052.268-23</span>
+                        </strong>
+                    </p>
+                </td>
+                <td style="width:194.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <p style="font-size:6pt">
+                        <strong>
+                            <span style="font-family:Calibri; ">&#xa0;</span>
+                        </strong>
+                    </p>
+                    <p style="font-size:6pt">
+                        <strong>
+                            <span style="font-family:Calibri; ">&#xa0;</span>
+                        </strong>
+                    </p>
+                    <p style="font-size:4pt">
+                        <strong>
+                            <span style="font-family:Calibri; ">&#xa0;</span>
+                        </strong>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <p style="text-align:center; line-height:80%; font-size:11pt">
+            <strong>
+                <span style="font-family:Calibri; ">Підстави для підтвердження відповідності</span>
+            </strong>
+        </p>
+        <table>
+            <colgroup>
+                <col style="width: 29%"/>
+                <col style="width: 70%"/>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th style="text-align: center;">
+                        <p>Позначення пункту</p>
+                        <p>розділу “Cуттєві вимоги” ТР Р</p>
+                    </th>
+                    <th style="text-align: center;">
+                        <p>Позначення нормативного
+                            документу,
+                        </p>
+                        <p>Номер і дата протоколу (звіту) випробувань або іншого підтвердного
+                            документу, назва лабораторії
+                        </p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>п.6 ТР Р: Вимоги безпеки</td>
+                    <td>
+                        <p>
+                            <t t-out="', '.join([dstu.name for dstu in o.safety_details])"/>
+                        </p>
+                        <p>
+                            ПРОТОКОЛ №
+                            <t t-out="o.safety_protocol_no"/> від <t t-if="o.safety_protocol_date" t-out="o.safety_protocol_date.strftime('%d.%m.%Y')"/>
+                        </p>
+                        <p>
+                            Випробувальна лабораторія: <t t-if="o.safety_laboratory_id.name" t-out="o.safety_laboratory_id.name"/>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>п.6 ТР Р: Захист здоров’я</td>
+                    <td>
+                        <p>
+                            <t t-out="', '.join([dstu.name for dstu in o.health_details])"/>
+                        </p>
+                        <p>
+                            ПРОТОКОЛ №
+                            <t t-out="o.health_protocol_no"/> від <t t-if="o.health_protocol_date" t-out="o.health_protocol_date.strftime('%d.%m.%Y')"/>
+                        </p>
+                        <p>
+                            Випробувальна лабораторія: <t t-if="o.health_laboratory_id.name" t-out="o.health_laboratory_id.name"/>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>п.6 ТР Р: Електромагнітна сумісність</td>
+                    <td>
+                        <p>
+                            <t t-out="', '.join([dstu.name for dstu in o.emc_details])"/>
+                        </p>
+                        <p>
+                            ПРОТОКОЛ №
+                            <t t-out="o.emc_protocol_no"/> від <t t-if="o.emc_protocol_date" t-out="o.emc_protocol_date.strftime('%d.%m.%Y')"/>
+                        </p>
+                        <p>
+                            Випробувальна лабораторія: <t t-if="o.emc_laboratory_id.name" t-out="o.emc_laboratory_id.name"/>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>п.7 ТР Р: Ефективне використання радіочастотного ресурсу
+                        України
+                    </td>
+                    <td>
+                        <p>
+                            <t t-out="', '.join([dstu.name for dstu in o.spectrum_details])"/>
+                        </p>
+                        <p>
+                            ПРОТОКОЛ №
+                            <t t-out="o.spectrum_protocol_no"/> від <t t-if="o.spectrum_protocol_date" t-out="o.spectrum_protocol_date.strftime('%d.%m.%Y')"/>
+                        </p>
+                        <p>
+                            Випробувальна лабораторія: <t t-if="o.spectrum_laboratory_id.name" t-out="o.spectrum_laboratory_id.name"/>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Основні вимоги</td>
+                    <td>Звіт про оцінювання № УЧН-23/D.241 від 04.10.2023</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table>
+            <colgroup>
+                <col style="width: 44%"/>
+                <col style="width: 4%"/>
+                <col style="width: 19%"/>
+                <col style="width: 4%"/>
+                <col style="width: 27%"/>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>
+                        <strong>Керівник органу з оцінки відповідності</strong>
+                    </th>
+                    <th colspan="2"></th>
+                    <th colspan="2">
+                        <strong>Олександр ЛИСЕНКО</strong>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2">
+                        <em>Director of the Conformity Assessment Body</em>
+                    </td>
+                    <td colspan="2">
+                        <em>Підпис / Signature</em>
+                    </td>
+                    <td>
+                        <em>Full name</em>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td colspan="2" style="text-align: center;">м.п.</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </template>
+</odoo>

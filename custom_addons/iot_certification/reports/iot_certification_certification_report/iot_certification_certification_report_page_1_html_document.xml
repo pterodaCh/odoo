@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="iot_certification_certification_report_page_1_html_document">
+        <p style="text-align:right">
+            &#xa0;
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:10pt">
+            <strong>
+                <span style="font-family:Calibri; ">&#xa0;</span>
+            </strong>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:2pt">
+            <strong>
+                <span style="font-family:Calibri; ">&#xa0;</span>
+            </strong>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:4pt">
+            <strong>
+                <span style="font-family:Calibri; ">&#xa0;</span>
+            </strong>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:4pt">
+            <strong>
+                <span style="font-family:Calibri; ">&#xa0;</span>
+            </strong>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:4pt">
+            <strong>
+                <span style="font-family:Calibri; ">&#xa0;</span>
+            </strong>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:10pt">
+            <strong>
+                <span style="font-family:Calibri; ">УКРАЇНСЬКИЙ ДЕРЖАВНИЙ ЦЕНТР РАДІОЧАСТОТ</span>
+            </strong>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:8pt">
+            <em>
+                <span style="font-family:Calibri; ">UKRAINIAN STATE CENTRE OF RADIO FREQUENCIES</span>
+            </em>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:10pt">
+            <strong>
+                <span style="font-family:Calibri; ">ОРГАН З ОЦІНКИ ВІДПОВІДНОСТІ (ООВ УКРЧАСТОТНАГЛЯД)</span>
+            </strong>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:9pt">
+            <em>
+                <span style="font-family:Calibri; font-size:8pt; ">CONFORMITY ASSESSMENT BODY (</span>
+            </em>
+            <span class="shorttext" style="font-family:Calibri; font-style:italic">CAB</span>
+            <em>
+                <span style="font-family:Calibri; font-size:8pt; ">UKRCHASTOTNAGLIAD)</span>
+            </em>
+        </p>
+        <p style="text-align:center; font-size:6pt">
+            <strong>
+                <span style="font-family:Calibri; ">&#xa0;</span>
+            </strong>
+        </p>
+        <p style="text-align:center">
+            <img src="/iot_certification/static/certification_report/certificate_header_text.png" width="648"
+                 height="40" alt=""/>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center">
+            <em>
+                <span style="font-family:Calibri; ">TYPE EXAMINATION CERTIFICATE</span>
+            </em>
+        </p>
+        <p style="margin-left:18pt; text-indent:-18pt; font-size:4pt">
+            <strong>
+                <span style="font-family:Calibri; ">&#xa0;</span>
+            </strong>
+        </p>
+        <table>
+            <colgroup>
+                <col style="width: 28%"/>
+                <col style="width: 6%"/>
+                <col style="width: 65%"/>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th colspan="2">
+                        <p>
+                            <strong>Зареєстровано в реєстрі ООВ</strong>
+                        </p>
+                        <p>
+                            <em>Registered in the CAB Register</em>
+                        </p>
+                    </th>
+                    <th>
+                        <p>
+                            <strong>№</strong>
+                            <strong>UA.R.TR.052.268-23</strong>
+                        </p>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2">
+                        <p>
+                            <strong>Термін дії з</strong>
+                            <br/>
+                            <em>Valid from</em>
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            <strong>
+                                <t t-out="o.get_formatted_date()"/>
+                            </strong>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <strong>Продукт</strong>
+                        </p>
+                        <p>
+                            <em>Product</em>
+                        </p>
+                    </td>
+                    <td colspan="2">
+                        <strong>
+                            <t t-out="o.product_id.name"/>
+                        </strong>
+                         у
+                        складі згідно з Додатком 2
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <strong>Торговельна марка</strong>
+                        </p>
+                        <p>
+                            <em>Trade name</em>
+                        </p>
+                    </td>
+                    <td colspan="2">
+                        <strong>
+                            <t t-if="o.appliciant_id.is_company == True" t-out="o.appliciant_id.name"/>
+                            <t t-else="" t-out="o.appliciant_id.parent_id.name"/>
+                        </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <strong>Модель/Тип</strong>
+                        </p>
+                        <p>
+                            <em>Model/Type</em>
+                        </p>
+                    </td>
+                    <td colspan="2">
+                        <strong>
+                            <t t-out="o.model_line_model"/>
+                        </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <strong>Опис обладнання</strong>
+                        </p>
+                        <p>
+                            <em>Description of equipment</em>
+                        </p>
+                    </td>
+                    <td colspan="2">
+                        <strong>
+                            <t t-out="o.get_equipment_description()"/>
+                        </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <strong>Відповідає</strong>
+                        </p>
+                        <p>
+                            <em>Product is in conformity with</em>
+                        </p>
+                    </td>
+                    <td colspan="2">
+                        <p>
+                            <strong>- суттєвим вимогам Технічного регламенту
+                                радіообладнання (ТР Р), затвердженого Постановою КМ України від
+                                24.05.2017 № 355;
+                            </strong>
+                        </p>
+                        <p>
+                            <strong>- узагальненим умовам застосування згідно з Додатками 11, 42,
+                                43 до Рішення НКРЗІ від 12.01.2012 №18;
+                            </strong>
+                        </p>
+                        <p>
+                            <strong>- нормативним документам, наведеним в Додатку
+                                1
+                            </strong>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <strong>Порядок використання</strong>
+                        </p>
+                        <p>
+                            <em>Basis for operation</em>
+                        </p>
+                    </td>
+                    <td colspan="2">
+                        <strong>на бездозвільній основі</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <strong>Отримувач сертифіката</strong>
+                        </p>
+                        <p>
+                            <em>Recipient of the certificate, status</em>
+                        </p>
+                    </td>
+                    <td colspan="2">
+                        <p>
+                            <strong>ТОВ "Радіо Тест Стандарт",</strong>
+                            03115,
+                            Київ, вул. Львівська, 22А, к. 135,
+                        </p>
+                        <p>ЄДРПОУ 39205151, уповноважений представник</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <strong>Виробник</strong>
+                        </p>
+                        <p>
+                            <em>Manufacturer</em>
+                        </p>
+                    </td>
+                    <td colspan="2">
+<!--                        <strong></strong> TODO: strong company name-->
+                        <t t-out="o.appliciant_id.contact_address"/> на підприємствах, згідно з Додатком 2
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <strong>ООВ, що видав Сертифікат</strong>
+                        </p>
+                        <p>
+                            <em>Certificate is issued</em>
+                            <em>by CAB</em>
+                        </p>
+                    </td>
+                    <td colspan="2">
+                        <p>
+                            <strong>ООВ УКРЧАСТОТНАГЛЯД</strong>
+                            №
+                            <strong>UA.TR.052</strong>
+                        </p>
+                        <p>за наказом Мінекономіки України від 11.04.2018 №500;</p>
+                        <p>Атестат про акредитацію НААУ від 09.05.2023 №1О179;</p>
+                        <p>просп. Перемоги, 151, м. Київ, 03179</p>
+                        <p>тел. (044) 422-85-31; 422-81-14;</p>
+                        <p>ел.пошта: <a href="mailto:oc@ucrf.gov.ua">oc@ucrf.gov.ua</a> ,
+                            <a
+                                    href="http://www.ucrf.gov.ua/">http://www.ucrf.gov.ua
+                            </a>
+                            <mark></mark>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <strong>На підставі</strong>
+                        </p>
+                        <p>
+                            <em>On the bases of</em>
+                        </p>
+                    </td>
+                    <td colspan="2" style="text-align: left;">Звіту про оцінювання №
+                        УЧН-23/D.241 від 04.10.2023
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Умови чинності сертифіката</strong>
+                    </td>
+                    <td colspan="2">Виконання умов сертифікаційної угоди № УЧН-23/D.241</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>
+                            <strong>Додаткова інформація</strong>
+                        </p>
+                        <p>
+                            <em>Additional information</em>
+                        </p>
+                    </td>
+                    <td colspan="2">
+                        <p>Цей сертифікат видано у відповідності з п. 6 Додатка
+                            2 ТР Р та дійсний
+                        </p>
+                        <p>тільки з Додатками 1, 2, 3.</p>
+                        <p>Інформація щодо чинності проведеної оцінки відповідності на
+                            <a
+                                    href="https://testcentre.ucrf.gov.ua">https://testcentre.ucrf.gov.ua
+                            </a>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2"></td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <colgroup>
+                <col style="width: 45%"/>
+                <col style="width: 24%"/>
+                <col style="width: 30%"/>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>
+                        <strong>Керівник органу з оцінки відповідності</strong>
+                    </th>
+                    <th style="text-align: center;"></th>
+                    <th>
+                        <strong>Олександр ЛИСЕНКО</strong>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <em>Director of the Conformity Assessment Body</em>
+                    </td>
+                    <td style="text-align: center;">
+                        <em>Підпис / Signature</em>
+                    </td>
+                    <td>
+                        <em>Full name</em>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td style="text-align: center;">м.п.</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </template>
+</odoo>

@@ -31,6 +31,12 @@
         'reports/iot_application_report/iot_application_report.xml',
         # iot report related
         'reports/iot_certification_report.xml',
+        # iot certification report related
+        "reports/iot_certification_certification_report/iot_certification_certification_report_style.xml",
+        "reports/iot_certification_certification_report/iot_certification_certification_report_page_1_html_document.xml",
+        "reports/iot_certification_certification_report/iot_certification_certification_report_appendix_1_html.xml",
+        "reports/iot_certification_certification_report/iot_certification_certification_report_appendix_2_html.xml",
+        "reports/iot_certification_certification_report/iot_certification_certification_report.xml",
     ],
     'installable': True,
     'auto_install': True,

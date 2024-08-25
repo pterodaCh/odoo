@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="iot_certification_certification_report_style">
+        <style>
+            body { font-family:'Calibri'; font-size:11pt }
+            h1, h2, h3, h4, h6, p { margin:0pt }
+
+            p {
+                padding: 0;
+                line-height: 1;
+            }
+
+            table { margin-top:0pt; margin-bottom:0pt }
+
+            img {
+            max-width: 100%;
+            height: auto;
+            }
+
+            table {
+            width: 100%;
+            border-collapse: collapse;
+            }
+
+            td, th {
+<!--            padding 8-->
+                padding: 6px;
+                padding-top: 0;
+                text-align: left;
+                border: 1px solid #ffffff;
+            }
+
+            .footer-table {
+                position: absolute;
+                bottom: -100;
+                width: 100%;
+            }
+        </style>
+    </template>
+</odoo>

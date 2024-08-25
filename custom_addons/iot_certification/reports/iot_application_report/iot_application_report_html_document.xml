@@ -751,6 +751,7 @@
                         <strong>Представник ООВ</strong>
                         _________________
                     </td>
+
                     <td class="my-footer-td">
                         <strong>Заявник</strong>:
                         <br/>
@@ -759,9 +760,8 @@
                             Підпис/
                             <em>signature</em>
                         </div>
-
-
                     </td>
+
                     <td class="my-footer-td">
                         <br/>
                         ______________________

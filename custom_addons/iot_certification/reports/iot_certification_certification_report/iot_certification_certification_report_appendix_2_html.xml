@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="iot_certification_certification_report_appendix_2_html">
+        <p style="font-size:6pt">
+            &#xa0;
+        </p>
+        <p style="font-size:6pt">
+            &#xa0;
+        </p>
+        <p style="font-size:6pt">
+            &#xa0;
+        </p>
+        <p style="font-size:6pt">
+            &#xa0;
+        </p>
+        <p style="font-size:6pt">
+            &#xa0;
+        </p>
+        <p style="font-size:3pt">
+            &#xa0;
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:10pt">
+            <strong>
+                <span style="font-family:Calibri; ">УКРАЇНСЬКИЙ ДЕРЖАВНИЙ ЦЕНТР РАДІОЧАСТОТ</span>
+            </strong>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:8pt">
+            <em>
+                <span style="font-family:Calibri; ">UKRAINIAN STATE CENTRE OF RADIO FREQUENCIES</span>
+            </em>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:10pt">
+            <strong>
+                <span style="font-family:Calibri; ">ОРГАН З ОЦІНКИ ВІДПОВІДНОСТІ (ООВ УКРЧАСТОТНАГЛЯД)</span>
+            </strong>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:9pt">
+            <em>
+                <span style="font-family:Calibri; font-size:8pt; ">CONFORMITY ASSESSMENT BODY (</span>
+            </em>
+            <span class="shorttext" style="font-family:Calibri; font-style:italic">CAB</span>
+            <em>
+                <span style="font-family:Calibri; font-size:8pt; ">UKRCHASTOTNAGLIAD)</span>
+            </em>
+        </p>
+        <p style="text-align:center; font-size:10pt">
+            <img src="/iot_certification/static/certification_report/certificate_appendix_2_new.png" width="200" height="32" alt=""/>
+        </p>
+        <p style="text-align:center; font-size:14pt">
+            <span style="font-family:Calibri">до сертифіката експертизи типу</span>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center">
+            <em>
+                <span style="font-family:Calibri; ">Annex to Type Examination Certificate</span>
+            </em>
+        </p>
+        <table style="border-collapse:collapse">
+            <tr style="height:16.75pt">
+                <td style="width:265.6pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <p style="font-size:4pt">
+                        <strong>
+                            <span style="font-family:Calibri; ">&#xa0;</span>
+                        </strong>
+                    </p>
+                    <p>
+                        <strong>
+                            <span style="font-family:Calibri; ">№</span>
+                        </strong>
+                        <span style="font-family:Calibri"></span>
+                        <strong>
+                            <span style="font-family:Calibri; ">UA.R.TR.052.287-23</span>
+                        </strong>
+                    </p>
+                </td>
+                <td style="width:194.8pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top">
+                    <p>
+                        <strong>
+                            <span style="font-family:Calibri; ">&#xa0;</span>
+                        </strong>
+                    </p>
+                    <p style="font-size:6pt">
+                        <strong>
+                            <span style="font-family:Calibri; ">&#xa0;</span>
+                        </strong>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <p style="font-size:4pt">
+            &#xa0;
+        </p>
+        <p style="font-size:4pt">
+            &#xa0;
+        </p>
+        <p style="font-size:4pt">
+            &#xa0;
+        </p>
+        <p style="font-size:4pt">
+            &#xa0;
+        </p>
+        <p style="font-size:4pt">
+            &#xa0;
+        </p>
+        <table>
+            <colgroup>
+                <col style="width: 17%"/>
+                <col style="width: 82%"/>
+            </colgroup>
+            <thead t-if="o.subpart_notes">
+                <tr>
+                    <th>
+                        <strong>Додаткові вимоги:</strong>
+                    </th>
+                    <th>
+                        <t t-out="o.subpart_notes"/>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <strong>Склад обладнання:</strong>
+                    </td>
+                    <td>
+                        <p><t t-out="o.part_of_the_equipment"/></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <strong>Назви та адреси підприємств:</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: left;">
+
+                        <t t-set="count" t-value="0"/>
+                        <t t-foreach="o.enterprise_ids" t-as="enterprise">
+                            <t t-set="count" t-value="count + 1"/>
+                            <p t-out="str(count) + ') ' + str(enterprise) + ';'"/>
+                        </t>
+
+<!--                        <p>1) "FIH PRECISION-->
+<!--                            ELECTRONICS (LANGFANG) CO.,LTD.", Nо. 369,SOUTH JIANSHE ROAD, ANCI-->
+<!--                            DISTRICT, LANGFANG, HEBEI, P.R.CHINA,065000;-->
+<!--                        </p>-->
+<!--                        <p>2) "Shenzhen Zowee Smart Manufacturing Co., Ltd.", No 149, Second-->
+<!--                            Industrial Road, TangXiachong Community,YanLuo Street, Bao'an District,-->
+<!--                            Shenzhen City, Guangdong Province,P.R.China;-->
+<!--                        </p>-->
+<!--                        <p>3) "LONGCHEER ELECTRONICS (HUIZHOU) CO., LTD.", No. 28, Hechang Six-->
+<!--                            Road (West), Zhongkai High Technology Zone, Huizhou, Guangdong,-->
+<!--                            China;-->
+<!--                        </p>-->
+<!--                        <p>4) "Xi’an BYD Electronic Co., Ltd.", No.2, BYD Road, New Industrial-->
+<!--                            Park, High-tech Zone, Xi’an City, Shaanxi Province, P.R.China;-->
+<!--                        </p>-->
+<!--                        <p>5) Nanchang Huaqin Electronic Technology Co., Ltd., No 2999,-->
+<!--                            Tianxiang Avenue,Nanchang Hi-tech Development Zone,Nanchang City,-->
+<!--                            Jiangxi Province, P.R.China;-->
+<!--                        </p>-->
+<!--                        <p>6) PT SAT NUSAPERSADA Tbk, Jl. Pelita VI No. 99, Lubuk Baja, Batam,-->
+<!--                            Kepulauan Riau, Indonesia;-->
+<!--                        </p>-->
+<!--                        <p>7) DBG TECHNOLOGY CO., LTD, No.5, Yongda Road,Xiang Shui River-->
+<!--                            Industrial Area, Daya Bay, Huizhou City,516083 Guangdong, P. R.-->
+<!--                            China;-->
+<!--                        </p>-->
+<!--                        <p>8) NANCHANG LONGCHEER INFORMATION TECHNOLOGY CO., LTD., No. 899,-->
+<!--                            YAOHU WEST Road, Nanchang HIGH-TECH Industrial Development Zone, 330096-->
+<!--                            Nanchang, Jiangxi, PEOPLE’S REPUBLIC OF CHINA;-->
+<!--                        </p>-->
+<!--                        <p>9) Lens Technology (XiangTan) Co.,Ltd., No.16, Baishi West-->
+<!--                            Road,Xiangtan Economic and Technological Development Zone, Xiangtan-->
+<!--                            City, Hunan Province, P.R.China;-->
+<!--                        </p>-->
+<!--                        <p>10) Salcomp Turkey Teknoloji Sanayi ve Ticaret Anonim Sirketi,-->
+<!--                            ÜNİVERSİTE MAH. FİRUZKÖY BULVARI BUL. SEL DIS TIC. VE PAZARLAMA A.S.-->
+<!--                            SİTESİ SEL DIS TIC. VE PAZARLAMA A.S. BLOK NO: 31 AVCILAR / İSTANBUL,-->
+<!--                            Turkey;-->
+<!--                        </p>-->
+<!--                        <p>11) DBG TECHNOLOGY(VIET NAM) COMPANY LIMITED, Factory 1A and 2A, Lot-->
+<!--                            CN13, CN18, Yen Binh Industrial Park, Dong Tien Ward, Pho Yen Town, Thai-->
+<!--                            Nguyen Province, Vietnam.-->
+<!--                        </p>-->
+<!--                        <p>12) Nanchang Qinsheng Electronic Technology Co., Ltd., No. 638,-->
+<!--                            Hangkongcheng Avenue, Nanchang Hi-tech Development Zone, Nanchang City,-->
+<!--                            Jiangxi Province, P.R. China.-->
+<!--                        </p>-->
+<!--                        <p>13) DBG Technology Bd Ltd., B-305/1, Aziz Chowdhury Model Tower,-->
+<!--                            Vogra, National University, Bason, 1704 Gazipur, BANGLADESH.-->
+<!--                        </p>-->
+<!--                        <p>14) Select Technologies (Private) Limited, 152-1-M, Quaid-e-Azam-->
+<!--                            Industrial Estate Kot Lakh Pat, 54000 Lahore, PAKISTAN.-->
+<!--                        </p>-->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <colgroup>
+                <col style="width: 45%"/>
+                <col style="width: 5%"/>
+                <col style="width: 18%"/>
+                <col style="width: 30%"/>
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>
+                        <strong>Керівник органу з оцінки відповідності</strong>
+                    </th>
+                    <th colspan="2" style="text-align: center;"></th>
+                    <th>
+                        <strong>Олександр ЛИСЕНКО</strong>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <em>Director of the Conformity Assessment Body</em>
+                    </td>
+                    <td colspan="2" style="text-align: center;">
+                        <em>Підпис /
+                            Signature
+                        </em>
+                    </td>
+                    <td>
+                        <em>Full name</em>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"></td>
+                    <td style="text-align: center;">м.п.</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </template>
+</odoo>

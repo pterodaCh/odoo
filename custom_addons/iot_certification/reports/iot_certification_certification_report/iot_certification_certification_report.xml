@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<odoo>
+    <template id="iot_certification_certification_report_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <t t-call="iot_certification.iot_certification_certification_report_style"/>
+                    <t t-call="iot_certification.iot_certification_certification_report_page_1_html_document"/>
+                    <div style="page-break-before: always;"/>
+                    <t t-call="iot_certification.iot_certification_certification_report_appendix_1_html"/>
+                    <div style="page-break-before: always;"/>
+                    <t t-call="iot_certification.iot_certification_certification_report_appendix_2_html"/>
+                    <div style="page-break-before: always;"/>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="iot_certification_certification_report_action" model="ir.actions.report">
+        <field name="name">Роздрукувати сертифікат</field>
+        <field name="model">iot_certification_order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">iot_certification.iot_certification_certification_report_template</field>
+        <field name="report_file">event.iot_certification_certification_report</field>
+        <field name="print_report_name">f"Certification report No.{object.name}"</field>
+        <field name="paperformat_id" ref="iot_certification.paperformat_no_hf"/>
+        <field name="binding_model_id" eval="True"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
