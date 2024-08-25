@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="report_template">
+            <t t-call="web.basic_layout">
+                <t t-foreach="docs" t-as="doc">
+                    <div class="page" style="font-family: Calibri; font-size: 8pt; ">
+                        <t t-call="iot_certification.report_protocol_template"/>
+                        <t t-call="iot_certification.report_plan_template"/>
+                        <t t-call="iot_certification.report_form_template"/>
+                        <t t-call="iot_certification.report_analysis_and_notes_template"/>
+                        <t t-call="iot_certification.report_styles_template"/>
+                    </div>
+                </t>
+            </t>
+        </template>
+        <record id="paperformat_payslip_group"
+                model="report.paperformat">
+            <field name="name">European A4</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">5</field>
+            <field name="margin_right">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">43</field>
+            <field name="dpi">90</field>
+        </record>
+        <report
+            id="action_report"
+            string="Звіт"
+            model="iot_certification_order"
+            report_type="qweb-pdf"
+            name="iot_certification.report_template"
+            file="iot_certification.report_template"
+            paperformat="paperformat_payslip_group"
+            menu="False"
+        />
+
+    </data>
+</odoo>

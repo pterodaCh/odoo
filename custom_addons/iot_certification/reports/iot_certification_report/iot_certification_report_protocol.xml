@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_protocol_template">
+        <p style="text-align: center;">
+            <strong>Протокол розгляду заявки №
+                <span t-field="doc.name"/>
+            </strong>
+        </p>
+        <p style="text-align: center;">
+            <t t-if="doc.date_of_commencement_of_work">від
+                <span t-esc="doc.date_of_commencement_of_work.strftime('%d.%m.%Y')"/>
+            </t>
+        </p>
+
+        <table class="table table-sm table-bordered"
+               style="width: 100%; border-collapse: collapse; text-align: center;">
+            <thead>
+                <tr>
+                    <th style="width: 3%; text-align: center; border: 1px solid black;">№<br/>з/п
+                    </th>
+                    <th style="width: 17%; text-align: center; border: 1px solid black;">Деталі/
+                        <br/>
+                        Details
+                    </th>
+                    <th style="width: 40%; text-align: center; border: 1px solid black;">Інформація/
+                        <br/>Information
+                    </th>
+                    <th style="width: 40%; text-align: center; border: 1px solid black;">Висновок/
+                        <br/>
+                        Conditions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">1</td>
+                    <td style="border: 1px solid black; text-align: left;">Ідентифікація заявника та
+                        продукції
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;">
+                        <p>
+                            <strong>Заявник:</strong>
+                            <span t-field="doc.appliciant_id"/>
+                        </p>
+                        <p>
+                            <strong>Продукт:</strong>
+                            <span t-field="doc.product_id"/>
+                        </p>
+                        <p>
+                            <strong>Виробник:</strong>
+                            <span t-field="doc.producer_id"/>
+                        </p>
+                        <p>
+                            <strong>Підприємство:</strong>
+                            <span t-field="doc.enterprise_ids"/>
+                        </p>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left">
+                        <p>Інформація щодо заявника та продукції є достатньою для проведення оцінювання.
+                            Заявка охоплює тип продукції, стосовно яких ООВ призначений
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">2</td>
+                    <td style="border: 1px solid black; text-align: left;">Визначення переліку
+                        стандартів та інших нормативних документів, на відповідність яким здійснюється
+                        оцінювання
+                    </td>
+                    <td style="border: 1px solid black; text-align: left; padding: 0;">
+                        <t t-foreach="doc.additional_order_ids" t-as="ao">
+                            <table class="table table-sm table-bordered"
+                                   style="width: 100%; border-collapse: collapse; margin: 0;">
+                                <tr>
+                                    <td style="border: 1px solid black; width: 30%; border-top: none; border-left: none;">
+                                        <strong>п.6 ТР Р (Безпека)</strong>
+                                    </td>
+                                    <td style="border: 1px solid black; border-top: none; border-right: none; padding-top: 0">
+                                        <t t-foreach="ao.safety_details_1" t-as="safety_detail">
+                                            <div style="margin-top: 5px" t-esc="safety_detail.name"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid black; width: 30%; border-left: none;">
+                                        <strong>п.6 ТР Р (Захист здоров'я)</strong>
+                                    </td>
+                                    <td style="border: 1px solid black; border-right: none; padding-top: 0">
+                                        <t t-foreach="ao.health_details_1" t-as="health_detail">
+                                            <div style="margin-top: 5px" t-esc="health_detail.name"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid black; width: 30%; border-left: none;">
+                                        <strong>п.6 ТР Р (Електромагнітна сумісність)</strong>
+                                    </td>
+                                    <td style="border: 1px solid black; border-right: none; padding-top: 0">
+                                        <t t-foreach="ao.emc_details_1" t-as="emc_detail">
+                                            <div style="margin-top: 5px" t-esc="emc_detail.name"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid black; width: 30%; border-bottom: none; border-left: none;">
+                                        <strong>п.6 ТР Р (Ефективне використання радіочастотного ресурсу
+                                            України)
+                                        </strong>
+                                    </td>
+                                    <td style="border: 1px solid black; border-bottom: none; border-right: none; padding-top: 0">
+                                        <t t-foreach="ao.spectrum_details_1" t-as="spectrum_detail">
+                                            <div style="margin-top: 5px" t-esc="spectrum_detail.name"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </table>
+                        </t>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left">
+                        <p>Визначений та погоджений перелік стандартів.<br/>Заявка охоплює НД, стосовно
+                            яких ООВ призначений
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">3</td>
+                    <td style="border: 1px solid black; text-align: left;">Визначення схеми оцінювання
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;">
+                        <p>
+                            <strong>
+                                Модуль В
+                            </strong>
+                        </p>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left">
+                        <p>Схема оцінювання за заявкою визначена.<br/>Заявка охоплює схему оцінювання,
+                            стосовно яких ООВ призначений
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">4</td>
+                    <td style="border: 1px solid black; text-align: left;">Визначення компетентності та
+                        засобів для виконання оцінювання
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;">
+                        <div style="margin-bottom: 5px;">
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            ООВ є призначеним за ТР Р (UA.TR.052);
+                        </div>
+                        <div style="margin-bottom: 5px;">
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            ООВ має чинний Атестат акредитації №10179;
+                        </div>
+                        <div style="margin-bottom: 5px;">
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            ООВ має процедуру з оцінювання ПОВ-04;
+                        </div>
+                        <div style="margin-bottom: 5px;">
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            перелік стандартів, визначений в пю2, входить до сфери акредитації ООВ;
+                        </div>
+                        <div style="margin-bottom: 5px;">
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            ООВ має уповноважений персонал.
+                        </div>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left">
+                        <p>ООВ має наявні засоби і компетентність для виконання оцінювання за заявкою
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">5</td>
+                    <td style="border: 1px solid black; text-align: left;">Аналіз наданої технічної
+                        документації
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;">
+                        <div style="margin-bottom: 5px;">
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            Фотографії або що показують зовнішній вигляд, маркування та внутрішнє
+                            компонування;
+                        </div>
+                        <div style="margin-bottom: 5px;">
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - Версії програмного забезпечення або апаратно реалізованого програмного
+                            забезпечення, які можуть впливати на відповідність суттєвим вимогам ТР Р;;
+                        </div>
+                        <div style="margin-bottom: 5px;">
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - Інструкція з експлуатації (українською мовою та з обов'язковим
+                            розділом(БЕЗПЕКА);
+                        </div>
+                        <div style="margin-bottom: 5px;">
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - Технічна спеціфікація;
+                        </div>
+                        <div style="margin-bottom: 5px;">
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - Технологічні креслення і схеми компонентів, вузлової зборки, електричні
+                            схеми, технічний проект та інша подібна інформація;
+                        </div>
+                        <div style="margin-bottom: 5px;">
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - Оцінка та аналіз ризиків;
+                        </div>
+                        <div style="margin-bottom: 5px;">
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - Протоколи випробувань;
+                        </div>
+                        <div style="margin-bottom: 5px;">
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            Декларації про відповідність, сертифікати на продукцію та підприємства, тощо
+                        </div>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left">
+                        <p>Докумментація достатня та доступна для виконання оцінювання за заявкою</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">6</td>
+                    <td style="border: 1px solid black; text-align: left;">Встановлення попереднього
+                        досвіду з оцінювання того ж самого типу продукції для даного Заявника
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;">
+                        <div style="margin-bottom: 5px;">
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - тип продукції раніше проходив оцінювання в ООВ;
+                        </div>
+                        <div style="margin-bottom: 5px;">
+                            <span style="font-size: 16pt; line-height: 0.5; line-height: 0.5; display: inline">
+                                &#9744;
+                            </span>
+                            - тип продукції раніше не проходив оцінювання в ООВ;
+                        </div>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left">
+                        <p></p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">7</td>
+                    <td style="border: 1px solid black; text-align: left;">Розбіжності у розумінні між
+                        ООВ та клієнтом вирішені.
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;">
+                        <p>Розбіжності...</p>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left">
+                        <p>Будь-які розбіжності у розумінні між ООВ та клієнтом - відсутні</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered"
+               style="width: 100%; border-collapse: collapse; border: 1px solid black; text-align: center;">
+            <tbody>
+                <tr>
+                    <td style="width: 3%; text-align: center; border: none; font-size: 16pt">
+                        <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;</span>
+                    </td>
+                    <td style="width: 17%; text-align: center; border: none"></td>
+                    <td style="width: 40%; text-align: left; border: none">Розгляд заявки проведено/
+                        <i>The order has been reviewed</i>
+                        <p style="text-align: right">
+                            <br/>
+                            <span t-esc="doc.conducted_an_assessment.name"/>
+                        </p>
+                    </td>
+                    <td style="width: 40%; text-align: center; border: none"></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered"
+               style="width: 100%; border-collapse: collapse; border: 1px solid black; text-align: center;">
+            <tbody>
+                <tr>
+                    <td style="width: 3%; border: 1px solid black; text-align: left;">8</td>
+                    <td style="width: 17%; border: 1px solid black; text-align: left;">Рішення щодо проведення
+                        оцінювання
+                    </td>
+                    <td style="width: 40%; border: 1px solid black; text-align: left;">
+                        <div style="margin-bottom: 5px;">
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - ООВ спроможний провести оцінювання
+                        </div>
+                        <div style="margin-bottom: 5px;">
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - ООВ не спроможний провести оцінювання
+                        </div>
+                        <div style="margin-bottom: 5px;">
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            інше
+                        </div>
+                    </td>
+                    <td style="width: 40%;border: 1px solid black; text-align: left">
+                        <p>Провести оцінку відповідності продукції за заявкою</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="border-bottom: 1px solid black; width: 100%; margin: 10px 0;">інше</div>
+        <table class="table table-sm table-bordered"
+               style="width: 100%; border-collapse: collapse; border: 1px solid black; text-align: center;">
+            <tbody>
+                <tr>
+                    <td style="width: 3%; text-align: center; border: none; font-size: 16pt">
+                        <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;</span>
+                    </td>
+                    <td style="width: 17%; text-align: center; border: none"></td>
+                    <td style="width: 40%; text-align: left; border: none">Рішення щодо проведення
+                        оцінювання прийнято/
+                        <i>An assessment decision has been made</i>
+                        <p style="text-align: right">
+                            <br/>
+                            <span t-esc="doc.conducted_an_analysis_and_made_a_decision_on_certification.name"/>
+                        </p>
+                    </td>
+                    <td style="width: 25%; text-align: center; border: none"></td>
+                    <td style="width: 15%; text-align: center; border: none"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="page-break-after: always;"></div>
+    </template>
+</odoo>

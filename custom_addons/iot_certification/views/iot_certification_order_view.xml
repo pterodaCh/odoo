@@ -16,9 +16,6 @@
         <field name="model">iot_certification_order</field>
         <field name="arch" type="xml">
             <tree string="Замовлення на сертифікацію">
-<!--                <button name="print_report" type="object" icon="fa-solid fa-print"-->
-<!--                        string="Надрукувати"-->
-<!--                        groups="iot_certification.group_certification_report_manager, iot_certification.group_certification_cert_manager"/>-->
                 <button name="copy_record_and_update_name" string="Копіювати" type="object"/>
                 <field name="name" string="Реєстраційний номер" decoration-bf="1"/>
                 <field name="responsible_person" widget="many2one_avatar_user"/>
@@ -41,13 +38,13 @@
                 <header>
                     <button name="print_application" type="object" icon="fa-solid fa-print" class="oe_highlight"
                             string="Друк заявки"
-                            groups="iot_certification.group_certification_report_manager, iot_certification.group_certification_cert_manager"/>
+                            groups="iot_certification.group_certification_report_manager, iot_certification.group_certification_cert_manager, iot_certification.group_certification_performer"/>
                     <button name="print_report" type="object" icon="fa-solid fa-print" class="oe_highlight"
                             string="Друк звіту"
-                            groups="iot_certification.group_certification_report_manager, iot_certification.group_certification_cert_manager"/>
+                            groups="iot_certification.group_certification_report_manager, iot_certification.group_certification_cert_manager, iot_certification.group_certification_performer"/>
                     <button name="print_cert" type="object" icon="fa-solid fa-print" class="oe_highlight"
                             string="Друк сертифікату"
-                            groups="iot_certification.group_certification_report_manager, iot_certification.group_certification_cert_manager"/>
+                            groups="iot_certification.group_certification_report_manager, iot_certification.group_certification_cert_manager, iot_certification.group_certification_performer"/>
                     <field name="status" widget="statusbar"/>
                 </header>
                 <sheet>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="report_plan_template">
+        <p style="text-align: center;">
+            <strong>ПЛАН</strong>
+        </p>
+        <p style="text-align: center;">
+            <strong>Діяльності з оцінювання роботи
+                <span t-field="doc.name"/>
+                <t t-if="doc.safety_protocol_date">від
+                    <span t-esc="doc.safety_protocol_date.strftime('%d.%m.%Y')"/>
+                </t>
+            </strong>
+        </p>
+
+        <table class="table table-sm table-bordered"
+               style="width: 100%; border-collapse: collapse; text-align: center;">
+            <thead>
+                <tr>
+                    <th style="width: 3%; text-align: center; border: 1px solid black;">№<br/>з/п
+                    </th>
+                    <th style="width: 37%; text-align: center; border: 1px solid black;">Заходи</th>
+                    <th style="width: 20%; text-align: center; border: 1px solid black;">Виконавець</th>
+                    <th style="width: 20%; text-align: center; border: 1px solid black;">Відмітка про
+                        виконання
+                    </th>
+                    <th style="width: 20%; text-align: center; border: 1px solid black;">Примітка</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">1</td>
+                    <td style="border: 1px solid black; text-align: left;">Визначення відповідального
+                        виконавця та групи виконавців
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/></td>
+                    <td style="border: 1px solid black; text-align: left;">
+                        <p>
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - виконано
+                        </p>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">2</td>
+                    <td style="border: 1px solid black; text-align: left;">Оцінювання достатності
+                        технічного файлу
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;">
+                        <p>
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - виконано
+                        </p>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;" rowspan="5">3</td>
+                    <td style="border: 1px solid black; text-align: left;">Оцінювання відповідності
+                        технічних характеристик обладнання суттєвим вимогам ТР:
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"></td>
+                    <td style="border: 1px solid black; text-align: left;"></td>
+                    <td style="border: 1px solid black; text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">Вимоги безпеки</td>
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;">
+                        <p>
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - виконано
+                        </p>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">Захист здоров'я</td>
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;">
+                        <p>
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - виконано
+                        </p>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">Електромагнітна сумісність
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;">
+                        <p>
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - виконано
+                        </p>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">Ефективне використання
+                        радіочастотного ресурсу України
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;">
+                        <p>
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - виконано
+                        </p>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">4</td>
+                    <td style="border: 1px solid black; text-align: left;">Аналізування результатів
+                        оцінювання
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/></td>
+                    <td style="border: 1px solid black; text-align: left;">
+                        <p>
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - виконано
+                        </p>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">5</td>
+                    <td style="border: 1px solid black; text-align: left;">Прийняття рішення ззза
+                        результатами оцінки відповідності
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/></td>
+                    <td style="border: 1px solid black; text-align: left;">
+                        <p>
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - виконано
+                        </p>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">6</td>
+                    <td style="border: 1px solid black; text-align: left;">Заходи, за результатами
+                        прийнятого рішення:
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;">
+                        <p>
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - виконано
+                        </p>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">7</td>
+                    <td style="border: 1px solid black; text-align: left;">Оформлення звітних
+                        документів
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;">
+                        <p>
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - виконано
+                        </p>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">8</td>
+                    <td style="border: 1px solid black; text-align: left;">Заходи щодо усунення
+                        невідповідності
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"></td>
+                    <td style="border: 1px solid black; text-align: left;">
+                        <p>
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - виконано
+                        </p>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;">У разі необхідності, за
+                        окремим планом
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">9</td>
+                    <td style="border: 1px solid black; text-align: left;">Передача клієнту офіційних
+                        документів щодо оцінювання
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;">
+                        <p>
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - виконано
+                        </p>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"></td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: left;">10</td>
+                    <td style="border: 1px solid black; text-align: left;">Передача справи в архів</td>
+                    <td style="border: 1px solid black; text-align: left;"><t t-esc="doc.responsible_person.name"/>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;">
+                        <p>
+                            <span style="font-size: 16pt; line-height: 0.5; display: inline">&#9744;
+                            </span>
+                            - виконано
+                        </p>
+                    </td>
+                    <td style="border: 1px solid black; text-align: left;"></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-condensed"
+               style="width: 100%; border-collapse: collapse; border: none; text-align: center;">
+            <tbody>
+                <tr>
+                    <td style="width: 3%; text-align: center; border: none;"></td>
+                    <td style="width: 37%; text-align: center; border: none">Відповідальний виконавець
+                    </td>
+                    <td style="width: 20%; text-align: left; border: none">
+                        <div style="border-bottom: 1px solid black; width: 100%; margin: 10px 0;"></div>
+                    </td>
+                    <td style="width: 4%; text-align: center; border: none"></td>
+                    <td style="width: 36%; text-align: left; border: none">
+                        <span t-esc="doc.conducted_an_assessment.name"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-condensed"
+               style="width: 100%; border-collapse: collapse; border: none; text-align: center;">
+            <tr>
+                <td style="width: 3%; text-align: center; border: none;"></td>
+                <td style="width: 37%; text-align: center; border: none"></td>
+                <td style="width: 20%; text-align: left; border: none">
+                    <div style="border-bottom: 1px solid black; width: 100%; margin: 10px 0;"></div>
+                </td>
+                <td style="width: 4%; text-align: center; border: none"></td>
+                <td style="width: 36%; text-align: left; border: none">
+                    <span t-esc="doc.conducted_an_analysis_and_made_a_decision_on_certification.name"/>
+                </td>
+            </tr>
+        </table>
+        <div style="page-break-after: always;"></div>
+    </template>
+</odoo>

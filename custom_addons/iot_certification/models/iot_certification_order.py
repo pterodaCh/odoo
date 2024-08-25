@@ -1,4 +1,4 @@
-from odoo import api, fields, models, SUPERUSER_ID, exceptions
+from odoo import api, fields, models, SUPERUSER_ID, exceptions, _
 from babel.dates import format_date
 import datetime
 
@@ -11,9 +11,11 @@ class IoTCertificationOrder(models.Model):
 
     additional_order_ids = fields.One2many('iot_certification_additional_order', 'order_id', string='Additional Orders')
 
-    name  = fields.Char(
-        string='Реєстраційний номер', 
-        required=True)
+    name = fields.Char(
+        string='Реєстраційний номер',
+        readonly=True,
+        default=lambda self: _('New')
+    )
     
     date_of_commencement_of_work = fields.Date(
         string='Дата початку')
@@ -935,6 +937,18 @@ class IoTCertificationOrder(models.Model):
         
     def action_save_notes(self):
         self.general_notes_subpart_notes_editability = False
+
+    @api.model
+    def create(self, vals):
+        if vals.get('name', _('New')) == _('New'):
+            last_record = self.search([], order='id desc', limit=1)
+            if last_record:
+                last_number = int(last_record.name.split('-')[-1])
+                next_number = last_number + 1
+            else:
+                next_number = 1
+            vals['name'] = f'УЧН-{next_number}'
+        return super(IoTCertificationOrder, self).create(vals)
         
     def open_or_create_additional_order(self):
         additional_order = self.env['iot_certification_additional_order'].search([('order_id', '=', self.id)], limit=1)
@@ -968,14 +982,14 @@ class IoTCertificationOrder(models.Model):
     
     
     
-    @api.onchange('status')
-    def _onchange_status(self):
-        for record in self:
-            if record.status == 'approved' or record.status == 'readyforapproval':
-                verdict_fields = [field_name for field_name in record._fields if 'verdict' in field_name]
-                for field_name in verdict_fields:
-                    if record[field_name] != 'ok':
-                        raise exceptions.ValidationError('Помилка: є поля зі значенням "See remark". Статус не може бути змінений. Виправте всі ремарки і повторіть запит знову. Поле, що спричинило помилку: "{}"'.format(field_name))
+    # @api.onchange('status')
+    # def _onchange_status(self):
+    #     for record in self:
+    #         if record.status == 'approved' or record.status == 'readyforapproval':
+    #             verdict_fields = [field_name for field_name in record._fields if 'verdict' in field_name]
+    #             for field_name in verdict_fields:
+    #                 if record[field_name] != 'Ok':
+    #                     raise exceptions.ValidationError('Помилка: є поля зі значенням "See remark". Статус не може бути змінений. Виправте всі ремарки і повторіть запит знову. Поле, що спричинило помилку: "{}"'.format(field_name))
 
                     
     def copy_record_and_update_name(self):
