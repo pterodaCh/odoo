@@ -36,6 +36,12 @@
         'reports/iot_certification_report/iot_certification_report_form.xml',
         'reports/iot_certification_report/iot_certification_report_analysis_and_notes.xml',
         'reports/iot_certification_report/iot_certification_report_styles.xml',
+        # iot certification report related
+        "reports/iot_certification_certification_report/iot_certification_certification_report_style.xml",
+        "reports/iot_certification_certification_report/iot_certification_certification_report_page_1_html_document.xml",
+        "reports/iot_certification_certification_report/iot_certification_certification_report_appendix_1_html.xml",
+        "reports/iot_certification_certification_report/iot_certification_certification_report_appendix_2_html.xml",
+        "reports/iot_certification_certification_report/iot_certification_certification_report.xml",
     ],
     'installable': True,
     'auto_install': True,

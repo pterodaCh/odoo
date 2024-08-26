@@ -12,7 +12,7 @@ class Enterprise(models.Model):
         # for application report
 
         result = ""
-        if self.partner_id.is_company:
+        if self.partner_id.is_company or not self.partner_id.parent_id.name:
             result += '"' + self.partner_id.name + '", '
         else:
             result += '"' + self.partner_id.parent_id.name + '", '
