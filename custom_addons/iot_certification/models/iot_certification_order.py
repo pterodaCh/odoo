@@ -1029,13 +1029,20 @@ class IoTCertificationOrder(models.Model):
     def action_submit(self):
         for record in self:
             if record.status != 'inprogress':
-                raise exceptions.ValidationError('Помилка: неможливо підтвердити. Заявка не перевіряється')
-            if self.env.user.has_group('iot_certification.group_certification_report_manager'):
-                record.approved_report_status = True
-            if self.env.user.has_group('iot_certification.group_certification_cert_manager'):
-                record.approved_cert_status = True
+                if record.status == 'approved':
+                    if record.approved_cert_status or record.approved_report_status:
+                        record.approved_report_status = True
+                        record.approved_cert_status = True
+                else:
+                    raise exceptions.ValidationError('Помилка: неможливо підтвердити. Заявка не перевіряється')
+            else:
+                if self.env.user.has_group('iot_certification.group_certification_report_manager'):
+                    record.approved_report_status = True
+                if self.env.user.has_group('iot_certification.group_certification_cert_manager'):
+                    record.approved_cert_status = True
             if record.approved_cert_status or record.approved_report_status:
                 record.status = 'approved'
+
         return {
             'type': 'ir.actions.client',
             'tag': 'reload',
