@@ -41,6 +41,7 @@
         "reports/iot_certification_certification_report/iot_certification_certification_report_page_1_html_document.xml",
         "reports/iot_certification_certification_report/iot_certification_certification_report_appendix_1_html.xml",
         "reports/iot_certification_certification_report/iot_certification_certification_report_appendix_2_html.xml",
+        "reports/iot_certification_certification_report/iot_certification_certification_technical_specification_html.xml",
         "reports/iot_certification_certification_report/iot_certification_certification_report.xml",
     ],
     'installable': True,

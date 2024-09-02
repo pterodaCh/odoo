@@ -1,16 +1,87 @@
 <?xml version="1.0"?>
 
 <odoo>
+    <record id="certification_paperformat" model="report.paperformat">
+        <field name="name">A4</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+
+        <field name="margin_top">2</field>
+<!--        2-->
+
+        <field name="margin_bottom">30</field>
+        <field name="margin_left">12</field>
+        <field name="margin_right">4</field>
+        <field name="header_line" eval="False"/>
+
+        <field name="header_spacing">0</field>
+<!--        0-->
+
+        <field name="dpi">90</field>
+    </record>
+
+
+    <template id="certification_layout">
+        <div class="article o_report_layout_standard">
+            <t t-out="0"/>
+        </div>
+        <div class="footer">
+            <t t-call="iot_certification.iot_certification_certification_report_style"/>
+            <table>
+                <colgroup>
+                    <col style="width: 45%"/>
+                    <col style="width: 24%"/>
+                    <col style="width: 30%"/>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>
+                            <strong>Керівник органу з оцінки відповідності</strong>
+                        </th>
+                        <th style="text-align: center;"></th>
+                        <th>
+                            <strong>Олександр ЛИСЕНКО</strong>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <em>Director of the Conformity Assessment Body</em>
+                        </td>
+                        <td style="text-align: center;">
+                            <em>Підпис / Signature</em>
+                        </td>
+                        <td>
+                            <em>Full name</em>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="text-align: center;">м.п.</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </template>
+
+
     <template id="iot_certification_certification_report_template">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-call="web.basic_layout">
+                <!--                <t t-call="web.basic_layout">-->
+                <t t-set="count" t-value="0"/>
+                <t t-call="iot_certification.certification_layout">
                     <t t-call="iot_certification.iot_certification_certification_report_style"/>
                     <t t-call="iot_certification.iot_certification_certification_report_page_1_html_document"/>
                     <div style="page-break-before: always;"/>
                     <t t-call="iot_certification.iot_certification_certification_report_appendix_1_html"/>
                     <div style="page-break-before: always;"/>
                     <t t-call="iot_certification.iot_certification_certification_report_appendix_2_html"/>
+                    <div style="page-break-before: always;"/>
+                    <t t-call="iot_certification.iot_certification_certification_technical_specification_html"/>
                     <div style="page-break-before: always;"/>
                 </t>
             </t>
@@ -24,7 +95,7 @@
         <field name="report_name">iot_certification.iot_certification_certification_report_template</field>
         <field name="report_file">event.iot_certification_certification_report</field>
         <field name="print_report_name">f"Certification report No.{object.name}"</field>
-        <field name="paperformat_id" ref="iot_certification.paperformat_no_hf"/>
+        <field name="paperformat_id" ref="iot_certification.certification_paperformat"/>
         <field name="binding_model_id" eval="True"/>
         <field name="binding_type">report</field>
     </record>

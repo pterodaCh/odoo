@@ -30,10 +30,22 @@
                 border: 1px solid #ffffff;
             }
 
-            .footer-table {
-                position: absolute;
-                bottom: -100;
-                width: 100%;
+            table.gray-border td, table.gray-border th {
+                border: 1px solid #ddd;
+            }
+
+            table.black-border td, table.black-border th {
+                border: 1px solid #000000;
+            }
+
+            p strong {
+                font-weight: bold;
+                line-height: 1; /* Совпадает с line-height параграфа */
+            }
+
+            p br {
+                margin: 0;
+                line-height: 1; /* Совпадает с line-height параграфа */
             }
         </style>
     </template>

@@ -93,7 +93,7 @@
                 <span style="font-family:Calibri; ">Підстави для підтвердження відповідності</span>
             </strong>
         </p>
-        <table>
+        <table class="black-border">
             <colgroup>
                 <col style="width: 29%"/>
                 <col style="width: 70%"/>
@@ -180,45 +180,6 @@
                 <tr>
                     <td>Основні вимоги</td>
                     <td>Звіт про оцінювання № УЧН-23/D.241 від 04.10.2023</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <table>
-            <colgroup>
-                <col style="width: 44%"/>
-                <col style="width: 4%"/>
-                <col style="width: 19%"/>
-                <col style="width: 4%"/>
-                <col style="width: 27%"/>
-            </colgroup>
-            <thead>
-                <tr>
-                    <th>
-                        <strong>Керівник органу з оцінки відповідності</strong>
-                    </th>
-                    <th colspan="2"></th>
-                    <th colspan="2">
-                        <strong>Олександр ЛИСЕНКО</strong>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td colspan="2">
-                        <em>Director of the Conformity Assessment Body</em>
-                    </td>
-                    <td colspan="2">
-                        <em>Підпис / Signature</em>
-                    </td>
-                    <td>
-                        <em>Full name</em>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2"></td>
-                    <td colspan="2" style="text-align: center;">м.п.</td>
-                    <td></td>
                 </tr>
             </tbody>
         </table>
