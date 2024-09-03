@@ -40,12 +40,12 @@
 
             p strong {
                 font-weight: bold;
-                line-height: 1; /* Совпадает с line-height параграфа */
+                line-height: 1;
             }
 
             p br {
                 margin: 0;
-                line-height: 1; /* Совпадает с line-height параграфа */
+                line-height: 1;
             }
         </style>
     </template>
