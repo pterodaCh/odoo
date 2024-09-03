@@ -196,44 +196,5 @@
                 </tr>
             </tbody>
         </table>
-        <table>
-            <colgroup>
-                <col style="width: 45%"/>
-                <col style="width: 5%"/>
-                <col style="width: 18%"/>
-                <col style="width: 30%"/>
-            </colgroup>
-            <thead>
-                <tr>
-                    <th>
-                        <strong>Керівник органу з оцінки відповідності</strong>
-                    </th>
-                    <th colspan="2" style="text-align: center;"></th>
-                    <th>
-                        <strong>Олександр ЛИСЕНКО</strong>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <em>Director of the Conformity Assessment Body</em>
-                    </td>
-                    <td colspan="2" style="text-align: center;">
-                        <em>Підпис /
-                            Signature
-                        </em>
-                    </td>
-                    <td>
-                        <em>Full name</em>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2"></td>
-                    <td style="text-align: center;">м.п.</td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
     </template>
 </odoo>
