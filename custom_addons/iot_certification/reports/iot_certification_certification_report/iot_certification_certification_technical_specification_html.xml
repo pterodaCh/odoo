@@ -1,189 +1,304 @@
 <?xml version="1.0"?>
 <odoo>
+    <template id="iot_certification_certification_technical_specification_header">
+        <p style="margin-right:21.2pt; text-align:right">
+            &#xa0;
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:10pt">
+            <strong>
+                <span style="font-family:Calibri; ">&#xa0;</span>
+            </strong>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:10pt">
+            <strong>
+                <span style="font-family:Calibri; ">&#xa0;</span>
+            </strong>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:10pt">
+            <strong>
+                <span style="font-family:Calibri; ">&#xa0;</span>
+            </strong>
+            <strong>
+                <span style="font-family:Calibri; ">УКРАЇНСЬКИЙ ДЕРЖАВНИЙ ЦЕНТР РАДІОЧАСТОТ</span>
+            </strong>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:8pt">
+            <em>
+                <span style="font-family:Calibri; ">UKRAINIAN STATE CENTRE OF RADIO FREQUENCIES</span>
+            </em>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:10pt">
+            <strong>
+                <span style="font-family:Calibri; ">ОРГАН З ОЦІНКИ ВІДПОВІДНОСТІ (ООВ УКРЧАСТОТНАГЛЯД)</span>
+            </strong>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:9pt">
+            <em>
+                <span style="font-family:Calibri; font-size:8pt; ">CONFORMITY ASSESSMENT BODY (</span>
+            </em>
+            <span class="shorttext" style="font-family:Calibri; font-style:italic">CAB</span>
+            <em>
+                <span style="font-family:Calibri; font-size:8pt; ">UKRCHASTOTNAGLIAD)</span>
+            </em>
+        </p>
+        <p style="text-align:center; font-size:10pt">
+            <strong>&#xa0;</strong>
+        </p>
+        <p style="text-align:center; font-size:10pt">
+            <img t-att-src="'/iot_certification/static/certification_report/certificate_appendix_' + str(appendix_number) + '.png'" height="32"
+                 alt=""/>
+        </p>
+        <p style="text-align:center; font-size:14pt">
+            <span style="font-family:Calibri">до сертифіката експертизи типу</span>
+        </p>
+        <p style="margin-left:36pt; text-indent:-36pt; text-align:center">
+            <em>
+                <span style="font-family:Calibri; ">Annex to Type Examination Certificate</span>
+            </em>
+        </p>
+        <p style="margin-left:126pt; text-align:justify; line-height:80%; font-size:6pt">
+            <em>&#xa0;</em>
+        </p>
+        <div style="width:265.6pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; display: table;">
+            <div style="display: table-cell; vertical-align: top;">
+                <p style="margin: 0;">
+                    <strong>
+                        <span style="font-family:Calibri;">№</span>
+                    </strong>
+                    <span style="font-family:Calibri;"></span>
+                    <strong>
+                        <span style="font-family:Calibri;">UA.R.TR.052.287-23</span>
+                    </strong>
+                </p>
+            </div>
+        </div>
+        <p style="text-align:center">
+            <strong>
+                <span style="font-family:Calibri; ">Відомості про технічні характеристики</span>
+            </strong>
+        </p>
+        <p style="font-size:4pt">
+            &#xa0;
+        </p>
+    </template>
+
+
     <template id="iot_certification_certification_technical_specification_html">
+        <t t-set="appendix_number" t-value="3"/>
+
+        <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
+        <t t-set="appendix_number" t-value="appendix_number + 1"/>
+
+        <t t-set="max_lines" t-value="58"/>
+        <t t-set="const_heights" t-value="[16.6, 30.15, 12.15, 14.15, 11.7, 13.15, 7.8, 5.35, 5.35, 2.45]"/>
+        <t t-set="current_height" t-value="0"/>
+        <t t-set="pages_count" t-value="1"/>
+
         <table class="gray-border">
             <colgroup>
                 <col style="width: 46%"/>
                 <col style="width: 53%"/>
             </colgroup>
-            <tbody>
-                <span t-if="o.product_specification_2_1 and o.product_specification_2_3">
-                    <tr>
-                        <th colspan="2" style="text-align: left;">
-                            <strong>
-                                Обладнання систем
-                                цифрового стільникового радіозв’язку GSM і UMTS:
-                            </strong>
-                        </th>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">Радіотехнологія згідно з Планом
-                            використання радіочастотного ресурсу України:
-                        </td>
-                        <td style="text-align: left;">
-                            <p>цифровий стільниковий радіозв’язок GSM-900/1800</p>
-                            <p>та IMT-2000 (РІ 20-1, РІ 21-1, РІ 22-1, РІ 22.1-5-1);</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td rowspan="2" style="text-align: left;">Діапазони частот,
-                            передавача/приймача, МГц:
-                        </td>
-                        <td style="text-align: left;">
-                            <p>
-                                <strong>E-GSM/GSM-900:</strong>
-                                880,1 – 915/925,1 – 960;
-                            </p>
-                            <p>
-                                <strong>GSM-1800:</strong>
-                                1710 – 1785/1805 – 1880;
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <p>
-                                <strong>UMTS:</strong>
-                                888,8 – 906/ 933,8 – 951;
-                            </p>
-                            <p>1920 – 1980/ 2110 – 2170;</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">Класи випромінювання:</td>
-                        <td style="text-align: left;">
-                            <p>200KF7W, 200KG7W, (GSM);</p>
-                            <p>5M00G7W, 5M00D7W (UMTS);</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">Ширина смуги частот випромінювання
-                            передавача на рівні 99% потужності:
-                        </td>
-                        <td style="text-align: left;">
-                            <p>200 кГц (для GSM);</p>
-                            <p>5,0 МГц (для UMTS);</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">Максимальна вихідна потужність передавача,
-                            Вт:
-                        </td>
-                        <td style="text-align: left;">2 (GSM-900); 1 (GSM-1800); 0,25
-                            (UMTS);
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">Тип антени:</td>
-                        <td style="text-align: left;">інтегрована.</td>
-                    </tr>
-                </span>
 
-                <span t-if="o.product_specification_2_2">
-                    <tr>
-                        <td colspan="2" style="text-align: left;">
-                            <strong>Обладнання системи
-                                цифрового стільникового радіозв’язку LTE (E-UTRA):
-                            </strong>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">Радіотехнологія згідно з Планом
-                            використання радіочастотного ресурсу України:
-                        </td>
-                        <td style="text-align: left;">
-                            <p>міжнародний рухомий (мобільний) зв'язок
-                                IMT
-                            </p>
-                            <p>(РІ 22.1-1-1; РІ 22.1-1-2; РІ 22.1-1-3; РІ 22.1-1-4;</p>
-                            <p>РІ 22.1-1-5);</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">Діапазони частот, передавача/приймача,
-                            МГц:
-                        </td>
-                        <td style="text-align: left;">
-                            <p><strong>Band 3</strong>:
-                                1710-1785/1805-1880;
-                            </p>
-                            <p>
-                                <strong>Band 5:</strong>
-                                827,8-834/872,8-879;
-                            </p>
-                            <p><strong>Band 7</strong>: 2510-2545/2630-2665;
-                            </p>
-                            <p>2565-2570/2685-2690;</p>
-                            <p><strong>Band 8</strong>: 888,8-906/933,8-951;
-                            </p>
-                            <p><strong>Band 20</strong>: 832-842/791-801;
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">Класи випромінювання:</td>
-                        <td style="text-align: left;">
-                            <p><strong>Band 3</strong>: 1M40G7W,
-                                1M40D7W, 3M00G7W, 3M00D7W, 5M00G7W, 5M00D7W, 10M0G7W, 10M0D7W, 15M0G7W,
-                                15M0D7W, 20M0G7W, 20M0D7W;
-                            </p>
-                            <p>
-                                <strong>Band 5:</strong>
-                                3M00G7W, 3M00D7W, 5M00G7W, 5M00D7W;
-                            </p>
-                            <p><strong>Band 7</strong>: 5M00G7W, 5M00D7W, 10M0G7W, 10M0D7W, 15M0G7W,
-                                15M0D7W, 20M0G7W, 20M0D7W;
-                            </p>
-                            <p><strong>Band 8</strong>: 1M40G7W, 1M40D7W, 3M00G7W, 3M00D7W, 5M00G7W;
-                                5M00D7W, 10M0G7W, 10M0D7;
-                            </p>
-                            <p><strong>Band 20</strong>: 5M00G7W, 5M00D7W, 10M0G7W,
-                                10M0D7W;
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">Ширина смуги частот випромінювання
-                            передавача на рівні 99% потужності, МГц:
-                        </td>
-                        <td style="text-align: left;">
-                            <p>
-                                <strong>Band 3:</strong>
-                                1.4; 3; 5; 10;
-                                15; 20;
-                            </p>
-                            <p>
-                                <strong>Band 5:</strong>
-                                3; 5;
-                            </p>
-                            <p>
-                                <strong>Band 7:</strong>
-                                5; 10; 15; 20;
-                            </p>
-                            <p>
-                                <strong>Band 8:</strong>
-                                1.4; 3; 5; 10;
-                            </p>
-                            <p>
-                                <strong>Band 20:</strong>
-                                5; 10;
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <p>Максимальна вихідна потужність
-                                передавача,
-                            </p>
-                            <p>Вт (дБм):</p>
-                        </td>
-                        <td style="text-align: left;">0,2 (23);</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">Тип антени:</td>
-                        <td style="text-align: left;">інтегрована.</td>
-                    </tr>
+            <span t-if="o.product_specification_2_1 and o.product_specification_2_3">
+                <t t-set="current_height" t-value="current_height + const_heights[0]"/>
+                <span t-if="current_height &gt; max_lines">
+                    <div style="page-break-before: always;"/>
+                    <t t-set="pages_count" t-value="pages_count + 1"/>
+                    <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
+                    <t t-set="appendix_number" t-value="appendix_number + 1"/>
+                    <t t-set="current_height" t-value="const_heights[0]"/>
                 </span>
+            </span>
+
+            <tbody t-if="o.product_specification_2_1 and o.product_specification_2_3">
+
+                <tr>
+                    <th colspan="2" style="text-align: left;">
+                        <strong>
+                            Обладнання систем
+                            цифрового стільникового радіозв’язку GSM і UMTS:
+                        </strong>
+                    </th>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Радіотехнологія згідно з Планом
+                        використання радіочастотного ресурсу України:
+                    </td>
+                    <td style="text-align: left;">
+                        <p>цифровий стільниковий радіозв’язок GSM-900/1800</p>
+                        <p>та IMT-2000 (РІ 20-1, РІ 21-1, РІ 22-1, РІ 22.1-5-1);</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2" style="text-align: left;">Діапазони частот,
+                        передавача/приймача, МГц:
+                    </td>
+                    <td style="text-align: left;">
+                        <p>
+                            <strong>E-GSM/GSM-900:</strong>
+                            880,1 – 915/925,1 – 960;
+                        </p>
+                        <p>
+                            <strong>GSM-1800:</strong>
+                            1710 – 1785/1805 – 1880;
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <p>
+                            <strong>UMTS:</strong>
+                            888,8 – 906/ 933,8 – 951;
+                        </p>
+                        <p>1920 – 1980/ 2110 – 2170;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Класи випромінювання:</td>
+                    <td style="text-align: left;">
+                        <p>200KF7W, 200KG7W, (GSM);</p>
+                        <p>5M00G7W, 5M00D7W (UMTS);</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Ширина смуги частот випромінювання
+                        передавача на рівні 99% потужності:
+                    </td>
+                    <td style="text-align: left;">
+                        <p>200 кГц (для GSM);</p>
+                        <p>5,0 МГц (для UMTS);</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Максимальна вихідна потужність передавача,
+                        Вт:
+                    </td>
+                    <td style="text-align: left;">2 (GSM-900); 1 (GSM-1800); 0,25
+                        (UMTS);
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Тип антени:</td>
+                    <td style="text-align: left;">інтегрована.</td>
+                </tr>
+            </tbody>
+
+            <span t-if="o.product_specification_2_2">
+                <t t-set="current_height" t-value="current_height + const_heights[1]"/>
+                <span t-if="current_height &gt; max_lines">
+                    <div style="page-break-before: always;"/>
+                    <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
+                    <t t-set="appendix_number" t-value="appendix_number + 1"/>
+                    <t t-set="current_height" t-value="const_heights[1]"/>
+                </span>
+            </span>
+
+            <tbody t-if="o.product_specification_2_2">
+
+                <tr>
+                    <td colspan="2" style="text-align: left;">
+                        <strong>Обладнання системи
+                            цифрового стільникового радіозв’язку LTE (E-UTRA):
+                        </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Радіотехнологія згідно з Планом
+                        використання радіочастотного ресурсу України:
+                    </td>
+                    <td style="text-align: left;">
+                        <p>міжнародний рухомий (мобільний) зв'язок
+                            IMT
+                        </p>
+                        <p>(РІ 22.1-1-1; РІ 22.1-1-2; РІ 22.1-1-3; РІ 22.1-1-4;</p>
+                        <p>РІ 22.1-1-5);</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Діапазони частот, передавача/приймача,
+                        МГц:
+                    </td>
+                    <td style="text-align: left;">
+                        <p><strong>Band 3</strong>:
+                            1710-1785/1805-1880;
+                        </p>
+                        <p>
+                            <strong>Band 5:</strong>
+                            827,8-834/872,8-879;
+                        </p>
+                        <p><strong>Band 7</strong>: 2510-2545/2630-2665;
+                        </p>
+                        <p>2565-2570/2685-2690;</p>
+                        <p><strong>Band 8</strong>: 888,8-906/933,8-951;
+                        </p>
+                        <p><strong>Band 20</strong>: 832-842/791-801;
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Класи випромінювання:</td>
+                    <td style="text-align: left;">
+                        <p><strong>Band 3</strong>: 1M40G7W,
+                            1M40D7W, 3M00G7W, 3M00D7W, 5M00G7W, 5M00D7W, 10M0G7W, 10M0D7W, 15M0G7W,
+                            15M0D7W, 20M0G7W, 20M0D7W;
+                        </p>
+                        <p>
+                            <strong>Band 5:</strong>
+                            3M00G7W, 3M00D7W, 5M00G7W, 5M00D7W;
+                        </p>
+                        <p><strong>Band 7</strong>: 5M00G7W, 5M00D7W, 10M0G7W, 10M0D7W, 15M0G7W,
+                            15M0D7W, 20M0G7W, 20M0D7W;
+                        </p>
+                        <p><strong>Band 8</strong>: 1M40G7W, 1M40D7W, 3M00G7W, 3M00D7W, 5M00G7W;
+                            5M00D7W, 10M0G7W, 10M0D7;
+                        </p>
+                        <p><strong>Band 20</strong>: 5M00G7W, 5M00D7W, 10M0G7W,
+                            10M0D7W;
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Ширина смуги частот випромінювання
+                        передавача на рівні 99% потужності, МГц:
+                    </td>
+                    <td style="text-align: left;">
+                        <p>
+                            <strong>Band 3:</strong>
+                            1.4; 3; 5; 10;
+                            15; 20;
+                        </p>
+                        <p>
+                            <strong>Band 5:</strong>
+                            3; 5;
+                        </p>
+                        <p>
+                            <strong>Band 7:</strong>
+                            5; 10; 15; 20;
+                        </p>
+                        <p>
+                            <strong>Band 8:</strong>
+                            1.4; 3; 5; 10;
+                        </p>
+                        <p>
+                            <strong>Band 20:</strong>
+                            5; 10;
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <p>Максимальна вихідна потужність
+                            передавача,
+                        </p>
+                        <p>Вт (дБм):</p>
+                    </td>
+                    <td style="text-align: left;">0,2 (23);</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Тип антени:</td>
+                    <td style="text-align: left;">інтегрована.</td>
+                </tr>
             </tbody>
         </table>
 
@@ -193,169 +308,201 @@
                 <col style="width: 59%"/>
                 <col style="width: 40%"/>
             </colgroup>
-            <tbody>
 
-                <span t-if="o.product_specification_1_1 and o.product_specification_1_3">
-                    <tr>
-                        <th colspan="2" style="text-align: left;">
-                            <p>
-                                <strong>Обладнання радіодоступу (IEEE 802.11 b/g/n):</strong>
-                            </p>
-                        </th>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <p>Радіотехнологія згідно з Планом використання радіочастотного ресурсу
-                                України:
-                            </p>
-                        </td>
-                        <td style="text-align: left;">
-                            <p>широкосмуговий радіодоступ (РІ 24-8);</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <p>Діапазон частот, МГц:</p>
-                        </td>
-                        <td style="text-align: left;">
-                            <p>2400,0-2483,5;</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <p>Класи випромінювання:</p>
-                        </td>
-                        <td style="text-align: left;">
-                            <p>20М0G1W, 20M0D1W;</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <p>Ширина смуги частот випромінювання передавача на рівні 99% потужності
-                                сигналу, МГц:
-                            </p>
-                        </td>
-                        <td style="text-align: left;">
-                            <p>17,696;</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <p>Максимальна вихідна потужність передавача (ЕІВП), мВт (дБм):</p>
-                        </td>
-                        <td style="text-align: left;">
-                            <p>62,81 (17,98);</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <p>Тип антени/Ga, дБі:</p>
-                        </td>
-                        <td style="text-align: left;">
-                            <p>інтегрована/мінус 1.</p>
-                        </td>
-                    </tr>
-                </span>
+            <tbody t-if="o.product_specification_1_1 and o.product_specification_1_3">
+                <t t-if="o.product_specification_1_1 and o.product_specification_1_3">
+                    <t t-set="current_height" t-value="current_height + const_heights[2]"/>
+                    <t t-if="current_height &gt; max_lines">
+                        <div style="page-break-before: always;"/>
+                        <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
+                        <t t-set="appendix_number" t-value="appendix_number + 1"/>
+                        <t t-set="current_height" t-value="const_heights[2]"/>
+                    </t>
+                </t>
 
-                <span t-if="o.product_specification_1_2 and o.product_specification_1_3 and o.product_specification_1_4">
-                    <tr>
-                        <td colspan="2" style="text-align: left;">
-                            <strong>Обладнання
-                                радіодоступу (IEEE 802.11 a/n/ac):
-                            </strong>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <p>Радіотехнологія згідно з Планом використання радіочастотного ресурсу
-                                України:
-                            </p>
-                        </td>
-                        <td style="text-align: left;">
-                            <p>широкосмуговий радіодоступ (РІ 24-8);</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <p>Діапазони частот, МГц:</p>
-                        </td>
-                        <td style="text-align: left;">5150-5350, 5470-5670, 5670-5725;</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <p>Класи випромінювання:</p>
-                        </td>
-                        <td style="text-align: left;">
-                            <p>20M0G1W, 20M0D1W;</p>
-                            <p>40M0G1W, 40M0D1W;</p>
-                            <p>80M0G1W, 80M0D1W;</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <p>Ширина смуги частот випромінювання передавача на рівні 99% потужності
-                                сигналу, МГц:
-                            </p>
-                        </td>
-                        <td style="text-align: left;">
-                            <p>17,553; 35,963; 75,473;</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">Максимальна вихідна потужність передавача
-                            (ЕІВП), мВт (дБм):
-                        </td>
-                        <td style="text-align: left;">
-                            <p>51,40 (17,11);</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">Тип антен/Ga, дБі:</td>
-                        <td style="text-align: left;">інтегрована/0,6.</td>
-                    </tr>
-                </span>
+                <tr>
+                    <td colspan="2" style="text-align: left;">
+                        <p>
+                            <strong>Обладнання радіодоступу (IEEE 802.11 b/g/n):</strong>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <p>Радіотехнологія згідно з Планом використання радіочастотного ресурсу
+                            України:
+                        </p>
+                    </td>
+                    <td style="text-align: left;">
+                        <p>широкосмуговий радіодоступ (РІ 24-8);</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <p>Діапазон частот, МГц:</p>
+                    </td>
+                    <td style="text-align: left;">
+                        <p>2400,0-2483,5;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <p>Класи випромінювання:</p>
+                    </td>
+                    <td style="text-align: left;">
+                        <p>20М0G1W, 20M0D1W;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <p>Ширина смуги частот випромінювання передавача на рівні 99% потужності
+                            сигналу, МГц:
+                        </p>
+                    </td>
+                    <td style="text-align: left;">
+                        <p>17,696;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <p>Максимальна вихідна потужність передавача (ЕІВП), мВт (дБм):</p>
+                    </td>
+                    <td style="text-align: left;">
+                        <p>62,81 (17,98);</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <p>Тип антени/Ga, дБі:</p>
+                    </td>
+                    <td style="text-align: left;">
+                        <p>інтегрована/мінус 1.</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
-                <span t-if="o.product_specification_1_2 and o.product_specification_1_3 and o.product_specification_1_4">
-                    <tr>
-                        <td colspan="2" style="text-align: left;">
-                            <p>
-                                <strong>Обладнання радіодоступу (IEEE 802.11 a/n/ac):</strong>
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">Радіотехнологія згідно з Планом
-                            використання радіочастотного ресурсу України:
-                        </td>
-                        <td style="text-align: left;">телеметрія та радіодистанційне керування
-                            (SRD) (РІ 42-5);
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">Діапазон частот, МГц:</td>
-                        <td style="text-align: left;">5725-5875;</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">
-                            <p>Класи випромінювання:</p>
-                        </td>
-                        <td style="text-align: left;">
-                            <p>20М0G1W, 20M0D1W;</p>
-                            <p>40M0G1W, 40М0D1W;</p>
-                            <p>80М0G1W, 80M0D1W;</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">Максимальна вихідна потужність передавача
-                            (ЕІВП), мВт (дБм):
-                        </td>
-                        <td style="text-align: left;">24,95 (13,97);</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align: left;">Тип антени/Ga, не більше, дБі:</td>
-                        <td style="text-align: left;">інтегрована/мінус 0,2.</td>
-                    </tr>
+        <table class="gray-border">
+            <span t-if="o.product_specification_1_2 and o.product_specification_1_3 and o.product_specification_1_4">
+                <t t-set="current_height" t-value="current_height + const_heights[3]"/>
+                <span t-if="current_height &gt; max_lines">
+                    <div style="page-break-before: always;"/>
+                    <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
+                    <t t-set="appendix_number" t-value="appendix_number + 1"/>
+                    <t t-set="current_height" t-value="const_heights[3]"/>
                 </span>
+            </span>
+
+            <tbody t-if="o.product_specification_1_2 and o.product_specification_1_3 and o.product_specification_1_4">
+
+                <tr>
+                    <td colspan="2" style="text-align: left;">
+                        <strong>Обладнання
+                            радіодоступу (IEEE 802.11 a/n/ac):
+                        </strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <p>Радіотехнологія згідно з Планом використання радіочастотного ресурсу
+                            України:
+                        </p>
+                    </td>
+                    <td style="text-align: left;">
+                        <p>широкосмуговий радіодоступ (РІ 24-8);</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <p>Діапазони частот, МГц:</p>
+                    </td>
+                    <td style="text-align: left;">5150-5350, 5470-5670, 5670-5725;</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <p>Класи випромінювання:</p>
+                    </td>
+                    <td style="text-align: left;">
+                        <p>20M0G1W, 20M0D1W;</p>
+                        <p>40M0G1W, 40M0D1W;</p>
+                        <p>80M0G1W, 80M0D1W;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <p>Ширина смуги частот випромінювання передавача на рівні 99% потужності
+                            сигналу, МГц:
+                        </p>
+                    </td>
+                    <td style="text-align: left;">
+                        <p>17,553; 35,963; 75,473;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Максимальна вихідна потужність передавача
+                        (ЕІВП), мВт (дБм):
+                    </td>
+                    <td style="text-align: left;">
+                        <p>51,40 (17,11);</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Тип антен/Ga, дБі:</td>
+                    <td style="text-align: left;">інтегрована/0,6.</td>
+                </tr>
+            </tbody>
+
+            <span t-if="o.product_specification_1_2 and o.product_specification_1_3 and o.product_specification_1_4">
+                <t t-set="current_height" t-value="current_height + const_heights[4]"/>
+                <span t-if="current_height &gt; max_lines">
+                    <div style="page-break-before: always;"/>
+                    <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
+                    <t t-set="appendix_number" t-value="appendix_number + 1"/>
+                    <t t-set="current_height" t-value="const_heights[4]"/>
+                </span>
+            </span>
+
+            <tbody t-if="o.product_specification_1_2 and o.product_specification_1_3 and o.product_specification_1_4">
+
+                <tr>
+                    <td colspan="2" style="text-align: left;">
+                        <p>
+                            <strong>Обладнання радіодоступу (IEEE 802.11 a/n/ac):</strong>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Радіотехнологія згідно з Планом
+                        використання радіочастотного ресурсу України:
+                    </td>
+                    <td style="text-align: left;">телеметрія та радіодистанційне керування
+                        (SRD) (РІ 42-5);
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Діапазон частот, МГц:</td>
+                    <td style="text-align: left;">5725-5875;</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <p>Класи випромінювання:</p>
+                    </td>
+                    <td style="text-align: left;">
+                        <p>20М0G1W, 20M0D1W;</p>
+                        <p>40M0G1W, 40М0D1W;</p>
+                        <p>80М0G1W, 80M0D1W;</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Максимальна вихідна потужність передавача
+                        (ЕІВП), мВт (дБм):
+                    </td>
+                    <td style="text-align: left;">24,95 (13,97);</td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">Тип антени/Ga, не більше, дБі:</td>
+                    <td style="text-align: left;">інтегрована/мінус 0,2.</td>
+                </tr>
             </tbody>
         </table>
 
@@ -367,6 +514,14 @@
             </colgroup>
             <tbody>
                 <span t-if="o.product_specification_1_7">
+                    <t t-set="current_height" t-value="current_height + const_heights[5]"/>
+                    <span t-if="current_height &gt; max_lines">
+                        <div style="page-break-before: always;"/>
+                        <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
+                        <t t-set="appendix_number" t-value="appendix_number + 1"/>
+                        <t t-set="current_height" t-value="const_heights[5]"/>
+                    </span>
+
                     <tr>
                         <th colspan="2">
                             <p>
@@ -412,10 +567,18 @@
                 </span>
 
                 <span t-if="o.product_specification_4_1">
+                    <t t-set="current_height" t-value="current_height + const_heights[6]"/>
+                    <span t-if="current_height &gt; max_lines">
+                        <div style="page-break-before: always;"/>
+                        <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
+                        <t t-set="appendix_number" t-value="appendix_number + 1"/>
+                        <t t-set="current_height" t-value="const_heights[6]"/>
+                    </span>
+
                     <tr>
                         <td colspan="2">
-                            <strong>Пристрій радіочастотної ідентифікації
-                                (NFC):
+                            <strong>
+                                Пристрій радіочастотної ідентифікації (NFC):
                             </strong>
                         </td>
                     </tr>
@@ -448,6 +611,14 @@
                 </span>
 
                 <span t-if="o.product_specification_5_1">
+                    <t t-set="current_height" t-value="current_height + const_heights[7]"/>
+                    <span t-if="current_height &gt; max_lines">
+                        <div style="page-break-before: always;"/>
+                        <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
+                        <t t-set="appendix_number" t-value="appendix_number + 1"/>
+                        <t t-set="current_height" t-value="const_heights[7]"/>
+                    </span>
+
                     <tr>
                         <td colspan="2">
                             <strong>GNSS приймач:</strong>
@@ -466,6 +637,14 @@
                 </span>
 
                 <span t-if="o.product_specification_5_2">
+                    <t t-set="current_height" t-value="current_height + const_heights[8]"/>
+                    <span t-if="current_height &gt; max_lines">
+                        <div style="page-break-before: always;"/>
+                        <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
+                        <t t-set="appendix_number" t-value="appendix_number + 1"/>
+                        <t t-set="current_height" t-value="const_heights[8]"/>
+                    </span>
+
                     <tr>
                         <td colspan="2">
                             <strong>FM приймач:</strong>
@@ -483,26 +662,35 @@
                     </tr>
                 </span>
             </tbody>
-        </table>
-        <table class="gray-border">
-            <colgroup>
-                <col style="width: 59%"/>
-                <col style="width: 40%"/>
-            </colgroup>
-            <thead>
+
+            <tbody>
                 <span t-if="True">
+                    <t t-set="current_height" t-value="current_height + const_heights[9]"/>
+                    <span t-if="current_height &gt; max_lines">
+                        <div style="page-break-before: always;"/>
+                        <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
+                        <t t-set="appendix_number" t-value="appendix_number + 1"/>
+                        <t t-set="current_height" t-value="const_heights[9]"/>
+                    </span>
+
                     <tr>
                         <th>
                             <p>Версія програмного забезпечення:</p>
                         </th>
                         <th>
-                            <p>SW: <span t-if="o.sw_id"><t t-out="o.sw_id.name"/></span></p>
-                            <p>HW: <span t-if="o.hw_id"><t t-out="o.hw_id.name"/></span></p>
+                            <p>SW:
+                                <span t-if="o.sw_id">
+                                    <t t-out="o.sw_id.name"/>
+                                </span>
+                            </p>
+                            <p>HW:
+                                <span t-if="o.hw_id">
+                                    <t t-out="o.hw_id.name"/>
+                                </span>
+                            </p>
                         </th>
                     </tr>
                 </span>
-            </thead>
-            <tbody>
             </tbody>
         </table>
     </template>
