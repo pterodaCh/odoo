@@ -50,14 +50,14 @@
                         <td colspan="8">
                             <em>
                                 <t t-out="o.appliciant_id.contact_address"/>
-<!--                                <t t-out="', '.join(filter(None, [-->
-<!--                                    o.appliciant_id.zip,-->
-<!--                                    o.appliciant_id.city,-->
-<!--                                    'вул. ' + o.appliciant_id.street if o.appliciant_id.street else '',-->
-<!--                                    o.appliciant_id.street2 if o.appliciant_id.street2 else '',-->
-<!--                                    'к. ' + o.appliciant_id.street2.split()[-1] if o.appliciant_id.street2 else '',-->
-<!--                                    o.appliciant_id.vat if o.appliciant_id.vat else ''-->
-<!--                                ]))"/>-->
+                                <!--                                <t t-out="', '.join(filter(None, [-->
+                                <!--                                    o.appliciant_id.zip,-->
+                                <!--                                    o.appliciant_id.city,-->
+                                <!--                                    'вул. ' + o.appliciant_id.street if o.appliciant_id.street else '',-->
+                                <!--                                    o.appliciant_id.street2 if o.appliciant_id.street2 else '',-->
+                                <!--                                    'к. ' + o.appliciant_id.street2.split()[-1] if o.appliciant_id.street2 else '',-->
+                                <!--                                    o.appliciant_id.vat if o.appliciant_id.vat else ''-->
+                                <!--                                ]))"/>-->
                             </em>
                         </td>
                     </tr>
@@ -163,7 +163,7 @@
                         <td colspan="16">
                             <em>
                                 <t t-out="o.product_id.name"/>
-                                 моделі
+                                моделі
                                 <t t-out="o.model_line_model"/>
                             </em>
                         </td>
@@ -192,17 +192,17 @@
                                     <t t-set="result" t-value="result + '; ' + str(count) + ') ' + str(enterprise)"/>
                                 </t>
                                 <t t-out="result"/>
-<!--                                <t t-out="'; '.join([(count := count + 1) + ') ' + enterprise for enterprise in o.enterprise_ids])"/>-->
+                                <!--                                <t t-out="'; '.join([(count := count + 1) + ') ' + enterprise for enterprise in o.enterprise_ids])"/>-->
                                 .
-<!--                                <t t-out="','.join(filter(None, [-->
-<!--                    o.appliciant_id.name,-->
-<!--                    o.appliciant_id.zip,-->
-<!--                    o.appliciant_id.city,-->
-<!--                    'вул. ' + o.appliciant_id.street if o.appliciant_id.street else '',-->
-<!--                    o.appliciant_id.street2 if o.appliciant_id.street2 else '',-->
-<!--                    'к. ' + o.appliciant_id.street2.split()[-1] if o.appliciant_id.street2 else '',-->
-<!--                    o.appliciant_id.vat if o.appliciant_id.vat else ''-->
-<!--                ]))"/>-->
+                                <!--                                <t t-out="','.join(filter(None, [-->
+                                <!--                    o.appliciant_id.name,-->
+                                <!--                    o.appliciant_id.zip,-->
+                                <!--                    o.appliciant_id.city,-->
+                                <!--                    'вул. ' + o.appliciant_id.street if o.appliciant_id.street else '',-->
+                                <!--                    o.appliciant_id.street2 if o.appliciant_id.street2 else '',-->
+                                <!--                    'к. ' + o.appliciant_id.street2.split()[-1] if o.appliciant_id.street2 else '',-->
+                                <!--                    o.appliciant_id.vat if o.appliciant_id.vat else ''-->
+                                <!--                ]))"/>-->
                             </em>
                             <br/>
                         </td>
@@ -393,7 +393,10 @@
 
                             <span t-if="o.product_specification_10 == True">☒</span>
                             <span t-else="">☐</span>
-                            Інше (функція безпроводового заряджання)
+                            Інше
+                            <t t-if="o.product_specification_10">(<span
+                                    t-esc="o.product_specification_10_1"/>)
+                            </t>
                             <br/>
                         </td>
                     </tr>
@@ -561,7 +564,7 @@
                         <td colspan="6" style="text-align: left;">
                             <span t-if="o.presence_of_sample_verdict == 'ok'">☒</span>
                             <span t-else="">☐</span>
-                             - ТАК
+                            - ТАК
                             <br/>
                         </td>
                     </tr>
@@ -569,7 +572,7 @@
                         <td colspan="6" style="text-align: left;">
                             <span t-if="o.presence_of_sample_verdict == 'ok'">☐</span>
                             <span t-else="">☒</span>
-                             - НІ
+                            - НІ
                             <br/>
                         </td>
                     </tr>
