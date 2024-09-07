@@ -260,7 +260,7 @@ class IoTCertificationOrder(models.Model):
         string="Радіорелейний зв'язок")
     
     product_specification_10 = fields.Boolean(
-        string="Інше (функція безпроводового заряджання)")
+        string="Інше")
     
     product_specification_10_1 = fields.Text(
         string="Інше (вказати)")
