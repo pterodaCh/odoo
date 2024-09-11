@@ -34,7 +34,7 @@
         <field name="name">iot_certification_order.form</field>
         <field name="model">iot_certification_order</field>
         <field name="arch" type="xml">
-            <form string="Замовлення на сертифікацію" attrs="{'readonly': [('status', '=', ('approved'))]}">
+            <form string="Замовлення на сертифікацію" attrs="{'readonly': [('status', '=', 'approved')]}">
                 <header>
                     <button name="print_application" type="object" icon="fa-solid fa-print" class="oe_highlight"
                             string="Друк заявки"
@@ -67,8 +67,8 @@
                         </group>
                         <group name="certification_header_12" style="width:50%%">
                             <group name="dates_details">
-                                <field name="date_of_commencement_of_work" widget="Date"/>
-                                <field name="date_of_report"/>
+                                <field name="date_of_commencement_of_work" widget="Date" attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                <field name="date_of_report" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                             </group>
                         </group>
                     </group>
@@ -76,13 +76,13 @@
                     <group name="certification_header_2">
                         <group name="conducted_details" string="Звіт про оцінювання:">
                             <field name="conducted_an_assessment" widget="many2one_avatar_user"
-                                   options='{"always_reload": True}'/>
+                                   options='{"always_reload": True}' attrs="{'readonly': [('status', '=', 'approved')]}"/>
                             <field name="conducted_an_analysis_and_made_a_decision_on_certification"
-                                   widget="many2one_avatar_user" options='{"always_reload": True}'/>
+                                   widget="many2one_avatar_user" options='{"always_reload": True}' attrs="{'readonly': [('status', '=', 'approved')]}"/>
                         </group>
                         <group name="certification_header_22" col="1">
                             <group name="report_for_ids_group" string="Звіт за:">
-                                <field name="report_for_ids" mode="tree" string="">
+                                <field name="report_for_ids" mode="tree" string="" attrs="{'readonly': [('status', '=', 'approved')]}">
                                     <tree editable="bottom">
                                         <field name="verdict"/>
                                         <field name="name" width="10px"/>
@@ -90,7 +90,7 @@
                                 </field>
                             </group>
                             <group name="assessment_ids_group" string="Оцінювання:">
-                                <field name="assessment_ids" mode="tree" string="">
+                                <field name="assessment_ids" mode="tree" string="" attrs="{'readonly': [('status', '=', 'approved')]}">
                                     <tree editable="bottom">
                                         <field name="verdict"/>
                                         <field name="name"/>
@@ -108,61 +108,61 @@
                                    string="1. Замовлення / Заявка" col="3">
                                 <group name="certification_header_details_tgn_order_application_form_verdict"
                                        style="width:20%%" colspan="1">
-                                    <field name="order_application_form_verdict" widget="radio"/>
+                                    <field name="order_application_form_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_order_application_form_evidence"
                                        style="width:40%%" colspan="1">
                                     <field name="appliciant_id" widget="res_partner_many2one"
                                            context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}"
-                                           options='{"always_reload": True}'/>
+                                           options='{"always_reload": True}' attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                     <field name="product_id" widget="many2one_barcode"
-                                           options='{"always_reload": True}'/>
+                                           options='{"always_reload": True}' attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                     <field name="producer_id" widget="res_partner_many2one"
                                            context="{'res_partner_search_mode': 'customer', 'show_address': 1, 'show_vat': True}"
-                                           options='{"always_reload": True}'/>
-                                    <field name="enterprise_ids" widget="many2many_tags"/>
+                                           options='{"always_reload": True}' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="enterprise_ids" widget="many2many_tags" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_order_application_form_attachments"
                                        style="width:40%%" colspan="1">
-                                    <field name="order_application_form_attachment_ids" widget='many2many_binary'/>
-                                    <field name="order_application_form_remarks" widget="html"/>
+                                    <field name="order_application_form_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="order_application_form_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_presence_of_sample"
                                    string="Наявність зразку для випробувань" col="3">
                                 <group name="certification_header_details_tgn_presence_of_sample_verdict"
                                        style="width:20%%" colspan="1">
-                                    <field name="presence_of_sample_verdict" widget="radio"/>
+                                    <field name="presence_of_sample_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_presence_of_sample_evidence"
                                        style="width:40%%" colspan="1">
                                 </group>
                                 <group name="certification_header_details_tgn_presence_of_sample_attachments"
                                        style="width:40%%" colspan="1">
-                                    <field name="presence_of_sample_attachment_ids" widget='many2many_binary'/>
-                                    <field name="presence_of_sample_remarks" widget="html"/>
+                                    <field name="presence_of_sample_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="presence_of_sample_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_power_of_attorney"
                                    string="2. Доручення виробника (за необхідності)" col="3">
                                 <group name="certification_header_details_tgn_power_of_attorney_verdict"
                                        style="width:20%%" colspan="1">
-                                    <field name="power_of_attorney_verdict" widget="radio"/>
+                                    <field name="power_of_attorney_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_power_of_attorney_evidence"
                                        style="width:40%%" colspan="1">
                                 </group>
                                 <group name="certification_header_details_tgn_power_of_attorney_attachments"
                                        style="width:40%%" colspan="1">
-                                    <field name="power_of_attorney_attachment_ids" widget='many2many_binary'/>
-                                    <field name="power_of_attorney_remarks" widget="html"/>
+                                    <field name="power_of_attorney_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="power_of_attorney_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_product_specification"
                                    string="3. Застосовані радіотехнології" col="3">
                                 <group name="certification_header_details_tgn_product_specification_verdict"
                                        style="width:20%%" colspan="1">
-                                    <field name="product_specification_verdict" widget="radio"/>
+                                    <field name="product_specification_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_product_specification_evidence"
                                        style="width:40%%" colspan="1">
@@ -170,7 +170,7 @@
                                            colspan="2">
                                         <group name="certification_header_details_tgn_product_specification_evidence_11"
                                                colspan="1">
-                                            <field name="product_specification_1"/>
+                                            <field name="product_specification_1" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                         </group>
                                         <group name="certification_header_details_tgn_product_specification_evidence_12"
                                                colspan="1">
@@ -199,7 +199,7 @@
                                            colspan="2">
                                         <group name="certification_header_details_tgn_product_specification_evidence_21"
                                                colspan="1">
-                                            <field name="product_specification_2"/>
+                                            <field name="product_specification_2" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                         </group>
                                         <group name="certification_header_details_tgn_product_specification_evidence_22"
                                                colspan="1">
@@ -218,7 +218,7 @@
                                            colspan="2">
                                         <group name="certification_header_details_tgn_product_specification_evidence_31"
                                                colspan="1">
-                                            <field name="product_specification_3"/>
+                                            <field name="product_specification_3" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                         </group>
                                         <group name="certification_header_details_tgn_product_specification_evidence_32"
                                                colspan="1">
@@ -241,7 +241,7 @@
                                            colspan="2">
                                         <group name="certification_header_details_tgn_product_specification_evidence_41"
                                                colspan="1">
-                                            <field name="product_specification_4"/>
+                                            <field name="product_specification_4" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                         </group>
                                         <group name="certification_header_details_tgn_product_specification_evidence_42"
                                                colspan="1">
@@ -256,7 +256,7 @@
                                            colspan="2">
                                         <group name="certification_header_details_tgn_product_specification_evidence_51"
                                                colspan="1">
-                                            <field name="product_specification_5"/>
+                                            <field name="product_specification_5" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                         </group>
                                         <group name="certification_header_details_tgn_product_specification_evidence_52"
                                                colspan="1">
@@ -283,7 +283,7 @@
                                            colspan="2">
                                         <group name="certification_header_details_tgn_product_specification_evidence_61"
                                                colspan="1">
-                                            <field name="product_specification_6"/>
+                                            <field name="product_specification_6" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                         </group>
                                         <group name="certification_header_details_tgn_product_specification_evidence_62"
                                                colspan="1">
@@ -294,7 +294,7 @@
                                            colspan="2">
                                         <group name="certification_header_details_tgn_product_specification_evidence_71"
                                                colspan="1">
-                                            <field name="product_specification_7"/>
+                                            <field name="product_specification_7" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                         </group>
                                         <group name="certification_header_details_tgn_product_specification_evidence_72"
                                                colspan="1">
@@ -305,7 +305,7 @@
                                            colspan="2">
                                         <group name="certification_header_details_tgn_product_specification_evidence_81"
                                                colspan="1">
-                                            <field name="product_specification_8"/>
+                                            <field name="product_specification_8" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                         </group>
                                         <group name="certification_header_details_tgn_product_specification_evidence_82"
                                                colspan="1">
@@ -316,7 +316,7 @@
                                            colspan="2">
                                         <group name="certification_header_details_tgn_product_specification_evidence_91"
                                                colspan="1">
-                                            <field name="product_specification_9"/>
+                                            <field name="product_specification_9" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                         </group>
                                         <group name="certification_header_details_tgn_product_specification_evidence_92"
                                                colspan="1">
@@ -324,34 +324,34 @@
                                     </group>
                                     <group name="certification_header_details_tgn_product_specification_evidence_10"
                                            colspan="1" style="width:100%%">
-                                        <field name="product_specification_10"/>
+                                        <field name="product_specification_10" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                         <field name="product_specification_10_1"
                                                attrs="{'invisible': [('product_specification_10', '=', False)]}"/>
                                     </group>
                                 </group>
                                 <group name="certification_header_details_tgn_product_specification_attachments"
                                        style="width:40%%" colspan="1">
-                                    <field name="product_specification_attachment_ids" widget='many2many_binary'/>
-                                    <field name="product_specification_remarks" widget="html"/>
+                                    <field name="product_specification_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="product_specification_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_the_scheme_of_power_supply"
                                    string="4. Схема живлення" col="3">
                                 <group name="certification_header_details_tgn_the_scheme_of_power_supply_verdict"
                                        style="width:20%%" colspan="1">
-                                    <field name="the_scheme_of_power_supply_verdict" widget="radio"/>
+                                    <field name="the_scheme_of_power_supply_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_the_scheme_of_power_supply_evidence"
                                        style="width:40%%" colspan="1">
                                     <group name="certification_header_details_tgn_the_scheme_of_power_supply_evidence_2"
                                            style="width:40%%" colspan="1">
-                                        <field name="the_scheme_of_power_supply_1"/>
+                                        <field name="the_scheme_of_power_supply_1" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                     </group>
                                     <group name="certification_header_details_tgn_the_scheme_of_power_supply_evidence_1"
                                            colspan="2">
                                         <group name="certification_header_details_tgn_the_scheme_of_power_supply_evidence_1_1"
                                                style="width:30%%">
-                                            <field name="the_scheme_of_power_supply_2"/>
+                                            <field name="the_scheme_of_power_supply_2" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                         </group>
                                         <group name="certification_header_details_tgn_the_scheme_of_power_supply_evidence_1_2"
                                                style="width:70%%">
@@ -380,46 +380,46 @@
                                 </group>
                                 <group name="certification_header_details_tgn_the_scheme_of_power_supply_attachments"
                                        style="width:40%%" colspan="1">
-                                    <field name="the_scheme_of_power_supply_attachment_ids" widget='many2many_binary'/>
-                                    <field name="the_scheme_of_power_supply_remarks" widget="html"/>
+                                    <field name="the_scheme_of_power_supply_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="the_scheme_of_power_supply_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_model_line" string="5. Модельний ряд" col="3">
                                 <group name="certification_header_details_tgn_model_line_verdict" style="width:20%%"
                                        colspan="1">
-                                    <field name="model_line_verdict" widget="radio"/>
+                                    <field name="model_line_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_model_line_evidence" style="width:40%%"
                                        colspan="1">
-                                    <field name="model_line_model"/>
+                                    <field name="model_line_model" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_model_line_attachments" style="width:40%%"
                                        colspan="1">
-                                    <field name="model_line_attachment_ids" widget='many2many_binary'/>
-                                    <field name="model_line_remarks" widget="html"/>
+                                    <field name="model_line_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="model_line_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_part_of_the_equipment"
                                    string="6. Склад обладнання" col="3">
                                 <group name="certification_header_details_tgn_part_of_the_equipment_verdict"
                                        style="width:20%%" colspan="1">
-                                    <field name="part_of_the_equipment_verdict" widget="radio"/>
+                                    <field name="part_of_the_equipment_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_part_of_the_equipment_evidence"
                                        style="width:40%%" colspan="1">
-                                    <field name="part_of_the_equipment" widget="html"/>
+                                    <field name="part_of_the_equipment" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_part_of_the_equipment_attachments"
                                        style="width:40%%" colspan="1">
-                                    <field name="part_of_the_equipment_attachment_ids" widget='many2many_binary'/>
-                                    <field name="part_of_the_equipment_remarks" widget="html"/>
+                                    <field name="part_of_the_equipment_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="part_of_the_equipment_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_information_regarding_freq_bands_eirp"
                                    string="7. Технічна специфікація" col="3">
                                 <group name="certification_header_details_tgn_information_regarding_freq_bands_eirp_verdict"
                                        style="width:20%%" colspan="1">
-                                    <field name="information_regarding_freq_bands_eirp_verdict" widget="radio"/>
+                                    <field name="information_regarding_freq_bands_eirp_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_type_information_regarding_freq_bands_eirp_evidence"
                                        style="width:40%%" colspan="1">
@@ -427,55 +427,55 @@
                                 <group name="certification_header_details_tgn_information_regarding_freq_bands_eirp_attachments"
                                        style="width:40%%" colspan="1">
                                     <field name="information_regarding_freq_bands_eirp_attachment_ids"
-                                           widget='many2many_binary'/>
-                                    <field name="information_regarding_freq_bands_eirp_remarks" widget="html"/>
+                                           widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="information_regarding_freq_bands_eirp_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_illustrations"
                                    string="8. Фотографії/ілюстрації" col="3">
                                 <group name="certification_header_details_tgn_illustrations_verdict" style="width:20%%"
                                        colspan="1">
-                                    <field name="illustrations_verdict" widget="radio"/>
+                                    <field name="illustrations_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_illustrations_evidence" style="width:40%%"
                                        colspan="1">
                                 </group>
                                 <group name="certification_header_details_tgn_illustrations_attachments"
                                        style="width:40%%" colspan="1">
-                                    <field name="illustrations_attachment_ids" widget='many2many_binary'/>
-                                    <field name="illustrations_remarks" widget="html"/>
+                                    <field name="illustrations_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="illustrations_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_hw_sw_version"
                                    string="9. Версії програмного забезпечення" col="3">
                                 <group name="certification_header_details_tgn_hw_sw_version_verdict" style="width:20%%"
                                        colspan="1">
-                                    <field name="hw_sw_version_verdict" widget="radio"/>
+                                    <field name="hw_sw_version_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_type_hw_sw_version_evidence"
                                        style="width:40%%" colspan="1">
-                                    <field name="sw_id"/>
-                                    <field name="hw_id"/>
+                                    <field name="sw_id" attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="hw_id" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_hw_sw_version_attachments"
                                        style="width:40%%" colspan="1">
-                                    <field name="hw_sw_version_attachment_ids" widget='many2many_binary'/>
-                                    <field name="hw_sw_version_remarks" widget="html"/>
+                                    <field name="hw_sw_version_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="hw_sw_version_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_user_manual"
                                    string="10. Інструкції з експлуатації" col="3">
                                 <group name="certification_header_details_tgn_user_manual_verdict" style="width:20%%"
                                        colspan="1">
-                                    <field name="user_manual_verdict" widget="radio"/>
+                                    <field name="user_manual_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_type_user_manual_evidence"
                                        style="width:40%%" colspan="1">
                                 </group>
                                 <group name="certification_header_details_tgn_user_manual_attachments"
                                        style="width:40%%" colspan="1">
-                                    <field name="user_manual_attachment_ids" widget='many2many_binary'/>
-                                    <field name="user_manual_remarks" widget="html"/>
+                                    <field name="user_manual_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="user_manual_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_compliance_documents"
@@ -483,58 +483,58 @@
                                    col="3">
                                 <group name="certification_header_details_tgn_compliance_documents_verdict"
                                        style="width:20%%" colspan="1">
-                                    <field name="compliance_documents_verdict" widget="radio"/>
+                                    <field name="compliance_documents_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_type_compliance_documents_evidence"
                                        style="width:40%%" colspan="1">
                                 </group>
                                 <group name="certification_header_details_tgn_compliance_documents_attachments"
                                        style="width:40%%" colspan="1">
-                                    <field name="compliance_documents_attachment_ids" widget='many2many_binary'/>
-                                    <field name="compliance_documents_remarks" widget="html"/>
+                                    <field name="compliance_documents_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="compliance_documents_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_diagrams" string="12. Схеми" col="3">
                                 <group name="certification_header_details_tgn_diagrams_verdict" style="width:20%%"
                                        colspan="1">
-                                    <field name="diagrams_verdict" widget="radio"/>
+                                    <field name="diagrams_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_type_diagrams_evidence" style="width:40%%"
                                        colspan="1">
                                 </group>
                                 <group name="certification_header_details_tgn_diagrams_attachments" style="width:40%%"
                                        colspan="1">
-                                    <field name="diagrams_attachment_ids" widget='many2many_binary'/>
-                                    <field name="diagrams_remarks" widget="html"/>
+                                    <field name="diagrams_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="diagrams_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_risk_assessment"
                                    string="13. Оцінка та аналіз ризиків" col="3">
                                 <group name="certification_header_details_tgn_risk_assessment_verdict"
                                        style="width:20%%" colspan="1">
-                                    <field name="risk_assessment_verdict" widget="radio"/>
+                                    <field name="risk_assessment_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_type_risk_assessment_evidence"
                                        style="width:40%%" colspan="1">
                                 </group>
                                 <group name="certification_header_details_tgn_risk_assessment_attachments"
                                        style="width:40%%" colspan="1">
-                                    <field name="risk_assessment_attachment_ids" widget='many2many_binary'/>
-                                    <field name="risk_assessment_remarks" widget="html"/>
+                                    <field name="risk_assessment_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="risk_assessment_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_label" string="14. Маркування" col="3">
                                 <group name="certification_header_details_tgn_label_verdict" style="width:20%%"
                                        colspan="1">
-                                    <field name="label_verdict" widget="radio"/>
+                                    <field name="label_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_type_label_evidence" style="width:40%%"
                                        colspan="1">
                                 </group>
                                 <group name="certification_header_details_tgn_label_attachments" style="width:40%%"
                                        colspan="1">
-                                    <field name="label_attachment_ids" widget='many2many_binary'/>
-                                    <field name="label_remarks" widget="html"/>
+                                    <field name="label_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="label_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <h2>
@@ -546,113 +546,113 @@
                                    string="15. Суттєві вимоги згідно п.6 ТР Р (Безпека)" col="3">
                                 <group name="certification_header_details_tgn_safety_verdict" style="width:20%%"
                                        colspan="1">
-                                    <field name="safety_verdict" widget="radio"/>
+                                    <field name="safety_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_type_safety_evidence" style="width:40%%"
                                        colspan="1">
-                                    <field name="safety_details" string="Вимоги" widget="many2many_tags"/>
-                                    <field name="safety_protocol_no"/>
-                                    <field name="safety_protocol_date"/>
-                                    <field name="safety_laboratory_id"/>
+                                    <field name="safety_details" string="Вимоги" widget="many2many_tags" attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="safety_protocol_no" attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="safety_protocol_date" attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="safety_laboratory_id" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_safety_attachments" style="width:40%%"
                                        colspan="1">
-                                    <field name="safety_attachment_ids" widget='many2many_binary'/>
-                                    <field name="safety_remarks" widget="html"/>
+                                    <field name="safety_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="safety_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_health"
                                    string="16. Суттєві вимоги згідно п.6 ТР Р (Здоров'я)" col="3">
                                 <group name="certification_header_details_tgn_health_verdict" style="width:20%%"
                                        colspan="1">
-                                    <field name="health_verdict" widget="radio"/>
+                                    <field name="health_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_type_health_evidence" style="width:40%%"
                                        colspan="1">
-                                    <field name="health_details" string="Вимоги" widget="many2many_tags"/>
-                                    <field name="health_protocol_no"/>
-                                    <field name="health_protocol_date"/>
-                                    <field name="health_laboratory_id"/>
+                                    <field name="health_details" string="Вимоги" widget="many2many_tags" attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="health_protocol_no" attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="health_protocol_date" attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="health_laboratory_id" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_health_attachments" style="width:40%%"
                                        colspan="1">
-                                    <field name="health_attachment_ids" widget='many2many_binary'/>
-                                    <field name="health_remarks" widget="html"/>
+                                    <field name="health_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="health_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_emc"
                                    string="17. Суттєві вимоги згідно п.6 ТР Р (EMC)" col="3">
                                 <group name="certification_header_details_tgn_emc_verdict" style="width:20%%"
                                        colspan="1">
-                                    <field name="emc_verdict" widget="radio"/>
+                                    <field name="emc_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_type_emc_evidence" style="width:40%%"
                                        colspan="1">
-                                    <field name="emc_details" string="Вимоги" widget="many2many_tags"/>
-                                    <field name="emc_protocol_no"/>
-                                    <field name="emc_protocol_date"/>
-                                    <field name="emc_laboratory_id"/>
+                                    <field name="emc_details" string="Вимоги" widget="many2many_tags" attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="emc_protocol_no" attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="emc_protocol_date" attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="emc_laboratory_id" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_emc_attachments" style="width:40%%"
                                        colspan="1">
-                                    <field name="emc_attachment_ids" widget='many2many_binary'/>
-                                    <field name="emc_remarks" widget="html"/>
+                                    <field name="emc_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="emc_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_spectrum"
                                    string="18. Суттєві вимоги згідно п. 7 ТР Р (викор.РЧР)" col="3">
                                 <group name="certification_header_details_tgn_spectrum_verdict" style="width:20%%"
                                        colspan="1">
-                                    <field name="spectrum_verdict" widget="radio"/>
+                                    <field name="spectrum_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_spectrum_evidence" style="width:40%%"
                                        colspan="1">
-                                    <field name="spectrum_details" string="Вимоги" widget="many2many_tags"/>
-                                    <field name="spectrum_protocol_no"/>
-                                    <field name="spectrum_protocol_date"/>
-                                    <field name="spectrum_laboratory_id"/>
+                                    <field name="spectrum_details" string="Вимоги" widget="many2many_tags" attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="spectrum_protocol_no" attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="spectrum_protocol_date" attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="spectrum_laboratory_id" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_spectrum_attachments" style="width:40%%"
                                        colspan="1">
-                                    <field name="spectrum_attachment_ids" widget='many2many_binary'/>
-                                    <field name="spectrum_remarks" widget="html"/>
+                                    <field name="spectrum_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="spectrum_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_subpart"
                                    string="19. Додаткові суттєві вимоги згідно п. 8 ТР Р" col="3">
                                 <group name="certification_header_details_tgn_subpart_verdict" style="width:20%%"
                                        colspan="1">
-                                    <field name="subpart_verdict" widget="radio"/>
+                                    <field name="subpart_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_subpart_evidence" style="width:40%%"
                                        colspan="1">
-                                    <field name="subpart_notes" widget="html" string=""/>
+                                    <field name="subpart_notes" widget="html" string="" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_subpart_attachments" style="width:40%%"
                                        colspan="1">
-                                    <field name="subpart_attachment_ids" widget='many2many_binary'/>
-                                    <field name="subpart_attachment_remarks" widget="html"/>
+                                    <field name="subpart_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="subpart_attachment_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_subpart" string="Повторна оцінка продукту"
                                    col="3">
                                 <group name="certification_header_details_tgn_product_reassessment_verdict"
                                        style="width:20%%" colspan="1">
-                                    <field name="product_reassessment_verdict" widget="radio"/>
+                                    <field name="product_reassessment_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}" />
                                 </group>
                                 <group name="certification_header_details_tgn_product_reassessment_evidence"
                                        style="width:40%%" colspan="1">
                                 </group>
                                 <group name="certification_header_details_tgn_product_reassessment_attachments"
                                        style="width:40%%" colspan="1">
-                                    <field name="product_reassessment_attachment_ids" widget='many2many_binary'/>
-                                    <field name="product_reassessment_remarks" widget="html"/>
+                                    <field name="product_reassessment_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="product_reassessment_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_conditions"
                                    string="20. Відповідність умовам застосовування на території України" col="2">
                                 <group name="certification_header_details_tgn_conditions_verdict" style="width:20%%">
-                                    <field name="conditions_verdict" widget="radio"/>
+                                    <field name="conditions_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                     <field name="show_condition_1" invisible="1" readonly="1"/>
                                     <field name="show_condition_2" invisible="1" readonly="1"/>
                                     <field name="show_condition_3" invisible="1" readonly="1"/>
@@ -679,10 +679,12 @@
                                     <group name="image_buttons" colspan="2">
                                         <button string="Додати умову" type="object" name="action_show_next_condition"
                                                 options='{"always_reload": True}' widget="button"
-                                                help="You can add up to 20 conditions"/>
+                                                help="You can add up to 20 conditions"
+                                                attrs="{'invisible': [('status', '=', 'approved')]}"/>
                                         <button string="Видалити останню умову" type="object"
                                                 name="delete_last_condition" options='{"always_reload": True}'
-                                                widget="button"/>
+                                                widget="button"
+                                                attrs="{'invisible': [('status', '=', 'approved')]}"/>
                                     </group>
                                     <group name="certification_header_details_tgn_conditions_details_1"
                                            style="width:100%%" colspan="3">
@@ -1046,7 +1048,7 @@
                                     </group>
                                     <group name="certification_header_details_tgn_conditions_details_remarks"
                                            style="width:100%" colspan="3">
-                                        <field name="conditions_remarks" widget="html"/>
+                                        <field name="conditions_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                     </group>
                                 </group>
                             </group>
@@ -1056,87 +1058,88 @@
                                    string="21. Сертифікат експертизи типу" col="3">
                                 <group name="certification_header_details_tgn_type_examination_certificate_verdict"
                                        style="width:20%%" colspan="1">
-                                    <field name="type_examination_certificate_verdict" widget="radio"/>
+                                    <field name="type_examination_certificate_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_type_examination_сertificate_evidence"
                                        style="width:40%%" colspan="1">
-                                    <field name="type_examination_number"/>
-                                    <field name="type_examination_date"/>
+                                    <field name="type_examination_number" attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="type_examination_date" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_type_examination_сertificate_attachments"
                                        style="width:40%%" colspan="1">
                                     <field name="type_examination_certificate_attachment_ids"
-                                           widget='many2many_binary'/>
-                                    <field name="type_examination_certificate_remarks" widget="html"/>
+                                           widget='many2many_binary'
+                                           attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="type_examination_certificate_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_declaration_of_conformity"
                                    string="22. Декларація відповідності" col="3">
                                 <group name="certification_header_details_tgn_declaration_of_conformity_verdict"
                                        style="width:20%%" colspan="1">
-                                    <field name="declaration_of_conformity_verdict" widget="radio"/>
+                                    <field name="declaration_of_conformity_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_declaration_of_conformity_evidence"
                                        style="width:40%%" colspan="1">
-                                    <field name="declaration_of_conformity_number"/>
-                                    <field name="declaration_of_conformity_date"/>
+                                    <field name="declaration_of_conformity_number" attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="declaration_of_conformity_date" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_declaration_of_conformity_attachments"
                                        style="width:40%%" colspan="1">
-                                    <field name="declaration_of_conformity_attachment_ids" widget='many2many_binary'/>
-                                    <field name="declaration_of_conformity_remarks" widget="html"/>
+                                    <field name="declaration_of_conformity_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="declaration_of_conformity_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_certification_agrement"
                                    string="23. Сертифікаційна угода" col="3">
                                 <group name="certification_header_details_tgn_declaration_of_conformity_verdict"
                                        style="width:20%%" colspan="1">
-                                    <field name="certification_agrement_verdict" widget="radio"/>
+                                    <field name="certification_agrement_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_certification_agrement_evidence"
                                        style="width:40%%" colspan="1">
-                                    <field name="certification_agrement_number"/>
-                                    <field name="certification_agrement_date"/>
+                                    <field name="certification_agrement_number" attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="certification_agrement_date" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_certification_agrement_attachments"
                                        style="width:40%%" colspan="1">
-                                    <field name="certification_agrement_attachment_ids" widget='many2many_binary'/>
-                                    <field name="certification_agrement_remarks" widget="html"/>
+                                    <field name="certification_agrement_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="certification_agrement_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <group name="certification_header_details_tgn_сontract" string="24. Господарський договір"
                                    col="3">
                                 <group name="certification_header_details_tgn_сontract_verdict" style="width:20%%"
                                        colspan="1">
-                                    <field name="contract_verdict" widget="radio"/>
+                                    <field name="contract_verdict" widget="radio" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_сontract_evidence" style="width:40%%"
                                        colspan="1">
-                                    <field name="contract_number"/>
-                                    <field name="contract_date"/>
+                                    <field name="contract_number" attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="contract_date" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                                 <group name="certification_header_details_tgn_сontract_attachments" style="width:40%%"
                                        colspan="1">
-                                    <field name="contract_attachment_ids" widget='many2many_binary'/>
-                                    <field name="contract_remarks" widget="html"/>
+                                    <field name="contract_attachment_ids" widget='many2many_binary' attrs="{'readonly': [('status', '=', 'approved')]}"/>
+                                    <field name="contract_remarks" widget="html" attrs="{'readonly': [('status', '=', 'approved')]}"/>
                                 </group>
                             </group>
                             <h2><br></br>Оцінка відповідності згідно з Додатком 3 ТР Р (дивись окремий звіт)
                             </h2>
                             <button string="Дивитись окремий звіт" type="object" name="open_or_create_additional_order"
-                                    options='{"always_reload": True}' widget="button"/>
+                                    options='{"always_reload": True}' widget="button" />
                         </page>
                         <page name="reporting" string="Нотатки">
                             <group name="notes">
                                 <field name="general_notes_subpart_notes" widget="html"
-                                       attrs="{'readonly': [('general_notes_subpart_notes_editability', '!=', True)]}"/>
+                                       attrs="{'readonly': [('general_notes_subpart_notes_editability', '!=', True)], 'readonly': [('status', '=', 'approved')]}" />
                                 <field name="general_notes_subpart_notes_editability" invisible="1" readonly="1"/>
                             </group>
                             <group name="notes_buttons">
                                 <button string="Редагувати нотатки" type="object" name="action_modify_notes"
-                                        options='{"always_reload": True}' widget="button"/>
+                                        options='{"always_reload": True}' widget="button" attrs="{'invisible': [('status', '=', 'approved')]}"/>
                                 <button string="Зберегти нотатки" type="object" name="action_save_notes"
-                                        options='{"always_reload": True}' widget="button"/>
+                                        options='{"always_reload": True}' widget="button" attrs="{'invisible': [('status', '=', 'approved')]}"/>
                             </group>
                         </page>
                     </notebook>
