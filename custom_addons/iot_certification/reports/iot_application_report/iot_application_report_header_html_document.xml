@@ -172,7 +172,10 @@
                             </strong>
                             <span style="font-family:Calibri">
                                 <u>
-                                    <t t-out="o.create_date.strftime('%d.%m.')"/>
+                                    <t t-if="o.date_of_commencement_of_work">
+                                        <t t-out="o.date_of_commencement_of_work.strftime('%d.%m.')"/>
+                                    </t>
+
                                 </u>
                                 <t t-out="o.create_date.strftime('%Y р.')"/>
                             </span>

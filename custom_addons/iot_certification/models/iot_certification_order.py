@@ -1073,10 +1073,11 @@ class IoTCertificationOrder(models.Model):
             else:
                  return self.env.ref('iot_certification.iot_certification_certification_report_action').report_action(self)
 
-    @staticmethod
-    def get_formatted_date():
-        today = datetime.datetime.today()
-        return format_date(today, format='d MMMM yyyy', locale='uk_UA')
+    def get_formatted_date(self):
+        if self.date_of_commencement_of_work:
+            return format_date(self.date_of_commencement_of_work, format='d MMMM yyyy', locale='uk_UA')
+        else:
+            return ""
 
     def get_equipment_description(self) -> str:
         result = str()
