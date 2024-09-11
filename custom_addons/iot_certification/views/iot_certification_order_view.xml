@@ -1052,6 +1052,38 @@
                                     </group>
                                 </group>
                             </group>
+                            <group name="certification_header_details_tgn_subpart"
+                                       string="Відповідає" col="3">
+                                <group name="certification_header_details_tgn_product_conformity_verdict" style="width:20%%"
+                                       colspan="1">
+                                    <field name="product_conformity_verdict" widget="radio"/>
+                                </group>
+                                <group name="certification_header_details_tgn_product_conformity" style="width:40%%"
+                                       colspan="1">
+                                    <field name="product_conformity" string=""/>
+                                </group>
+                                <group name="certification_header_details_tgn_product_conformity_attachments" style="width:40%%"
+                                       colspan="1">
+                                    <field name="product_conformity_ids" widget='many2many_binary'/>
+                                    <field name="product_conformity_remarks" widget="html"/>
+                                </group>
+                            </group>
+                            <group name="certification_header_details_tgn_subpart"
+                                       string="Порядок використання" col="3">
+                                <group name="certification_header_details_tgn_operation_basis_verdict" style="width:20%%"
+                                       colspan="1">
+                                    <field name="operation_basis_verdict" widget="radio"/>
+                                </group>
+                                <group name="certification_header_details_tgn_operation_basis_conformity" style="width:40%%"
+                                       colspan="1">
+                                    <field name="operation_basis" string=""/>
+                                </group>
+                                <group name="certification_header_details_tgn_operation_basis_conformity_attachments" style="width:40%%"
+                                       colspan="1">
+                                    <field name="operation_basis_ids" widget='many2many_binary'/>
+                                    <field name="operation_basis_remarks" widget="html"/>
+                                </group>
+                            </group>
                         </page>
                         <page name="reporting" string="Звітність">
                             <group name="certification_header_details_tgn_type_examination_сertificate"

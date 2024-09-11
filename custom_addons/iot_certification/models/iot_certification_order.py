@@ -690,6 +690,45 @@ class IoTCertificationOrder(models.Model):
     
     conditions_remarks = fields.Html(
         string="Remarks")
+
+    product_conformity_verdict = fields.Selection(
+        selection=[
+            ('ok', "Ok"),
+            ('remark', "See remark"),
+        ],
+        string="Рішення")
+
+    product_conformity_ids = fields.Many2many(
+        comodel_name='ir.attachment',
+        relation='subpart_relation',
+        string='Коментар'
+    )
+
+    product_conformity_remarks = fields.Html(
+        string="Remarks")
+
+    product_conformity = fields.Many2one("iot_certification_product_conformity", "Відповідає")
+
+    operation_basis_verdict = fields.Selection(
+        selection=[
+            ('ok', "Ok"),
+            ('remark', "See remark"),
+        ],
+        string="Рішення")
+
+    operation_basis_ids = fields.Many2many(
+        comodel_name='ir.attachment',
+        relation='subpart_relation',
+        string='Коментар'
+    )
+
+    operation_basis_remarks = fields.Html(
+        string="Remarks")
+
+    operation_basis = fields.Selection([
+        ("option1", "не потребує внесення до реєстру присвоєнь радіочастот загальних користувачів"),
+        ("option2", "на бездозвільній основі"),
+    ], "Порядок використання")
     
     for i in range(1, 21):
         show_field_name = f"show_condition_{i}"
@@ -1073,10 +1112,11 @@ class IoTCertificationOrder(models.Model):
             else:
                  return self.env.ref('iot_certification.iot_certification_certification_report_action').report_action(self)
 
-    @staticmethod
-    def get_formatted_date():
-        today = datetime.datetime.today()
-        return format_date(today, format='d MMMM yyyy', locale='uk_UA')
+    def get_formatted_date(self):
+        if self.date_of_commencement_of_work:
+            return format_date(self.date_of_commencement_of_work, format='d MMMM yyyy', locale='uk_UA')
+        else:
+            return ""
 
     def get_equipment_description(self) -> str:
         result = str()

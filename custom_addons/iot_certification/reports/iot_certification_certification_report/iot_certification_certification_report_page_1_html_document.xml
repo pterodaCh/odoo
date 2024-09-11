@@ -202,22 +202,9 @@
                         </p>
                     </td>
                     <td colspan="2">
-                        <p>
-                            <strong>- суттєвим вимогам Технічного регламенту
-                                радіообладнання (ТР Р), затвердженого Постановою КМ України від
-                                24.05.2017 № 355;
-                            </strong>
-                        </p>
-                        <p>
-                            <strong>- узагальненим умовам застосування згідно з Додатками 11, 42,
-                                43 до Рішення НКРЗІ від 12.01.2012 №18;
-                            </strong>
-                        </p>
-                        <p>
-                            <strong>- нормативним документам, наведеним в Додатку
-                                1
-                            </strong>
-                        </p>
+                        <strong>
+                            <t t-out="o.product_conformity.text"/>
+                        </strong>
                     </td>
                 </tr>
                 <tr>
@@ -234,7 +221,9 @@
                         </p>
                     </td>
                     <td colspan="2">
-                        <strong>на бездозвільній основі</strong>
+                        <strong>
+                            <t t-if="o.operation_basis" t-esc="dict(o.fields_get(allfields=['operation_basis'])['operation_basis']['selection'])[docs.operation_basis]"/>
+                        </strong>
                     </td>
                 </tr>
                 <tr>

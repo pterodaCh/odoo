@@ -96,8 +96,9 @@
                         <td colspan="8">
                             <em>
                                 від
-                                <t t-out="o.create_date.strftime('%d.%m.%Y')"/>
-                                <!--                            TODO: change date to normal one, check if field right-->
+                                <t t-if="o.date_of_commencement_of_work">
+                                    <t t-out="o.date_of_commencement_of_work.strftime('%d.%m.%Y')"/>
+                                </t>
                                 , "
                                 <t t-if="o.appliciant_id.is_company == True" t-out="o.appliciant_id.name"/>
                                 <t t-else="" t-out="o.appliciant_id.parent_id.name"/>
@@ -699,7 +700,7 @@
                         <td colspan="1">
                             ☐
                             <!--                            <span t-if="o.illustrations_verdict == 'ok'">☒</span>-->
-                            <!--                            <span t-else="">☐</span> TODO: Протоколи випробувань-->
+                            <!--                            <span t-else="">☐</span>-->
                         </td>
                         <td colspan="15">
                             Протоколи випробувань /
