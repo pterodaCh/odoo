@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="0">
         <record id="performer_own_form_rule" model="ir.rule">
             <field name="name">Performer: view onw records</field>
             <field name="model_id" ref="model_iot_certification_order"/>
@@ -21,5 +20,5 @@
             <field name="groups" eval="[Command.set([ref('iot_certification.group_certification_cert_manager')])]"/>
             <field name="domain_force">[(1,'=',1)]</field>
         </record>
-    </data>
+
 </odoo>
