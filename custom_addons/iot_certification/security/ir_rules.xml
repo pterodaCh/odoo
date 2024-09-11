@@ -12,9 +12,6 @@
             <field name="model_id" ref="model_iot_certification_order"/>
             <field name="groups" eval="[Command.set([ref('iot_certification.group_certification_report_manager')])]"/>
             <field name="domain_force">[(1,'=',1)]</field>
-            <field name="perm_create" eval="False"/>
-            <field name="perm_unlink" eval="False"/>
-            <field name="perm_write" eval="False"/>
         </record>
 
         <record id="cert_manager_own_form_rule" model="ir.rule">
@@ -22,9 +19,6 @@
             <field name="model_id" ref="model_iot_certification_order"/>
             <field name="groups" eval="[Command.set([ref('iot_certification.group_certification_cert_manager')])]"/>
             <field name="domain_force">[(1,'=',1)]</field>
-            <field name="perm_create" eval="False"/>
-            <field name="perm_unlink" eval="False"/>
-            <field name="perm_write" eval="False"/>
         </record>
 
 </odoo>
