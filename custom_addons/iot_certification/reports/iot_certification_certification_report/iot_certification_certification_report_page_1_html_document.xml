@@ -91,7 +91,9 @@
                     <th>
                         <p>
                             <strong>№</strong>
-                            <strong>UA.R.TR.052.<t t-out="o.name"/>-<t t-out="docs.create_date.strftime('%y')"/></strong>
+                            <strong>UA.R.TR.052.<t t-out="o.name"/>-
+                                <t t-out="docs.create_date.strftime('%y')"/>
+                            </strong>
                         </p>
                     </th>
                 </tr>
@@ -126,7 +128,7 @@
                         <strong>
                             <t t-out="o.product_id.name"/>
                         </strong>
-                         у
+                        у
                         складі згідно з Додатком 2
                     </td>
                 </tr>
@@ -222,7 +224,8 @@
                     </td>
                     <td colspan="2">
                         <strong>
-                            <t t-if="o.operation_basis" t-esc="dict(o.fields_get(allfields=['operation_basis'])['operation_basis']['selection'])[docs.operation_basis]"/>
+                            <t t-if="o.operation_basis"
+                               t-esc="dict(o.fields_get(allfields=['operation_basis'])['operation_basis']['selection'])[docs.operation_basis]"/>
                         </strong>
                     </td>
                 </tr>
@@ -262,8 +265,9 @@
                         </p>
                     </td>
                     <td colspan="2">
-<!--                        <strong></strong> TODO: strong company name-->
-                        <t t-out="o.appliciant_id.contact_address"/> на підприємствах, згідно з Додатком 2
+                        <!--                        <strong></strong> TODO: strong company name-->
+                        <t t-out="o.appliciant_id.contact_address"/>
+                        на підприємствах, згідно з Додатком 2
                     </td>
                 </tr>
                 <tr>
@@ -311,7 +315,7 @@
                         </p>
                     </td>
                     <td colspan="2" style="text-align: left;">Звіту про оцінювання №
-                        УЧН-23/D.241 від 04.10.2023
+                        УЧН-23/D.<t t-out="o.name"/> від 04.10.2023
                     </td>
                 </tr>
                 <tr>
@@ -322,7 +326,7 @@
                     <td>
                         <strong>Умови чинності сертифіката</strong>
                     </td>
-                    <td colspan="2">Виконання умов сертифікаційної угоди № УЧН-23/D.241</td>
+                    <td colspan="2">Виконання умов сертифікаційної угоди № УЧН-23/D.<t t-out="o.name"/></td>
                 </tr>
                 <tr>
                     <td></td>
