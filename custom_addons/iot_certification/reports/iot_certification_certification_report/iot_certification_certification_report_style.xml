@@ -10,8 +10,6 @@
                 line-height: 1;
             }
 
-            table { margin-top:0pt; margin-bottom:0pt }
-
             img {
             max-width: 100%;
             height: auto;
@@ -20,14 +18,15 @@
             table {
             width: 100%;
             border-collapse: collapse;
+            margin-top:0pt;
+            margin-bottom:0pt;
             }
 
             td, th {
-<!--            padding 8-->
                 padding: 6px;
                 padding-top: 0;
                 text-align: left;
-                border: 1px solid #ffffff;
+                border: 1px solid transparent;
             }
 
             table.gray-border td, table.gray-border th {
@@ -46,6 +45,13 @@
             p br {
                 margin: 0;
                 line-height: 1;
+            }
+
+            .report-container {
+                margin-bottom:30mm;
+                margin-left:19mm;
+                margin-right:24mm;
+                padding-top: 90px;
             }
         </style>
     </template>

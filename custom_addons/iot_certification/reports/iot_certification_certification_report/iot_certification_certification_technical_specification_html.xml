@@ -1,85 +1,89 @@
 <?xml version="1.0"?>
 <odoo>
     <template id="iot_certification_certification_technical_specification_header">
-        <p style="margin-right:21.2pt; text-align:right">
-            &#xa0;
-        </p>
-        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:10pt">
-            <strong>
-                <span style="font-family:Calibri; ">&#xa0;</span>
-            </strong>
-        </p>
-        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:10pt">
-            <strong>
-                <span style="font-family:Calibri; ">&#xa0;</span>
-            </strong>
-        </p>
-        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:10pt">
-            <strong>
-                <span style="font-family:Calibri; ">&#xa0;</span>
-            </strong>
-            <strong>
-                <span style="font-family:Calibri; ">УКРАЇНСЬКИЙ ДЕРЖАВНИЙ ЦЕНТР РАДІОЧАСТОТ</span>
-            </strong>
-        </p>
-        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:8pt">
-            <em>
-                <span style="font-family:Calibri; ">UKRAINIAN STATE CENTRE OF RADIO FREQUENCIES</span>
-            </em>
-        </p>
-        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:10pt">
-            <strong>
-                <span style="font-family:Calibri; ">ОРГАН З ОЦІНКИ ВІДПОВІДНОСТІ (ООВ УКРЧАСТОТНАГЛЯД)</span>
-            </strong>
-        </p>
-        <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:9pt">
-            <em>
-                <span style="font-family:Calibri; font-size:8pt; ">CONFORMITY ASSESSMENT BODY (</span>
-            </em>
-            <span class="shorttext" style="font-family:Calibri; font-style:italic">CAB</span>
-            <em>
-                <span style="font-family:Calibri; font-size:8pt; ">UKRCHASTOTNAGLIAD)</span>
-            </em>
-        </p>
-        <p style="text-align:center; font-size:10pt">
-            <strong>&#xa0;</strong>
-        </p>
-        <p style="text-align:center; font-size:10pt">
-            <img t-att-src="'/iot_certification/static/certification_report/certificate_appendix_' + str(appendix_number) + '.png'" height="32"
-                 alt=""/>
-        </p>
-        <p style="text-align:center; font-size:14pt">
-            <span style="font-family:Calibri">до сертифіката експертизи типу</span>
-        </p>
-        <p style="margin-left:36pt; text-indent:-36pt; text-align:center">
-            <em>
-                <span style="font-family:Calibri; ">Annex to Type Examination Certificate</span>
-            </em>
-        </p>
-        <p style="margin-left:126pt; text-align:justify; line-height:80%; font-size:6pt">
-            <em>&#xa0;</em>
-        </p>
-        <div style="width:265.6pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; display: table;">
-            <div style="display: table-cell; vertical-align: top;">
-                <p style="margin: 0;">
-                    <strong>
-                        <span style="font-family:Calibri;">№</span>
-                    </strong>
-                    <span style="font-family:Calibri;"></span>
-                    <strong>
-                        <span style="font-family:Calibri;">UA.R.TR.052.287-23</span>
-                    </strong>
-                </p>
+        <div style="padding-top: 90px;">
+            <p style="margin-right:21.2pt; text-align:right">
+                &#xa0;
+            </p>
+            <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:10pt">
+                <strong>
+                    <span style="font-family:Calibri; ">&#xa0;</span>
+                </strong>
+            </p>
+            <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:10pt">
+                <strong>
+                    <span style="font-family:Calibri; ">&#xa0;</span>
+                </strong>
+            </p>
+            <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:10pt">
+                <strong>
+                    <span style="font-family:Calibri; ">&#xa0;</span>
+                </strong>
+                <strong>
+                    <span style="font-family:Calibri; ">УКРАЇНСЬКИЙ ДЕРЖАВНИЙ ЦЕНТР РАДІОЧАСТОТ</span>
+                </strong>
+            </p>
+            <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:8pt">
+                <em>
+                    <span style="font-family:Calibri; ">UKRAINIAN STATE CENTRE OF RADIO FREQUENCIES</span>
+                </em>
+            </p>
+            <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:10pt">
+                <strong>
+                    <span style="font-family:Calibri; ">ОРГАН З ОЦІНКИ ВІДПОВІДНОСТІ (ООВ УКРЧАСТОТНАГЛЯД)</span>
+                </strong>
+            </p>
+            <p style="margin-left:36pt; text-indent:-36pt; text-align:center; font-size:9pt">
+                <em>
+                    <span style="font-family:Calibri; font-size:8pt; ">CONFORMITY ASSESSMENT BODY (</span>
+                </em>
+                <span class="shorttext" style="font-family:Calibri; font-style:italic">CAB</span>
+                <em>
+                    <span style="font-family:Calibri; font-size:8pt; ">UKRCHASTOTNAGLIAD)</span>
+                </em>
+            </p>
+            <p style="text-align:center; font-size:10pt">
+                <strong>&#xa0;</strong>
+            </p>
+            <p style="text-align:center; font-size:10pt">
+                <img t-att-src="'/iot_certification/static/certification_report/certificate_appendix_' + str(appendix_number) + '.png'"
+                     height="32"
+                     alt=""/>
+            </p>
+            <p style="text-align:center; font-size:14pt">
+                <span style="font-family:Calibri">до сертифіката експертизи типу</span>
+            </p>
+            <p style="margin-left:36pt; text-indent:-36pt; text-align:center">
+                <em>
+                    <span style="font-family:Calibri; ">Annex to Type Examination Certificate</span>
+                </em>
+            </p>
+            <p style="margin-left:126pt; text-align:justify; line-height:80%; font-size:6pt">
+                <em>&#xa0;</em>
+            </p>
+            <div style="width:265.6pt; padding-right:5.4pt; padding-left:5.4pt; vertical-align:top; display: table;">
+                <div style="display: table-cell; vertical-align: top;">
+                    <p style="margin: 0;">
+                        <strong>
+                            <span style="font-family:Calibri;">№</span>
+                        </strong>
+                        <span style="font-family:Calibri;"></span>
+                        <strong>
+                            <span style="font-family:Calibri;">UA.R.TR.052.<t t-out="o.name"/>-
+                                <t t-out="docs.create_date.strftime('%y')"/></span>
+                        </strong>
+                    </p>
+                </div>
             </div>
+            <p style="text-align:center">
+                <strong>
+                    <span style="font-family:Calibri; ">Відомості про технічні характеристики</span>
+                </strong>
+            </p>
+            <p style="font-size:4pt">
+                &#xa0;
+            </p>
         </div>
-        <p style="text-align:center">
-            <strong>
-                <span style="font-family:Calibri; ">Відомості про технічні характеристики</span>
-            </strong>
-        </p>
-        <p style="font-size:4pt">
-            &#xa0;
-        </p>
     </template>
 
 
@@ -105,6 +109,13 @@
                 <span t-if="current_height &gt; max_lines">
                     <div style="page-break-before: always;"/>
                     <t t-set="pages_count" t-value="pages_count + 1"/>
+
+                    <div
+                            t-att-style="style_str_format.format(top_px_bg_img_offset)">
+                        <img src="/iot_certification/static/certification_report/certificate_bg.png"/>
+                    </div>
+                    <t t-set="top_px_bg_img_offset" t-value="top_px_bg_img_offset + 1060"/>
+
                     <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
                     <t t-set="appendix_number" t-value="appendix_number + 1"/>
                     <t t-set="current_height" t-value="const_heights[0]"/>
@@ -188,6 +199,13 @@
                 <t t-set="current_height" t-value="current_height + const_heights[1]"/>
                 <span t-if="current_height &gt; max_lines">
                     <div style="page-break-before: always;"/>
+
+                    <div
+                            t-att-style="style_str_format.format(top_px_bg_img_offset)">
+                        <img src="/iot_certification/static/certification_report/certificate_bg.png"/>
+                    </div>
+                    <t t-set="top_px_bg_img_offset" t-value="top_px_bg_img_offset + 1060"/>
+
                     <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
                     <t t-set="appendix_number" t-value="appendix_number + 1"/>
                     <t t-set="current_height" t-value="const_heights[1]"/>
@@ -314,6 +332,12 @@
                     <t t-set="current_height" t-value="current_height + const_heights[2]"/>
                     <t t-if="current_height &gt; max_lines">
                         <div style="page-break-before: always;"/>
+                        <div
+                                t-att-style="style_str_format.format(top_px_bg_img_offset)">
+                            <img src="/iot_certification/static/certification_report/certificate_bg.png"/>
+                        </div>
+                        <t t-set="top_px_bg_img_offset" t-value="top_px_bg_img_offset + 1060"/>
+
                         <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
                         <t t-set="appendix_number" t-value="appendix_number + 1"/>
                         <t t-set="current_height" t-value="const_heights[2]"/>
@@ -387,6 +411,13 @@
                 <t t-set="current_height" t-value="current_height + const_heights[3]"/>
                 <span t-if="current_height &gt; max_lines">
                     <div style="page-break-before: always;"/>
+
+                    <div
+                            t-att-style="style_str_format.format(top_px_bg_img_offset)">
+                        <img src="/iot_certification/static/certification_report/certificate_bg.png"/>
+                    </div>
+                    <t t-set="top_px_bg_img_offset" t-value="top_px_bg_img_offset + 1060"/>
+
                     <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
                     <t t-set="appendix_number" t-value="appendix_number + 1"/>
                     <t t-set="current_height" t-value="const_heights[3]"/>
@@ -456,6 +487,13 @@
                 <t t-set="current_height" t-value="current_height + const_heights[4]"/>
                 <span t-if="current_height &gt; max_lines">
                     <div style="page-break-before: always;"/>
+
+                    <div
+                            t-att-style="style_str_format.format(top_px_bg_img_offset)">
+                        <img src="/iot_certification/static/certification_report/certificate_bg.png"/>
+                    </div>
+                    <t t-set="top_px_bg_img_offset" t-value="top_px_bg_img_offset + 1060"/>
+
                     <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
                     <t t-set="appendix_number" t-value="appendix_number + 1"/>
                     <t t-set="current_height" t-value="const_heights[4]"/>
@@ -516,7 +554,13 @@
                 <span t-if="o.product_specification_1_7">
                     <t t-set="current_height" t-value="current_height + const_heights[5]"/>
                     <span t-if="current_height &gt; max_lines">
+                        <div
+                                t-att-style="style_str_format.format(top_px_bg_img_offset)">
+                            <img src="/iot_certification/static/certification_report/certificate_bg.png"/>
+                        </div>
+                        <t t-set="top_px_bg_img_offset" t-value="top_px_bg_img_offset + 1060"/>
                         <div style="page-break-before: always;"/>
+
                         <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
                         <t t-set="appendix_number" t-value="appendix_number + 1"/>
                         <t t-set="current_height" t-value="const_heights[5]"/>
@@ -569,7 +613,14 @@
                 <span t-if="o.product_specification_4_1">
                     <t t-set="current_height" t-value="current_height + const_heights[6]"/>
                     <span t-if="current_height &gt; max_lines">
+                        <div
+                                t-att-style="style_str_format.format(top_px_bg_img_offset)">
+                            <img src="/iot_certification/static/certification_report/certificate_bg.png"/>
+                        </div>
+                        <t t-set="top_px_bg_img_offset" t-value="top_px_bg_img_offset + 1060"/>
+
                         <div style="page-break-before: always;"/>
+
                         <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
                         <t t-set="appendix_number" t-value="appendix_number + 1"/>
                         <t t-set="current_height" t-value="const_heights[6]"/>
@@ -614,6 +665,13 @@
                     <t t-set="current_height" t-value="current_height + const_heights[7]"/>
                     <span t-if="current_height &gt; max_lines">
                         <div style="page-break-before: always;"/>
+
+                        <div
+                                t-att-style="style_str_format.format(top_px_bg_img_offset)">
+                            <img src="/iot_certification/static/certification_report/certificate_bg.png"/>
+                        </div>
+                        <t t-set="top_px_bg_img_offset" t-value="top_px_bg_img_offset + 1060"/>
+
                         <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
                         <t t-set="appendix_number" t-value="appendix_number + 1"/>
                         <t t-set="current_height" t-value="const_heights[7]"/>
@@ -640,6 +698,13 @@
                     <t t-set="current_height" t-value="current_height + const_heights[8]"/>
                     <span t-if="current_height &gt; max_lines">
                         <div style="page-break-before: always;"/>
+
+                        <div
+                                t-att-style="style_str_format.format(top_px_bg_img_offset)">
+                            <img src="/iot_certification/static/certification_report/certificate_bg.png"/>
+                        </div>
+                        <t t-set="top_px_bg_img_offset" t-value="top_px_bg_img_offset + 1060"/>
+
                         <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
                         <t t-set="appendix_number" t-value="appendix_number + 1"/>
                         <t t-set="current_height" t-value="const_heights[8]"/>
@@ -668,6 +733,13 @@
                     <t t-set="current_height" t-value="current_height + const_heights[9]"/>
                     <span t-if="current_height &gt; max_lines">
                         <div style="page-break-before: always;"/>
+
+                        <div
+                                t-att-style="style_str_format.format(top_px_bg_img_offset)">
+                            <img src="/iot_certification/static/certification_report/certificate_bg.png"/>
+                        </div>
+                        <t t-set="top_px_bg_img_offset" t-value="top_px_bg_img_offset + 1060"/>
+
                         <t t-call="iot_certification.iot_certification_certification_technical_specification_header"/>
                         <t t-set="appendix_number" t-value="appendix_number + 1"/>
                         <t t-set="current_height" t-value="const_heights[9]"/>

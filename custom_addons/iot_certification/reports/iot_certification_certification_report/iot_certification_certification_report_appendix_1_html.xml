@@ -65,7 +65,8 @@
                         </strong>
                         <span style="font-family:Calibri"></span>
                         <strong>
-                            <span style="font-family:Calibri; ">UA.R.TR.052.268-23</span>
+                            <span style="font-family:Calibri; ">UA.R.TR.052.<t t-out="o.name"/>-
+                                <t t-out="docs.create_date.strftime('%y')"/></span>
                         </strong>
                     </p>
                 </td>
