@@ -16,6 +16,8 @@ class IoTCertificationOrder(models.Model):
         readonly=True,
         default=lambda self: _('New')
     )
+
+    certificate_name = fields.Char(string="Номер сертифікату", readonly=True)
     
     date_of_commencement_of_work = fields.Date(
         string='Дата початку')
@@ -988,6 +990,18 @@ class IoTCertificationOrder(models.Model):
                 next_number = 1
             vals['name'] = f'УЧН-{next_number}'
         return super(IoTCertificationOrder, self).create(vals)
+
+    def write(self, vals):
+        if 'status' in vals and vals.get('status') == 'approved' and not self.certificate_name:
+            last_record = self.search([], order='id desc', limit=1)
+            if last_record and last_record.certificate_name:
+                last_number = int(last_record.certificate_name.split('-')[-1])
+                next_number = last_number + 1
+            else:
+                next_number = 1
+            vals['certificate_name'] = f'УЧН-{next_number}'
+
+        return super(IoTCertificationOrder, self).write(vals)
         
     def open_or_create_additional_order(self):
         additional_order = self.env['iot_certification_additional_order'].search([('order_id', '=', self.id)], limit=1)
