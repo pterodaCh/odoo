@@ -33,8 +33,6 @@
     <!-- Sub-menu -->
     <menuitem id="iot_certification_list" name="Сертифікаційна форма" parent="iot_certification_menu_root" action="action_iot_certification_order"/>
     <!-- Sub-menu -->
-    <menuitem id="iot_certification_sw_hw" name="SW / HW версії" parent="iot_certification_menu_root" action="action_sw_hw_tree"/>
-    <!-- Sub-menu -->
     <menuitem id="iot_certification_dstu" name="ДСТУ" parent="iot_certification_menu_root" action="action_dstu_tree"/>
     <!-- Sub-menu -->
     <!--<menuitem id="iot_certification_laboratory" name="Випробувальні лабораторії" parent="iot_certification_menu_root" action="action_testing_laboratory_tree"/> -->
