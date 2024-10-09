@@ -28,7 +28,7 @@
     </record>
     
     <!-- Top-level Menu -->
-    <menuitem id="iot_certification_menu_root" name="IoT Сертифікація" sequence="10"/>
+    <menuitem id="iot_certification_menu_root" name="Сертифікація" sequence="10"/>
 
     <!-- Sub-menu -->
     <menuitem id="iot_certification_list" name="Сертифікаційна форма" parent="iot_certification_menu_root" action="action_iot_certification_order"/>
