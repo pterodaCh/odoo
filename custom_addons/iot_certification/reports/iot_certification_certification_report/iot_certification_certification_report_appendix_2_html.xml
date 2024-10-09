@@ -68,7 +68,7 @@
                         </strong>
                         <span style="font-family:Calibri"></span>
                         <strong>
-                            <span style="font-family:Calibri; ">UA.R.TR.052.<t t-out="o.name"/>-
+                            <span style="font-family:Calibri; ">UA.R.TR.052.<t t-out="o.certificate_name.split('-')[-1]"/>-
                                 <t t-out="docs.create_date.strftime('%y')"/></span>
                         </strong>
                     </p>

@@ -91,7 +91,7 @@
                     <th>
                         <p>
                             <strong>№</strong>
-                            <strong>UA.R.TR.052.<t t-out="o.name"/>-
+                            <strong>UA.R.TR.052.<t t-out="o.certificate_name.split('-')[-1]"/>-
                                 <t t-out="docs.create_date.strftime('%y')"/>
                             </strong>
                         </p>
@@ -315,7 +315,7 @@
                         </p>
                     </td>
                     <td colspan="2" style="text-align: left;">Звіту про оцінювання №
-                        УЧН-23/D.<t t-out="o.name"/> від 04.10.2023
+                        УЧН-23/D.<t t-out="o.certificate_name.split('-')[-1]"/> від 04.10.2023
                     </td>
                 </tr>
                 <tr>
@@ -326,7 +326,7 @@
                     <td>
                         <strong>Умови чинності сертифіката</strong>
                     </td>
-                    <td colspan="2">Виконання умов сертифікаційної угоди № УЧН-23/D.<t t-out="o.name"/></td>
+                    <td colspan="2">Виконання умов сертифікаційної угоди № УЧН-23/D.<t t-out="o.certificate_name.split('-')[-1]"/></td>
                 </tr>
                 <tr>
                     <td></td>

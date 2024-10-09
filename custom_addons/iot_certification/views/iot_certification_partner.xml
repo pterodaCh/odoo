@@ -4,18 +4,19 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <page name="internal_notes" position="after">
-                <page string="Сертифікація пристроїв ІоТ" colspan="2">
-                    <h2>Тип партнера<br></br></h2>
-                    <field name="partner_type" string="Тип партнера" widget='html_select'/>
-                    <h2><br></br><br></br>Список виробництв<br></br></h2>
+            <xpath expr="//notebook" position="replace">
+                <group>
+                    <field name="user_id"/>
+                    <h2>Тип партнера</h2>
+                    <field name="partner_type" string="" widget="html_select"/>
+                    <h2><br/><br/>Список виробництв<br/></h2>
                     <field name="enterprise_ids" widget="one2many_list" context="{'default_partner_id': active_id}" string="Виробництва">
                         <tree editable="bottom">
                             <field name="name"/>
                         </tree>
                     </field>
-                </page>
-            </page>
+                </group>
+            </xpath>
         </field>
     </record>
 </odoo>
