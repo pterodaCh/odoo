@@ -8,6 +8,7 @@
                 <group>
                     <field name="user_id"/>
                     <field name="team_id"/>
+                    <field name="duplicated_bank_account_partners_count" attrs="{'invisible': True }"/>
                     <h2>Тип партнера</h2>
                     <field name="partner_type" string="" widget="html_select"/>
                     <h2><br/><br/>Список виробництв<br/></h2>
