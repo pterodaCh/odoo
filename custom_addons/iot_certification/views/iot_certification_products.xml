@@ -1,0 +1,57 @@
+<odoo>
+    <data>
+        <!-- Action for Products -->
+        <record id="action_products_tree" model="ir.actions.act_window">
+            <field name="name">Пристрої</field>
+            <field name="res_model">iot_certification_product</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!-- Action for Form View -->
+        <record id="action_products_form" model="ir.actions.act_window">
+            <field name="name">Пристрої</field>
+            <field name="res_model">iot_certification_product</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_products_form"/>
+        </record>
+
+        <!-- Tree View -->
+        <record id="view_products_tree" model="ir.ui.view">
+            <field name="name">iot_certification_product.tree</field>
+            <field name="model">iot_certification_product</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_products_form" model="ir.ui.view">
+            <field name="name">iot_certification_product.form</field>
+            <field name="model">iot_certification_product</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet name="product_form">
+                        <field name="image" widget="image" class="oe_avatar"
+                               options="{'preview_image': 'image_128'}"/>
+                        <div class="oe_title">
+                                <label for="name" string="Назва товару"/>
+                                <h1>
+                                    <div class="d-flex">
+                                        <field class="text-break" name="name" placeholder="наприклад Чизбургер"
+                                               on_change="1"/>
+                                    </div>
+                                </h1>
+                            </div>
+                        <group>
+
+                            <field name="notes"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
+
+

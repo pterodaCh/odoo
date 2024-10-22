@@ -6,12 +6,12 @@
         <field name="view_mode">tree,form</field>
     </record>
 
-    <!-- Action for Products -->
-    <record id="action_products_tree" model="ir.actions.act_window">
-        <field name="name">Products</field>
-        <field name="res_model">product.product</field>
-        <field name="view_mode">tree,form</field>
-    </record>
+<!--    &lt;!&ndash; Action for Products &ndash;&gt;-->
+<!--    <record id="action_products_tree" model="ir.actions.act_window">-->
+<!--        <field name="name">Products</field>-->
+<!--        <field name="res_model">product.product</field>-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--    </record>-->
     
     <!-- Action for Users -->
     <record id="action_users_tree" model="ir.actions.act_window">
