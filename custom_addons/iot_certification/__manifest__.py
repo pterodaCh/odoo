@@ -5,7 +5,8 @@
     'depends': [
         'base',
         'product',
-        'mail'
+        'mail',
+        'sale_management'
     ],
     'data': [
         # iot security related
