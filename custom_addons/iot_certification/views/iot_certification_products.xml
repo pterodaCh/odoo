@@ -6,13 +6,6 @@
             <field name="res_model">iot_certification_product</field>
             <field name="view_mode">tree,form</field>
         </record>
-        <!-- Action for Form View -->
-        <record id="action_products_form" model="ir.actions.act_window">
-            <field name="name">Пристрої</field>
-            <field name="res_model">iot_certification_product</field>
-            <field name="view_mode">form</field>
-            <field name="view_id" ref="view_products_form"/>
-        </record>
 
         <!-- Tree View -->
         <record id="view_products_tree" model="ir.ui.view">
