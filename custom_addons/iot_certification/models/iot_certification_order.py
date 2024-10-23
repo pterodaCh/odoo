@@ -91,7 +91,7 @@ class IoTCertificationOrder(models.Model):
         domain="[('partner_type', '!=', 'producer')]")
     
     product_id = fields.Many2one(
-        comodel_name='product.product',
+        comodel_name='iot_certification_product',
         string="Продукт")
     
     producer_id = fields.Many2one(

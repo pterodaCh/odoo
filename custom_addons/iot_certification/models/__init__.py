@@ -8,3 +8,4 @@ from . import iot_certification_testing_laboratory
 from . import iot_certification_additional_order
 from . import iot_certification_enterprise
 from . import iot_certification_product_conformity
+from . import iot_certification_product

@@ -13,6 +13,7 @@
         'security/ir_rules.xml',
         'security/ir.model.access.csv',
         #view
+        'views/iot_certification_products.xml',
         'views/iot_certification_partner.xml',
         'views/iot_certification_dstu.xml',
         'views/iot_certification_report_for-view.xml',
